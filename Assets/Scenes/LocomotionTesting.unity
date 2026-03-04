@@ -500,10 +500,10 @@ MonoBehaviour:
   rb: {fileID: 233669090}
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 768
   whatIsWallrunnable:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 512
   sensitivity: 50
   moveSpeed: 4500
   walkSpeed: 20
@@ -889,7 +889,7 @@ GameObject:
   - component: {fileID: 1275371944}
   - component: {fileID: 1275371943}
   - component: {fileID: 1275371942}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Wall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -905,8 +905,8 @@ Transform:
   m_GameObject: {fileID: 1275371940}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.58, y: 4.42, z: 41.44}
-  m_LocalScale: {x: 1, y: 10, z: 20}
+  m_LocalPosition: {x: -4.58, y: 11, z: 41.44}
+  m_LocalScale: {x: 1, y: 23.062, z: 38.26}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 118577370}
@@ -1016,8 +1016,8 @@ Transform:
   m_GameObject: {fileID: 1307613055}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 82}
-  m_LocalScale: {x: 50, y: 1, z: 50}
+  m_LocalPosition: {x: 0, y: -0.5, z: 74.4}
+  m_LocalScale: {x: 50, y: 1, z: 88.95317}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 118577370}
@@ -1111,7 +1111,7 @@ GameObject:
   - component: {fileID: 1418855773}
   - component: {fileID: 1418855772}
   - component: {fileID: 1418855771}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1127,8 +1127,8 @@ Transform:
   m_GameObject: {fileID: 1418855769}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.03, y: 4.42, z: 37.26}
-  m_LocalScale: {x: 1, y: 10, z: 20}
+  m_LocalPosition: {x: 5.03, y: 13.5, z: 37.26}
+  m_LocalScale: {x: 1, y: 24.223001, z: 44.010002}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 118577370}

@@ -79,13 +79,13 @@ namespace IM
             private void LateUpdate()
             {
                 //For wallrunning
-                WallRunning();
             }
 
             private void FixedUpdate()
             {
                 //For moving
                 Movement();
+                WallRunning();
             }
 
             private void Update()
@@ -206,7 +206,6 @@ namespace IM
             {
                 if ((grounded || wallRunning || surfing) && readyToJump)
                 {
-                    MonoBehaviour.print("jumping");
                     Vector3 velocity = rb.linearVelocity;
                     readyToJump = false;
                     rb.AddForce(Vector2.up * jumpForce * 1.5f);
@@ -418,7 +417,7 @@ namespace IM
                         cancellingGrounded = false;
                         CancelInvoke("StopGrounded");
                     }
-                    if (IsWall(normal) && layer == LayerMask.NameToLayer("Ground"))
+                    if (IsWall(normal) && layer == LayerMask.NameToLayer("Wall"))
                     {
                         StartWallRun(normal);
                         onWall = true;
