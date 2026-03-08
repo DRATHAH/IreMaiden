@@ -12,6 +12,8 @@ public class PlayerHealth : MonoBehaviour
     public float maxInvTimer = 3f;
     public bool isInvincible = false;
 
+    [HideInInspector]public GameManager gamemanager;
+
     void Start()
     {
         /*Set this to be equal to max health upon starting a level.
@@ -65,13 +67,10 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    /*Function to kill the player
-     * THIS IS INCOMPLETE! CURRENTLY JUST A TEST VERSION!
-     * FINISH THIS ONCE WE KNOW HOW WE WANT TO HANDLE PLAYER DEATH!
-    */
+    //Function to kill the player
     private void Die()
     {
-        Debug.Log("Dead");
+        gamemanager.PlayerDeath();
         playerHealth = maxHealth;
     }
 

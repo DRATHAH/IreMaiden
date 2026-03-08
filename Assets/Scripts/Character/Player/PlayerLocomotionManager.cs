@@ -58,6 +58,9 @@ namespace IM
             private Vector3 normalVector;
             private Vector3 wallNormalVector;
 
+        //Movement toggle
+        [HideInInspector] public bool CanMove = true;
+
             //Instance
             public static PlayerLocomotionManager Instance { get; private set; }
 
@@ -84,16 +87,28 @@ namespace IM
             private void FixedUpdate()
             {
                 //For moving
-                Movement();
-                WallRunning();
+                if(CanMove == true) {
+                    Movement();
+                    WallRunning();
+                }
             }
 
             private void Update()
             {
                 //Input
-                MyInput();
                 //Looking around
-                Look();
+                if(CanMove == true)
+                {
+                    MyInput();
+                    Look();
+                    Cursor.lockState = CursorLockMode.Locked;
+                    Cursor.visible = false;
+                }
+                else
+                {
+                    Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = true;
+                }
             }
 
             //Player input

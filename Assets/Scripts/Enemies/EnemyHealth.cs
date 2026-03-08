@@ -2,26 +2,31 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    //float for the enemy's current health
-    private float currentHealth;
+  
+    private float currentHealth; //float for the enemy's current health
 
-    //float for the enemy's maximum health value
-    public float maxHealth;
+    public float maxHealth; //float for the enemy's maximum health value
 
-    //Array for storing body parts of an enemy for damage calcs
-    public GameObject[] bodyArray;
+    private Vector3 spawnPoint;
 
-    //Array for storing the damage multiplier given by body parts
-    public float[] limbDamageMultiplier;
+    public GameObject[] bodyArray; //Array for storing body parts of an enemy for damage calcs
+
+    public float[] limbDamageMultiplier; //Array for storing the damage multiplier given by body parts
+
+    public WaveSpawner WaveSource; //Storing the arena this enemy spawns from
+
+
+    void Start()
+    {
+        spawnPoint = transform.position; //Set the point where the enemy should respawn if respawned.
+    }
 
     void OnEnable()
     {
-        //Set current health = max health upon spawning in
-        currentHealth = maxHealth;
+        currentHealth = maxHealth; //Set current health = max health upon spawning in
     }
 
-    //Function for taking and determining the amount of damage taken
-    public void TakeDamage(float amount, string location)
+    public void TakeDamage(float amount, string location) //Function for taking and determining the amount of damage taken
     {
         //Float determining the multiplier given for attacking enemy body parts
         float damageMutliplier = 0;
@@ -59,12 +64,26 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    //Temporary Death function
-    //TO BE FINISHED LATER
-    private void Die()
+    private void Die() //Death Function
     {
-        Debug.Log("Dead");
-        currentHealth = maxHealth;
+        if(WaveSource != null) //If spawned via a wave spawner
+        {
+            WaveSource.EnemyDied(); //Tell the wave spawner that its dead
+            currentHealth = maxHealth; // Reset Enemy Health
+            transform.position = spawnPoint; // Reset enemy position
+            this.gameObject.SetActive(false); // Set the object to be inactive
+        }
+        else //If spawned manually
+        {
+            Destroy(this.gameObject); //Destroy the object upon death
+        }
     }
 
+
+    public void ResetEnemy() //Func to reset enemy pos and health upon player death
+    {
+        currentHealth = maxHealth;
+        transform.position = spawnPoint;
+        this.gameObject.SetActive(false);
+    }
 }

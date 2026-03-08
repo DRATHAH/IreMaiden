@@ -2,15 +2,13 @@ using UnityEngine;
 
 public class DamagePlayer : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public int damageValue;
 
-    // Update is called once per frame
-    void Update()
+    void OnTriggerStay(Collider other)
     {
-        
+        if(other.gameObject.TryGetComponent<PlayerHealth>(out PlayerHealth playerHP))
+        {
+            playerHP.TakeDamage(damageValue);
+        }
     }
 }

@@ -41,6 +41,14 @@ public class ArcherMovement : MonoBehaviour
 
     void Start()
     {
+        
+
+    }
+
+    void OnEnable()
+    {
+        player = GameObject.Find("Player");
+
         //Define nav agent
         enemyNav = this.GetComponent<UnityEngine.AI.NavMeshAgent>();
         //define moveSpeed for stopping and starting
@@ -51,12 +59,6 @@ public class ArcherMovement : MonoBehaviour
 
         //rigidbody definition
         rb = this.GetComponent<Rigidbody>();
-
-    }
-
-    void OnEnable()
-    {
-        player = GameObject.Find("Player");
     }
 
     // Update is called once per frame
