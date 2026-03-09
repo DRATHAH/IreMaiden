@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class Explosion : MonoBehaviour
 {
@@ -16,6 +18,8 @@ public class Explosion : MonoBehaviour
                 col.GetComponent<Rigidbody>().AddExplosionForce(knockback, transform.position, explosionRadius);
             }
         }
+
+        StartCoroutine(DelayDestroy());
     }
 
     public void Initialize(int dmg, float radius, float knockbackForce)
@@ -23,5 +27,11 @@ public class Explosion : MonoBehaviour
         damage = dmg;
         explosionRadius = radius;
         knockback = knockbackForce;
+    }
+
+    private IEnumerator DelayDestroy()
+    {
+        yield return new WaitForSeconds(5);
+        Destroy(gameObject);
     }
 }

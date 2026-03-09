@@ -38,23 +38,23 @@ public class Projectile : MonoBehaviour
         explosionRadius = radius;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
         if (!hasHit)
         {
             if (type == ProjectileType.explosion)
             {
                 hasHit = true;
-                GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+                GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.LookRotation(collision.contacts[0].normal));
                 Explosion explode = explosion.GetComponent<Explosion>();
                 explode.Initialize(damage, explosionRadius, 1000);
             }
             else
             {
-                if (other.GetComponent<EnemyHealth>())
+                if (collision.transform.GetComponent<EnemyHealth>())
                 {
                     hasHit = true;
-                    other.GetComponent<EnemyHealth>().TakeDamage(damage, other.name);
+                    collision.transform.GetComponent<EnemyHealth>().TakeDamage(damage, collision.transform.name);
                 }
             }
         }
