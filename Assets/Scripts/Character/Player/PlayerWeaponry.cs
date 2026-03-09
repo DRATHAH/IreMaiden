@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerWeaponry : MonoBehaviour
 {
@@ -16,18 +18,28 @@ public class PlayerWeaponry : MonoBehaviour
         //Damage Dealt by primary fire 1
     public float GunDamagePrimary1;
 
-        //Enemy health being referenced by the damage dealing function
-    private EnemyHealth enemyHealth;
+    public float spellOffset = 1;
+
+    public List<SpellAbility> spells = new List<SpellAbility>();
+    public Dictionary<SpellAbility, float> spellCooldowns = new Dictionary<SpellAbility, float>(); // Keeps track of the cooldowns of all spells
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        foreach(SpellAbility spell in spells)
+        {
+            spellCooldowns.Add(spell, spell.cooldown);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (spellCooldowns[spells[0]] <= spells[0].cooldown)
+        {
+            spellCooldowns[spells[0]] += Time.deltaTime;
+        }
+
         //Check if the player can fire
         if(fireCooldownPrimary1 > 0)
         {
@@ -37,10 +49,17 @@ public class PlayerWeaponry : MonoBehaviour
         else
         {
             //If it can check for input
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetKey(KeyCode.Mouse0))
             {
                 ShootWeaponPrimary1();
             }
+        }
+
+        if (Input.GetKey(KeyCode.Alpha1) && spellCooldowns[spells[0]] >= spells[0].cooldown)
+        {
+            // Temporary code
+            Fireball(0);
+            spellCooldowns[spells[0]] = 0;
         }
     }
 
@@ -50,7 +69,8 @@ public class PlayerWeaponry : MonoBehaviour
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         if (Physics.Raycast(ray, out RaycastHit hit, maxGunRangePrimary1))
         {
-            enemyHealth = hit.collider.gameObject.GetComponentInParent<EnemyHealth>();
+            Debug.Log(hit.transform.name);
+            EnemyHealth enemyHealth = hit.collider.gameObject.GetComponentInParent<EnemyHealth>();
             if (enemyHealth != null)
             {
                 enemyHealth.TakeDamage(GunDamagePrimary1, hit.collider.name);
@@ -64,4 +84,19 @@ public class PlayerWeaponry : MonoBehaviour
     {
 
     }
+
+    #region Spells
+    // Make sure every method has the same name as the spell
+
+    void Fireball(int index)
+    {
+        GameObject projectile = Instantiate(spells[index].spellPrefab, Camera.main.transform.position + (Camera.main.transform.forward * spellOffset), Quaternion.identity);
+        Projectile prjScript = projectile.GetComponentInParent<Projectile>();
+        if (prjScript != null)
+        {
+            prjScript.Initialize(true, spells[index].damage, 50, Camera.main.transform.forward, false, 5);
+        }
+    }
+
+    #endregion
 }

@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 8291542806353238101}
   m_Layer: 0
   m_Name: MeleeEnemy(Prototype)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -268,11 +268,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1643cc01a6952c4898f3462514c95bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KnightMovement
-  directionToPlayer: {x: 0, y: 0, z: 0}
   rotationSpeed: 5
   stoppingDistance: 5
-  stop: 0
   attacking: 0
+  stop: 0
 --- !u!1 &5484346609070240688
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,7 +339,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00cadd2498355be42bb6c8e1f1d58261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KnightAttack
-  damageValue: 10
   windup: 0.75
   activeAttack: 2
   winddown: 0.25
@@ -470,3 +468,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d30e4cbe23051ec45ab9540ce58ca135, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamagePlayer
+  damageValue: 0
