@@ -15,7 +15,7 @@ public class Explosion : MonoBehaviour
         {
             if (col.GetComponent<Rigidbody>())
             {
-                col.GetComponent<Rigidbody>().AddExplosionForce(knockback, transform.position, explosionRadius);
+                col.GetComponent<Rigidbody>().AddExplosionForce(knockback, transform.position, explosionRadius, 5);
             }
         }
 

@@ -235,29 +235,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 156620437}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &561103105 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6933985992299543328, guid: 2d68af57e3ce79143a41892b123f3bb1, type: 3}
-  m_PrefabInstance: {fileID: 754895292}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &561103113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 561103105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 231550cdaff07734696dd5db1635e516, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerWeaponry
-  maxGunRangePrimary1: 100
-  maxFireCooldownPrimary1: 1
-  GunDamagePrimary1: 1
-  spellOffset: 1
-  spells:
-  - {fileID: 11400000, guid: aa27716512abf8f4e91d5b7eeeb672e9, type: 2}
 --- !u!1 &700384152
 GameObject:
   m_ObjectHideFlags: 0
@@ -508,10 +485,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5208057195789616257, guid: 2d68af57e3ce79143a41892b123f3bb1, type: 3}
-      propertyPath: sensitivity
-      value: 200
-      objectReference: {fileID: 0}
     - target: {fileID: 6933985992299543328, guid: 2d68af57e3ce79143a41892b123f3bb1, type: 3}
       propertyPath: m_Name
       value: Player
@@ -519,10 +492,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6933985992299543328, guid: 2d68af57e3ce79143a41892b123f3bb1, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 561103113}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d68af57e3ce79143a41892b123f3bb1, type: 3}
 --- !u!1001 &1011083484
 PrefabInstance:
@@ -865,7 +835,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1715344907}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 1bb2dd004bbc2ce4cbd6e76c205b39bd, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

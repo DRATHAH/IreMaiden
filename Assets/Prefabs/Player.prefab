@@ -229,6 +229,7 @@ GameObject:
   - component: {fileID: 2270174139128865389}
   - component: {fileID: 5208057195789616257}
   - component: {fileID: 6470945761975792261}
+  - component: {fileID: 5377001314289251286}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -317,7 +318,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6933985992299543328}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 1625f8293b1f5f142861a2b990968a9a, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -381,12 +382,13 @@ MonoBehaviour:
   whatIsWallrunnable:
     serializedVersion: 2
     m_Bits: 256
-  sensitivity: 50
+  sensitivity: 200
   moveSpeed: 4500
   walkSpeed: 20
   runSpeed: 10
   grounded: 0
   onWall: 0
+  CanMove: 1
 --- !u!114 &6470945761975792261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -404,6 +406,25 @@ MonoBehaviour:
   invincibilityTimer: 0
   maxInvTimer: 3
   isInvincible: 0
+  gamemanager: {fileID: 0}
+--- !u!114 &5377001314289251286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6933985992299543328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 231550cdaff07734696dd5db1635e516, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerWeaponry
+  maxGunRangePrimary1: 100
+  maxFireCooldownPrimary1: 1
+  GunDamagePrimary1: 1
+  spellOffset: 1
+  spells:
+  - {fileID: 11400000, guid: aa27716512abf8f4e91d5b7eeeb672e9, type: 2}
 --- !u!1 &8237012982035783859
 GameObject:
   m_ObjectHideFlags: 0

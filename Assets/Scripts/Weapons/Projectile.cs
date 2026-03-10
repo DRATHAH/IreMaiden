@@ -12,6 +12,7 @@ public class Projectile : MonoBehaviour
     public GameObject explosionPrefab;
     public float explosionRadius = 5;
     public Rigidbody rb;
+    public string ownerTag;
 
     bool hasHit = false;
 
@@ -21,7 +22,7 @@ public class Projectile : MonoBehaviour
         
     }
 
-    public void Initialize(bool isExplosion, int dmg, float speed, Vector3 direction, bool gravity, float radius)
+    public void Initialize(bool isExplosion, int dmg, float speed, Vector3 direction, bool gravity, float radius, string owner)
     {
         if (isExplosion)
         {
@@ -36,11 +37,12 @@ public class Projectile : MonoBehaviour
         rb.linearVelocity = direction * speed;
         rb.useGravity = gravity;
         explosionRadius = radius;
+        ownerTag = owner;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (!hasHit)
+        if (!hasHit && !collision.transform.CompareTag(ownerTag))
         {
             if (type == ProjectileType.explosion)
             {
@@ -57,8 +59,8 @@ public class Projectile : MonoBehaviour
                     collision.transform.GetComponent<EnemyHealth>().TakeDamage(damage, collision.transform.name);
                 }
             }
-        }
 
-        Destroy(gameObject);
+            Destroy(gameObject);
+        }
     }
 }

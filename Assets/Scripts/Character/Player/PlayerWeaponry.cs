@@ -94,7 +94,7 @@ public class PlayerWeaponry : MonoBehaviour
         Projectile prjScript = projectile.GetComponentInParent<Projectile>();
         if (prjScript != null)
         {
-            prjScript.Initialize(true, spells[index].damage, 50, Camera.main.transform.forward, false, 5);
+            prjScript.Initialize(true, spells[index].damage, 50, Camera.main.transform.forward, false, 10, transform.tag);
         }
     }
 
