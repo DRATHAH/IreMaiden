@@ -15,7 +15,7 @@ public class Explosion : MonoBehaviour
     {
         foreach(Collider col in Physics.OverlapSphere(transform.position, explosionRadius, Physics.AllLayers, QueryTriggerInteraction.Ignore))
         {
-            Debug.Log(col.name);
+           // Debug.Log(col.name);
             if (col.transform.root.TryGetComponent<Rigidbody>(out Rigidbody body))
             {
                 body.AddExplosionForce(knockback, transform.position, explosionRadius, 2);
@@ -23,7 +23,7 @@ public class Explosion : MonoBehaviour
 
             if (col.transform.root.TryGetComponent<DamageableCharacter>(out DamageableCharacter character) && !col.transform.root.CompareTag(ownerTag))
             {
-                character.OnHit(damage, Vector3.zero);
+                character.OnHit(damage, Vector3.zero, false);
                 Debug.Log("Damaged " + col.transform.name);
             }
         }

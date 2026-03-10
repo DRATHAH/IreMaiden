@@ -69,13 +69,11 @@ public class PlayerWeaponry : MonoBehaviour
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         if (Physics.Raycast(ray, out RaycastHit hit, maxGunRangePrimary1))
         {
-            Debug.Log(hit.transform.name);
             DamageableCharacter enemyHealth = hit.collider.gameObject.GetComponentInParent<DamageableCharacter>();
-            if (enemyHealth != null && hit.collider.gameObject.CompareTag("Enemy"))
+            if (enemyHealth != null && hit.collider.transform.root.CompareTag("Enemy"))
             {
-                enemyHealth.OnHit(GunDamagePrimary1, hit.collider.gameObject);
+                enemyHealth.OnHit(GunDamagePrimary1, hit.collider.gameObject, true);
                 fireCooldownPrimary1 = maxFireCooldownPrimary1;
-
                 Debug.Log("Shot " + hit.collider.name);
             }
         }

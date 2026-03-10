@@ -26,6 +26,8 @@ public class KnightAttack : MonoBehaviour
     //Reference to the Enemy's movement script
     private KnightMovement knightMovement;
 
+    private Rigidbody rb;
+
     void Start()
     {
         //Define Knight Movement
@@ -36,6 +38,8 @@ public class KnightAttack : MonoBehaviour
 
         //Set the hitbox to inactive after it is defined (If it starts disabled the prior statement can't define properly.
         attackBox.SetActive(false);
+
+        rb = this.GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -47,39 +51,22 @@ public class KnightAttack : MonoBehaviour
         }
     }
 
-    void OnTriggerStay(Collider other)
+    public void Attack()
     {
-        //Is the player within the detection trigger for the attack?
-        if(other.name == "Player")
+        //Check if the cooldown lets you attack
+        if (cooldown <= 0)
         {
-            //Stop movement
-            knightMovement.stop = true;
-
-            //Check if the attacking coroutine is already running
+            //Run the attack coroutine
             if (attack == null)
             {
-                //Check if the cooldown lets you attack
-                if (cooldown <= 0)
-                {
-                    //Run the attack coroutine
-                    attack = AttackRoutine();
-                    StartCoroutine(attack);
-                }
+                attack = AttackRoutine();
+                StartCoroutine(attack);
             }
         }
     }
 
-    void OnTriggerExit(Collider other)
-    {
-        //If the player leaves the detection trigger let the enemy move again if they're not attacking
-        knightMovement.stop = false;
-    }
-
-
     IEnumerator AttackRoutine()
     {
-        //Show that the enemy is attacking
-        Debug.Log("attacking");
         //Windup
             //Set the attacking bool to be true
         knightMovement.attacking = true;
@@ -88,10 +75,10 @@ public class KnightAttack : MonoBehaviour
         //Attack
             //Set the attacking hitbox to be active
         attackBox.SetActive(true);
-            //Wait for the frames that the hitbox should be active for
-        yield return new WaitForSeconds(activeAttack);
+
+        yield return new WaitForSeconds(activeAttack); //Wait for the frames that the hitbox should be active for
         //Winddown
-            //Turn the attacking hitbox off
+        //Turn the attacking hitbox off
         attackBox.SetActive(false);
             //Wait the winddown frames
         yield return new WaitForSeconds(winddown);

@@ -49,20 +49,28 @@ public class DamageableCharacter : MonoBehaviour, IDamageable
         
     }
 
-    public virtual void OnHit(int damage, Vector3 knockback)
+    public virtual void OnHit(int damage, Vector3 knockback, bool takesKnockBack)
     {
         Health -= damage;
 
         // Code for applying knockback effects
     }
 
-    public virtual void OnHit(int damage, GameObject hit)
+    public virtual void OnHit(int damage, GameObject hit, bool limbDamage)
     {
-        if (hit.name.Contains("Head"))
+        if (hit.name.Contains("Head") && limbDamage == true)
+        {
+            damage *= 3;
+        }
+        else if (hit.name.Contains("Limb") && limbDamage == true)
         {
             damage *= 2;
         }
-        Health -= damage;
+        else
+        {
+            damage *= 1;
+        }
+            Health -= damage;
     }
 
     public virtual void RemoveCharacter()

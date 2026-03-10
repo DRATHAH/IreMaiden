@@ -57,7 +57,7 @@ public class Projectile : MonoBehaviour
                 if (collision.transform.GetComponent<DamageableCharacter>() && collision.transform.CompareTag("Enemy"))
                 {
                     hasHit = true;
-                    collision.transform.GetComponent<DamageableCharacter>().OnHit(damage, collision.transform.gameObject);
+                    collision.transform.GetComponent<DamageableCharacter>().OnHit(damage, collision.transform.gameObject, false);
                 }
             }
 

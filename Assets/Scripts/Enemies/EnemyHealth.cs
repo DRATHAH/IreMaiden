@@ -5,10 +5,6 @@ public class EnemyHealth : DamageableCharacter
 
     private Vector3 spawnPoint;
 
-    public GameObject[] bodyArray; //Array for storing body parts of an enemy for damage calcs
-
-    public float[] limbDamageMultiplier; //Array for storing the damage multiplier given by body parts
-
     public WaveSpawner WaveSource; //Storing the arena this enemy spawns from
 
 
@@ -17,6 +13,21 @@ public class EnemyHealth : DamageableCharacter
         spawnPoint = transform.position; //Set the point where the enemy should respawn if respawned.
     }
 
+    //Function to kill the player
+    public override void RemoveCharacter()
+    {
+        if(WaveSource != null)
+        {
+            Health = maxHealth;
+            transform.position = spawnPoint;
+            WaveSource.EnemyDied();
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
 
     public void ResetEnemy() //Func to reset enemy pos and health upon player death
     {

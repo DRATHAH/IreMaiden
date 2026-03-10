@@ -546,6 +546,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RangedEnemy(Prototype)
       objectReference: {fileID: 0}
+    - target: {fileID: 6474119806598299671, guid: 33bac891ac8a985428f342b13549ef25, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -662,6 +666,67 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1177834610}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1537642274
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 844838825363284215, guid: 7fda4f679beea6c41a669bbb28a26698, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.0820436
+      objectReference: {fileID: 0}
+    - target: {fileID: 844838825363284215, guid: 7fda4f679beea6c41a669bbb28a26698, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.515
+      objectReference: {fileID: 0}
+    - target: {fileID: 844838825363284215, guid: 7fda4f679beea6c41a669bbb28a26698, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -17.64603
+      objectReference: {fileID: 0}
+    - target: {fileID: 844838825363284215, guid: 7fda4f679beea6c41a669bbb28a26698, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 844838825363284215, guid: 7fda4f679beea6c41a669bbb28a26698, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 844838825363284215, guid: 7fda4f679beea6c41a669bbb28a26698, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 844838825363284215, guid: 7fda4f679beea6c41a669bbb28a26698, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 844838825363284215, guid: 7fda4f679beea6c41a669bbb28a26698, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 844838825363284215, guid: 7fda4f679beea6c41a669bbb28a26698, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 844838825363284215, guid: 7fda4f679beea6c41a669bbb28a26698, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3913571675327637483, guid: 7fda4f679beea6c41a669bbb28a26698, type: 3}
+      propertyPath: m_Name
+      value: MeleeEnemy(Prototype)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3913571675327637483, guid: 7fda4f679beea6c41a669bbb28a26698, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7fda4f679beea6c41a669bbb28a26698, type: 3}
 --- !u!1 &1641672805
 GameObject:
   m_ObjectHideFlags: 0
@@ -698,7 +763,8 @@ MonoBehaviour:
   - {fileID: 1924722853}
   - {fileID: 70970085}
   - {fileID: 2038446088}
-  EnemiesPerWave: 0200000001000000
+  - {fileID: 2021543716}
+  EnemiesPerWave: 0200000002000000
   Gates: []
   gamemanager: {fileID: 0}
   PosInArray: 0
@@ -992,10 +1058,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2677614579229053295, guid: 33bac891ac8a985428f342b13549ef25, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4836357487547524769, guid: 33bac891ac8a985428f342b13549ef25, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.99
@@ -1101,6 +1163,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RangedEnemy(Prototype) (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6474119806598299671, guid: 33bac891ac8a985428f342b13549ef25, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1179,6 +1245,11 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 50c77e47ef8399c4795b0cb29a3bf4f1, type: 2}
   m_BuildHeightMesh: 0
+--- !u!1 &2021543716 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3913571675327637483, guid: 7fda4f679beea6c41a669bbb28a26698, type: 3}
+  m_PrefabInstance: {fileID: 1537642274}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2038446088 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6474119806598299671, guid: 33bac891ac8a985428f342b13549ef25, type: 3}
@@ -1478,6 +1549,7 @@ SceneRoots:
   - {fileID: 754895292}
   - {fileID: 1958839449}
   - {fileID: 1011083484}
+  - {fileID: 1537642274}
   - {fileID: 1865212936}
   - {fileID: 1834697416}
   - {fileID: 1641672810}

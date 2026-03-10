@@ -30,6 +30,15 @@ public class KnightMovement : MonoBehaviour
     [HideInInspector] public bool attacking = false;
     [HideInInspector] public bool stop = false;
 
+    private KnightAttack knightAttack;
+
+    //How far away is the player variable?
+    private float distanceToPlayer;
+
+    //Head transform
+    public Transform head;
+    public Transform attackBox;
+
     void Start()
     {
         //Define the enemy's nav mesh agent component
@@ -43,6 +52,8 @@ public class KnightMovement : MonoBehaviour
 
         //Define the rigidbody for rotation purposes
         rb = this.GetComponent<Rigidbody>();
+
+        knightAttack = this.GetComponent<KnightAttack>();
     }
 
     /*
@@ -69,40 +80,72 @@ public class KnightMovement : MonoBehaviour
             enemyNav.isStopped = false;
         }
 
+        //Calculate the distance the enemy is from the player for the purposes of the complicated raycasting s**t
+        distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
+
         /*
          * Set the desired velocity, used in rotation calc
          * Probably could be optimized in some way but I am unsure.
          */
+
         desiredVelocity = new Vector3(enemyNav.destination.x - transform.position.x, 0f, enemyNav.destination.z - transform.position.z) * moveSpeed;
     }
 
     //Stuff related to enemy movement, if this can be optimized please do so
     void FixedUpdate()
     {
-        //Rotate the enemy to face player if within a certain range
-        if (Vector3.Distance(player.transform.position, transform.position) < stoppingDistance && stop == false && attacking == false)
+        //Prevent enemy speed from going above their maximum speed, or 0 to not break things.
+        enemyNav.speed = Mathf.Clamp(enemyNav.speed, 0, moveSpeed);
+        if(distanceToPlayer < stoppingDistance && attacking != true)
         {
-            enemyNav.speed = 0;
-            Rotation();
-        }
-        //Stop the enemy if they're within a certain range or attacking
-        else if (stop == true || attacking == true)
-        {
-            if (enemyNav.speed > 0)
+            //Does the enemy have a potential line of sight with the player?
+            if (Physics.Linecast(head.position, player.transform.position, out RaycastHit hit) && hit.collider.name == "Player")
             {
-                enemyNav.speed = 0;
+                //If yes, is the enemy facing the player?
+                //Calculate the direction the ray should point in
+                Vector3 target = new Vector3((attackBox.position.x - transform.position.x) * (distanceToPlayer + 10), player.transform.position.y - head.transform.position.y, (attackBox.position.z - transform.position.z) * (distanceToPlayer + 10));
+                //Cast the ray and check if it is hitting a player
+                if (Physics.Raycast(head.position, target, out RaycastHit strike, distanceToPlayer + 10) && strike.collider.name == "Player")
+                {
+                    //If yes, stop moving and shoot the player
+                    enemyNav.speed = 0;
+                    SlowDown();
+                    enemyNav.isStopped = true;
+                    knightAttack.Attack();
+                }
+                else
+                {
+                    Debug.DrawRay(head.position, target, Color.yellow, distanceToPlayer + 10);
+
+                    //If no, stop moving and rotate to face the player
+                    enemyNav.speed = 0;
+                    SlowDown();
+                    enemyNav.isStopped = true;
+                    if (attacking == false)
+                    {
+                        Rotation();
+                    }
+                }
             }
         }
-        //Have the enemy start moving towards their full speed if the player is far enough away
-        else if (stop == false || attacking == false)
+        else if(attacking != true)
         {
+            enemyNav.isStopped = false;
             if (enemyNav.speed < moveSpeed)
             {
                 enemyNav.speed += Time.deltaTime * acceleration;
             }
         }
-        //Prevent enemy speed from going above their maximum speed, or 0 to not break things.
-        enemyNav.speed = Mathf.Clamp(enemyNav.speed, 0, moveSpeed);
+    }
+
+    void SlowDown()
+    {
+        Vector3 velocity = enemyNav.velocity;
+
+        velocity.x = 0;
+        velocity.z = 0;
+
+        enemyNav.velocity = velocity;
     }
 
 
@@ -110,7 +153,7 @@ public class KnightMovement : MonoBehaviour
      * Function for rotating the enemy towards the player if they're within a certain distance
      * This is done this way to prevent the nav mesh agent from ramming into the player, causing problems
      */
-    private void Rotation()
+    void Rotation()
     {
         if(desiredVelocity != Vector3.zero)
         {
