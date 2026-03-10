@@ -6,9 +6,9 @@ public class DamagePlayer : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        if(other.gameObject.TryGetComponent<PlayerHealth>(out PlayerHealth playerHP))
+        if(other.gameObject.TryGetComponent<DamageableCharacter>(out DamageableCharacter playerHP))
         {
-            playerHP.TakeDamage(damageValue);
+            //playerHP.OnHit(damageValue);
         }
     }
 }

@@ -16,7 +16,7 @@ public class PlayerWeaponry : MonoBehaviour
     public float maxFireCooldownPrimary1;
         
         //Damage Dealt by primary fire 1
-    public float GunDamagePrimary1;
+    public int GunDamagePrimary1;
 
     public float spellOffset = 1;
 
@@ -70,11 +70,13 @@ public class PlayerWeaponry : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit hit, maxGunRangePrimary1))
         {
             Debug.Log(hit.transform.name);
-            EnemyHealth enemyHealth = hit.collider.gameObject.GetComponentInParent<EnemyHealth>();
-            if (enemyHealth != null)
+            DamageableCharacter enemyHealth = hit.collider.gameObject.GetComponentInParent<DamageableCharacter>();
+            if (enemyHealth != null && hit.collider.gameObject.CompareTag("Enemy"))
             {
-                enemyHealth.TakeDamage(GunDamagePrimary1, hit.collider.name);
+                enemyHealth.OnHit(GunDamagePrimary1, hit.collider.gameObject);
                 fireCooldownPrimary1 = maxFireCooldownPrimary1;
+
+                Debug.Log("Shot " + hit.collider.name);
             }
         }
     }

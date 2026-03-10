@@ -378,10 +378,10 @@ MonoBehaviour:
   rb: {fileID: 2270174139128865389}
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 768
   whatIsWallrunnable:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 512
   sensitivity: 200
   moveSpeed: 4500
   walkSpeed: 20
@@ -401,8 +401,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b48789099af4c64490ae214c2e45046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
-  playerHealth: 0
   maxHealth: 100
+  health: 10
+  regenDelay: 2
+  regenRate: 1
   invincibilityTimer: 0
   maxInvTimer: 3
   isInvincible: 0

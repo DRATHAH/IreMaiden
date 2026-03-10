@@ -129,7 +129,9 @@ MonoBehaviour:
   damage: 1
   explosionPrefab: {fileID: 5409785869634432155, guid: 4a9fa821d52ece34cac2c34f6e374cf3, type: 3}
   explosionRadius: 5
+  explosionForce: 2000
   rb: {fileID: 2405709595269459035}
+  ownerTag: 
 --- !u!54 &2405709595269459035
 Rigidbody:
   m_ObjectHideFlags: 0

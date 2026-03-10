@@ -17,6 +17,7 @@ public class DamageableCharacter : MonoBehaviour, IDamageable
             if (health <= 0 && Targetable)
             {
                 Targetable = false;
+                RemoveCharacter();
             }
         }
 
@@ -48,18 +49,24 @@ public class DamageableCharacter : MonoBehaviour, IDamageable
         
     }
 
-    public void OnHit(int damage, Vector3 knockback)
+    public virtual void OnHit(int damage, Vector3 knockback)
     {
-        
+        Health -= damage;
+
+        // Code for applying knockback effects
     }
 
-    public void OnHit(int damage, GameObject hit)
+    public virtual void OnHit(int damage, GameObject hit)
     {
-
+        if (hit.name.Contains("Head"))
+        {
+            damage *= 2;
+        }
+        Health -= damage;
     }
 
     public virtual void RemoveCharacter()
     {
-
+        Destroy(gameObject);
     }
 }
