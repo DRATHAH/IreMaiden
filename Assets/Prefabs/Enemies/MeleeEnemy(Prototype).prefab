@@ -363,23 +363,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   maxHealth: 1
-  health: 1
+  health: 20
   regenDelay: 2
   regenRate: 1
-  bodyArray:
-  - {fileID: 8679958142719351672}
-  - {fileID: 5476287593105272982}
-  - {fileID: 2922276340645198742}
-  - {fileID: 8675136209264550693}
-  - {fileID: 8344373953438746918}
-  - {fileID: 3367241080588812371}
-  limbDamageMultiplier:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
   WaveSource: {fileID: 0}
 --- !u!1 &5476287593105272982
 GameObject:

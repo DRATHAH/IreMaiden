@@ -90,9 +90,9 @@ public class ArcherMovement : MonoBehaviour
             if(Physics.Linecast(head.position, player.transform.position, out RaycastHit hit) && hit.collider.name == "Player")
             {
                 //If yes, is the enemy facing the player?
-                    //Calculate the direction the ray should point in
-                Vector3 target = new Vector3((aimingNode.position.x - transform.position.x) * (distanceToPlayer + 10), player.transform.position.y - head.transform.position.y, (aimingNode.position.z - transform.position.z) * (distanceToPlayer + 10));
-                    //Cast the ray and check if it is hitting a player
+                //Calculate the direction the ray should point in
+                Vector3 target = (player.transform.position - head.position).normalized;
+                //Cast the ray and check if it is hitting a player
                 if (Physics.Raycast(head.position, target, out RaycastHit strike, distanceToPlayer + 10) && strike.collider.name == "Player")
                 {
                     //If yes, stop moving and shoot the player
