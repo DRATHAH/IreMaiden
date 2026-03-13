@@ -169,4 +169,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyProjectiles
   velocity: {x: 0, y: 0, z: 0}
-  projectileSpeed: 10
+  projectileSpeed: 50

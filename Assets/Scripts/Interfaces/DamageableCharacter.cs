@@ -42,7 +42,7 @@ public class DamageableCharacter : MonoBehaviour, IDamageable
     public float regenDelay = 2f;
     public float regenRate = 1f;
 
-    bool targetable = true;
+    public bool targetable = true;
 
     private void Start()
     {

@@ -11,21 +11,17 @@ public class PlayerHealth : DamageableCharacter
 
     void Start()
     {
-        
+        health = maxHealth;
     }
 
     void Update()
     {
-        //Invincibility Frames Management
-        if(invincibilityTimer > 0)
-        {
-            invincibilityTimer -= Time.deltaTime;
-            isInvincible = true;
-        }
-        else
-        {
-            isInvincible = false;
-        }
+    }
+
+    public void ResetHealth()
+    {
+        health = maxHealth;
+        targetable = true;
     }
 
     //Function to kill the player

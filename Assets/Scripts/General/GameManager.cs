@@ -17,8 +17,10 @@ public class GameManager : MonoBehaviour
 
     public GameObject[] EnemySpawns; //Spawners in level
     [HideInInspector] public List<bool> FinishedArenas; //Spawners player has cleared
+    [HideInInspector] public List<bool> TempFinishedArenas;
 
     private GameObject Player; //Player reference
+    private PlayerHealth PH;
     private PlayerLocomotionManager PLM; //Locomotion manager reference
     private Vector3 PlayerSpawnOriginal; //Player's starting position
     public Vector3 PlayerSpawnActive; //Player's current spawn point
@@ -29,6 +31,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Player = GameObject.Find("Player"); //Find the player
+        PH = Player.GetComponent<PlayerHealth>();
         PLM = Player.GetComponent<PlayerLocomotionManager>(); //Define PLM
         Player.GetComponent<PlayerHealth>().gamemanager = this; //Define player health manager's gamemanager
 
@@ -44,6 +47,7 @@ public class GameManager : MonoBehaviour
                 currentWaveSpawner.gamemanager = this; //Tell it what a gamemanager is
 
                 FinishedArenas.Add(false); //Add a placeholder in finished arenas
+                TempFinishedArenas.Add(false);
             }
         }
     }
@@ -64,7 +68,6 @@ public class GameManager : MonoBehaviour
     {
         PlayerDeaths++;
         DoneFromMenu = false;
-        DeathScreenCanvas.SetActive(true); //enable death screen
         PLM.CanMove = false; //disable player movement
         for(int i = 0; i < EnemySpawns.Length; i++)
         {
@@ -72,29 +75,32 @@ public class GameManager : MonoBehaviour
             WaveSpawner currentWaveSpawner = EnemySpawns[i].GetComponent<WaveSpawner>();
             currentWaveSpawner.ResetProgress();
         }
+        DeathScreenCanvas.SetActive(true); //enable death screen
         //Delete All Projectiles, or Reset Object Pool (To be implemented)
     }
 
 
     public void RestartFromCheckpoint() //Restarting from checkpoint
     {
-        if (EnemySpawns.Length > 0)
-        {
-            for (int i = 0; i < EnemySpawns.Length; i++)
-            {
-                if (FinishedArenas[i] != true)
-                {
-                    //Reset enemy arenas
-                    EnemySpawns[i].SetActive(true);
-                }
-            }
-        }
-        if(DoneFromMenu == true)
+        if (DoneFromMenu == true)
         {
             PlayerDeaths++; //If resetting from pause menu, add a death for rank consideration
         }
         KillCount = SavedKillCount; //Reset kill count to what it was when checkpoint was hit
-        Player.transform.position = PlayerSpawnActive; //Set player pos to checkpoint pos
+        Player.transform.position = PlayerSpawnActive; //Set player pos to checkpoint pos        
+        PH.ResetHealth();
+        if (EnemySpawns.Length > 0)
+        {
+            for (int i = 0; i < EnemySpawns.Length; i++)
+            {
+                if (FinishedArenas[i] == false)
+                {
+                    //Reset enemy arenas
+                    EnemySpawns[i].SetActive(true);
+                    TempFinishedArenas[i] = false;
+                }
+            }
+        }
         DeathScreenCanvas.SetActive(false); //Disable death screen
         PLM.CanMove = true; //player can move again
         DoneFromMenu = true; //Reset donefrommenu
@@ -102,6 +108,16 @@ public class GameManager : MonoBehaviour
 
     public void RestartLevel()
     {
+       // TimerActive = false; //Timer isn't active for spawn room purposes
+        //LevelTime = 0; //Level time is reset
+        KillCount = 0; //Kill count is reset
+        SavedKillCount = KillCount; //Saved kill count is reset to prevent exploits
+        Player.transform.position = PlayerSpawnOriginal; //Set player back to their original spawn point
+        PlayerSpawnActive = PlayerSpawnOriginal; //Reset checkpoint spawn
+        PH.ResetHealth();
+        DeathScreenCanvas.SetActive(false); //Turn off deathscreen canvas
+        PLM.CanMove = true; //Player can no longer move
+        DoneFromMenu = true; //DoneFromMenu is reset
         if (EnemySpawns.Length > 0)
         {
             for (int i = 0; i < EnemySpawns.Length; i++)
@@ -109,17 +125,9 @@ public class GameManager : MonoBehaviour
                 //Reset arenas back to their original values
                 EnemySpawns[i].SetActive(true);
                 FinishedArenas[i] = false;
+                TempFinishedArenas[i] = false;
             }
         }
-       // TimerActive = false; //Timer isn't active for spawn room purposes
-        //LevelTime = 0; //Level time is reset
-        KillCount = 0; //Kill count is reset
-        SavedKillCount = KillCount; //Saved kill count is reset to prevent exploits
-        Player.transform.position = PlayerSpawnOriginal; //Set player back to their original spawn point
-        PlayerSpawnActive = PlayerSpawnOriginal; //Reset checkpoint spawn
-        DeathScreenCanvas.SetActive(false); //Turn off deathscreen canvas
-        PLM.CanMove = true; //Player can no longer move
-        DoneFromMenu = true; //DoneFromMenu is reset
     }
 
     public void QuitLevel()
@@ -127,5 +135,20 @@ public class GameManager : MonoBehaviour
         //Temp Quit level function, to be implemented later
         Debug.Log("Not Implemented Yet");
         RestartLevel();
+    }
+
+    public void SetCheckpoint(Vector3 CheckpointSpawn)
+    {
+        PlayerSpawnActive = CheckpointSpawn;
+        SavedKillCount = KillCount;
+        for (int i = 0; i < EnemySpawns.Length; i++)
+        {
+            FinishedArenas[i] = TempFinishedArenas[i];
+        }
+    }
+
+    public void UpdateArenas(int posInArray)
+    {
+        TempFinishedArenas[posInArray] = true;
     }
 }

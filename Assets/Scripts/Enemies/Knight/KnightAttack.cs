@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class KnightAttack : MonoBehaviour
+public class KnightAttack : EnemyAttack
 {
     //Attacking Vars
         //Windup frames before hitbox is active
@@ -91,11 +91,14 @@ public class KnightAttack : MonoBehaviour
     }
 
     //Function to stop the enemy from attacking, will be useful later for when dying is programmed in
-    void StopAttacking()
+    public override void StopAttacking()
     {
         if(attack != null)
         {
             StopCoroutine(attack);
+            attackBox.SetActive(false);
+            cooldown = maxCooldown;
+            knightMovement.attacking = false;
             attack = null;
         }
     }

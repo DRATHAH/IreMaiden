@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class ArcherAttack : MonoBehaviour
+public class ArcherAttack : EnemyAttack
 {
     //Transform for the part where the bullets come out
     private Transform aimingNode;
@@ -111,11 +111,13 @@ public class ArcherAttack : MonoBehaviour
     }
 
     //Function to stop the enemy from attacking, will be useful later for when dying is programmed in
-    void StopAttacking()
+    public override void StopAttacking()
     {
         if (attack != null)
         {
             StopCoroutine(attack);
+            cooldown = maxCooldown;
+            archerMovement.attacking = false;
             attack = null;
         }
     }

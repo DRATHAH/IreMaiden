@@ -8,7 +8,7 @@ public class DamagePlayer : MonoBehaviour
     {
         if(other.gameObject.TryGetComponent<DamageableCharacter>(out DamageableCharacter playerHP))
         {
-            //playerHP.OnHit(damageValue);
+            playerHP.OnHit(damageValue, other.gameObject, false);
         }
     }
 }

@@ -26,6 +26,7 @@ public class WaveSpawner : MonoBehaviour
         SpawnTrigger = this.GetComponent<BoxCollider>(); //Define the trigger
         SpawnTrigger.enabled = true; //Enable the trigger (For resets)
         TotalWaves = EnemiesPerWave.Length; //Determine the number of spawns
+        DeadEnemies = 0;
         CurrentWave = 0; //Current wave (For resets)
         EnemiesToSkip = 0; //Set Enemies to skip (For resets)
     }
@@ -78,7 +79,10 @@ public class WaveSpawner : MonoBehaviour
             else
             {
                 DespawnGates(); //Disable gates
-                gamemanager.FinishedArenas[PosInArray] = true;
+                if(gamemanager != null)
+                {
+                    gamemanager.UpdateArenas(PosInArray);
+                }
                 DeactivateSelf(); //Turn off the spawner if all enemies are dead
             }
         }

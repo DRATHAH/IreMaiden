@@ -13,14 +13,22 @@ public class EnemyHealth : DamageableCharacter
         spawnPoint = transform.position; //Set the point where the enemy should respawn if respawned.
     }
 
+    void OnEnable()
+    {
+        Health = maxHealth;
+        targetable = true;
+    }
+
     //Function to kill the player
     public override void RemoveCharacter()
     {
         if(WaveSource != null)
         {
             Health = maxHealth;
+            targetable = true;
             transform.position = spawnPoint;
             WaveSource.EnemyDied();
+            this.gameObject.GetComponent<EnemyAttack>().StopAttacking();
             gameObject.SetActive(false);
         }
         else
@@ -32,6 +40,7 @@ public class EnemyHealth : DamageableCharacter
     public void ResetEnemy() //Func to reset enemy pos and health upon player death
     {
         Health = maxHealth;
+        targetable = true;
         transform.position = spawnPoint;
         gameObject.SetActive(false);
     }
