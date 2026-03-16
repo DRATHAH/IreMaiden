@@ -55,7 +55,7 @@ public class PlayerWeaponry : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.Alpha1) && spellCooldowns[spells[0]] >= spells[0].cooldown)
+        if (Input.GetKey(KeyCode.Mouse1) && spellCooldowns[spells[0]] >= spells[0].cooldown)
         {
             // Temporary code
             Fireball(0);
