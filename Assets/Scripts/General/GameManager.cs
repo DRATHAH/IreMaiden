@@ -61,11 +61,13 @@ public class GameManager : MonoBehaviour
             LevelTime = Mathf.Clamp(LevelTime, 0, 9999.99f);
         } */
 
+
     }
 
 
     public void PlayerDeath() //When player dies
     {
+        Debug.Log("Die");
         PlayerDeaths++;
         DoneFromMenu = false;
         PLM.CanMove = false; //disable player movement
@@ -79,16 +81,18 @@ public class GameManager : MonoBehaviour
         //Delete All Projectiles, or Reset Object Pool (To be implemented)
     }
 
-
     public void RestartFromCheckpoint() //Restarting from checkpoint
     {
+        Player.transform.position = PlayerSpawnActive; //Set player pos to checkpoint pos
+        PH.ResetHealth();
+        DeathScreenCanvas.SetActive(false); //Disable death screen
+        PLM.CanMove = true; //player can move again
+        KillCount = SavedKillCount; //Reset kill count to what it was when checkpoint was hit
         if (DoneFromMenu == true)
         {
             PlayerDeaths++; //If resetting from pause menu, add a death for rank consideration
         }
-        KillCount = SavedKillCount; //Reset kill count to what it was when checkpoint was hit
-        Player.transform.position = PlayerSpawnActive; //Set player pos to checkpoint pos        
-        PH.ResetHealth();
+        DoneFromMenu = true; //Reset donefrommenu
         if (EnemySpawns.Length > 0)
         {
             for (int i = 0; i < EnemySpawns.Length; i++)
@@ -101,9 +105,6 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-        DeathScreenCanvas.SetActive(false); //Disable death screen
-        PLM.CanMove = true; //player can move again
-        DoneFromMenu = true; //Reset donefrommenu
     }
 
     public void RestartLevel()
@@ -150,5 +151,11 @@ public class GameManager : MonoBehaviour
     public void UpdateArenas(int posInArray)
     {
         TempFinishedArenas[posInArray] = true;
+    }
+
+    private void PauseGame()
+    {
+        Time.timeScale = 0;
+        PLM.CanMove = false;
     }
 }

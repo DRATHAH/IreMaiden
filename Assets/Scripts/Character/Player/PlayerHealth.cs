@@ -3,8 +3,7 @@ using UnityEngine;
 public class PlayerHealth : DamageableCharacter
 {
     //InvincibilityFrames
-    public float invincibilityTimer;
-    public float maxInvTimer = 3f;
+    public float maxInvTimer = 1f;
     public bool isInvincible = false;
 
     [HideInInspector]public GameManager gamemanager;

@@ -23,7 +23,8 @@ public class Explosion : MonoBehaviour
 
             if (col.transform.root.TryGetComponent<DamageableCharacter>(out DamageableCharacter character) && !col.transform.root.CompareTag(ownerTag))
             {
-                character.OnHit(damage, Vector3.zero, false);
+                character.OnHit(damage, col.transform.root.gameObject, false);
+                character.Recoil(Vector3.zero, false);
                 Debug.Log("Damaged " + col.transform.name);
             }
         }

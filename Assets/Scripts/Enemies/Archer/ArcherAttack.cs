@@ -33,8 +33,9 @@ public class ArcherAttack : EnemyAttack
     private IEnumerator attack;
 
 
-    void Start()
+    void OnEnable()
     {
+
         //Define player
         player = GameObject.Find("Player");
 
@@ -60,7 +61,7 @@ public class ArcherAttack : EnemyAttack
         if (attack == null)
         {
             //Check if the cooldown lets you attack
-            if (cooldown <= 0)
+            if (cooldown <= 0 && player != null)
             {
                 //Run the attack coroutine
                 attack = AttackRoutine();
