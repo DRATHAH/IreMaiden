@@ -68,7 +68,8 @@ public class DamageableCharacter : MonoBehaviour, IDamageable
         {
             damage *= 1;
         }
-            Health -= damage;
+
+        Health -= damage;
     }
 
     public virtual void RemoveCharacter()

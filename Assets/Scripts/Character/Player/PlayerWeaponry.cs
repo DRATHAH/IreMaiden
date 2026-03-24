@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 
 public class PlayerWeaponry : MonoBehaviour
 {
@@ -20,14 +21,21 @@ public class PlayerWeaponry : MonoBehaviour
 
     public float spellOffset = 1;
 
+    public List<string> spellSelection = new List<string>();//Strings of spell names to call functions
     public List<SpellAbility> spells = new List<SpellAbility>();
     public Dictionary<SpellAbility, float> spellCooldowns = new Dictionary<SpellAbility, float>(); // Keeps track of the cooldowns of all spells
+    public int CurrentSpellIndex = 0; //Spell being called
+
+    public TextMeshProUGUI spellNameText;
+    public TextMeshProUGUI spellCooldownText;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        foreach(SpellAbility spell in spells)
+        CurrentSpellIndex = 0;
+        foreach (SpellAbility spell in spells)
         {
+            spellSelection.Add(spell.name);
             spellCooldowns.Add(spell, spell.cooldown);
         }
     }
@@ -39,9 +47,21 @@ public class PlayerWeaponry : MonoBehaviour
         {
             spellCooldowns[spells[0]] += Time.deltaTime;
         }
+        if(spells.Count > 1 && spellCooldowns[spells[1]] <= spells[1].cooldown)
+        {
+            spellCooldowns[spells[1]] += Time.deltaTime;
+        }
+        if (spells.Count > 2 && spellCooldowns[spells[2]] <= spells[2].cooldown)
+        {
+            spellCooldowns[spells[2]] += Time.deltaTime;
+        }
+
+        spellNameText.text = "Spell: " + spells[CurrentSpellIndex].name;
+        spellCooldownText.text = "Cooldown: " + Mathf.Ceil(spellCooldowns[spells[CurrentSpellIndex]]);
+
 
         //Check if the player can fire
-        if(fireCooldownPrimary1 > 0)
+        if (fireCooldownPrimary1 > 0)
         {
             //If no reduce cooldown
             fireCooldownPrimary1 -= Time.deltaTime;
@@ -55,11 +75,26 @@ public class PlayerWeaponry : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.Mouse1) && spellCooldowns[spells[0]] >= spells[0].cooldown)
+        if (Input.GetKey(KeyCode.Alpha1))
+        {
+            CurrentSpellIndex = 0;
+        }
+        else if (Input.GetKey(KeyCode.Alpha2) && spells.Count > 2)
+        {
+            CurrentSpellIndex = 1;
+        }
+        else if (Input.GetKey(KeyCode.Alpha2) && spells.Count > 3)
+        {
+            CurrentSpellIndex = 2;
+        }
+
+
+        if (Input.GetKey(KeyCode.Mouse1) && CurrentSpellIndex <= spells.Count && spellCooldowns[spells[CurrentSpellIndex]] >= spells[CurrentSpellIndex].cooldown)
         {
             // Temporary code
-            Fireball(0);
-            spellCooldowns[spells[0]] = 0;
+            ShootWeaponSecondary1();
+            //Fireball(0);
+            spellCooldowns[spells[CurrentSpellIndex]] = 0;
         }
     }
 
@@ -82,19 +117,19 @@ public class PlayerWeaponry : MonoBehaviour
     //Function for the secondary fire of weapon 1
     void ShootWeaponSecondary1()
     {
-
+       Invoke(spellSelection[CurrentSpellIndex], 0f);
     }
 
     #region Spells
     // Make sure every method has the same name as the spell
 
-    void Fireball(int index)
+    void Fireball(/*int index*/)
     {
-        GameObject projectile = Instantiate(spells[index].spellPrefab, Camera.main.transform.position + (Camera.main.transform.forward * spellOffset), Quaternion.identity);
+        GameObject projectile = Instantiate(spells[CurrentSpellIndex].spellPrefab, Camera.main.transform.position + (Camera.main.transform.forward * spellOffset), Quaternion.identity);
         Projectile prjScript = projectile.GetComponentInParent<Projectile>();
         if (prjScript != null)
         {
-            prjScript.Initialize(true, spells[index].damage, 50, Camera.main.transform.forward, false, 10, transform.tag);
+            prjScript.Initialize(true, spells[CurrentSpellIndex].damage, 50, Camera.main.transform.forward, false, 10, transform.tag);
         }
     }
 

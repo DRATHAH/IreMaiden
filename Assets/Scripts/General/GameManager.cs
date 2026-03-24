@@ -28,6 +28,11 @@ public class GameManager : MonoBehaviour
     public GameObject DeathScreenCanvas; //UI canvas for player death
 
     private bool DoneFromMenu = true; //If player is resetting from the pause menu or death menu
+
+    //Key Manager
+    public bool[] LevelKeys; //Array to store keys
+    public GameObject[] RespawnableObjects; //Objects to be reset upon player restarting level (Keys, Doors)
+
     void Start()
     {
         Player = GameObject.Find("Player"); //Find the player
@@ -127,6 +132,21 @@ public class GameManager : MonoBehaviour
                 EnemySpawns[i].SetActive(true);
                 FinishedArenas[i] = false;
                 TempFinishedArenas[i] = false;
+            }
+        }
+        if (RespawnableObjects.Length > 0)
+        {
+            for (int i = 0; i < RespawnableObjects.Length; i++)
+            {
+                //Reset Object back to their original Values
+                RespawnableObjects[i].SetActive(true);
+            }
+        }
+        if(LevelKeys.Length > 0)
+        {
+            for(int i = 0; i < LevelKeys.Length; i++)
+            {
+                LevelKeys[i] = false;
             }
         }
     }
