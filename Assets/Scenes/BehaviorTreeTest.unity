@@ -805,6 +805,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Inventory
   spellSpace: 4
   spells:
+  - {fileID: 11400000, guid: 1d221979aabd19d4eb674820bb2f89f8, type: 2}
   - {fileID: 11400000, guid: aa27716512abf8f4e91d5b7eeeb672e9, type: 2}
 --- !u!1 &1399462841
 GameObject:
