@@ -5,12 +5,17 @@ public class EnemyHealth : DamageableCharacter
 
     private Vector3 spawnPoint;
 
+
     public WaveSpawner WaveSource; //Storing the arena this enemy spawns from
 
 
     void Start()
     {
         spawnPoint = transform.position; //Set the point where the enemy should respawn if respawned.
+    }
+
+    void Update()
+    {
     }
 
     void OnEnable()

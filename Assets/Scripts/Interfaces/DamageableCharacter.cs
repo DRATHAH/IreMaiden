@@ -49,10 +49,8 @@ public class DamageableCharacter : MonoBehaviour, IDamageable
         
     }
 
-    public virtual void OnHit(int damage, Vector3 knockback, bool takesKnockBack)
+    public virtual void Recoil(Vector3 knockback, bool takesKnockBack)
     {
-        Health -= damage;
-
         // Code for applying knockback effects
     }
 
@@ -70,7 +68,8 @@ public class DamageableCharacter : MonoBehaviour, IDamageable
         {
             damage *= 1;
         }
-            Health -= damage;
+
+        Health -= damage;
     }
 
     public virtual void RemoveCharacter()

@@ -67,8 +67,18 @@ public class KnightMovement : MonoBehaviour
 
     void Update()
     {
-        //Determine where the nav agent should move
-        enemyNav.SetDestination(player.transform.position);
+        if(player != null)
+        {
+            //Determine where the nav agent should move
+            enemyNav.SetDestination(player.transform.position);
+
+            //Calculate the distance the enemy is from the player for the purposes of the complicated raycasting s**t
+            distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
+
+            //Set rotation stuff
+            desiredVelocity = new Vector3(enemyNav.destination.x - transform.position.x, 0f, enemyNav.destination.z - transform.position.z) * moveSpeed;
+
+        }
 
         //Stop the nav agent from moving if they are attacking
         if (attacking == true)
@@ -79,16 +89,6 @@ public class KnightMovement : MonoBehaviour
         {
             enemyNav.isStopped = false;
         }
-
-        //Calculate the distance the enemy is from the player for the purposes of the complicated raycasting s**t
-        distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
-
-        /*
-         * Set the desired velocity, used in rotation calc
-         * Probably could be optimized in some way but I am unsure.
-         */
-
-        desiredVelocity = new Vector3(enemyNav.destination.x - transform.position.x, 0f, enemyNav.destination.z - transform.position.z) * moveSpeed;
     }
 
     //Stuff related to enemy movement, if this can be optimized please do so
@@ -96,7 +96,7 @@ public class KnightMovement : MonoBehaviour
     {
         //Prevent enemy speed from going above their maximum speed, or 0 to not break things.
         enemyNav.speed = Mathf.Clamp(enemyNav.speed, 0, moveSpeed);
-        if(distanceToPlayer < stoppingDistance && attacking != true)
+        if(player != null && distanceToPlayer < stoppingDistance && attacking != true)
         {
             //Does the enemy have a potential line of sight with the player?
             if (Physics.Linecast(head.position, player.transform.position, out RaycastHit hit) && hit.collider.name == "Player")

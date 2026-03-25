@@ -65,11 +65,14 @@ public class ArcherMovement : MonoBehaviour
     void Update()
     {
         //Set the end destination for where the enemy should go
-        enemyNav.SetDestination(player.transform.position);
-        //Calculate the distance the enemy is from the player for the purposes of the complicated raycasting s**t
-        distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
-        //Rotation stuff copied from knight code
-        desiredVelocity = new Vector3(enemyNav.destination.x - transform.position.x, 0f, enemyNav.destination.z - transform.position.z) * moveSpeed;
+        if(player != null)
+        {
+            enemyNav.SetDestination(player.transform.position);
+            //Calculate the distance the enemy is from the player for the purposes of the complicated raycasting s**t
+            distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
+            //Rotation stuff copied from knight code
+            desiredVelocity = new Vector3(enemyNav.destination.x - transform.position.x, 0f, enemyNav.destination.z - transform.position.z) * moveSpeed;
+        }
     }
 
     /*This handles enemy movement/targetting for the player.
