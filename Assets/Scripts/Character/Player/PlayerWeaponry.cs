@@ -1,6 +1,8 @@
 using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Events;
 
 public class PlayerWeaponry : MonoBehaviour
 {
@@ -18,26 +20,38 @@ public class PlayerWeaponry : MonoBehaviour
         //Damage Dealt by primary fire 1
     public int GunDamagePrimary1;
 
+    [Header("Spell Events")] // These run when you press the num keys. Make sure to have 4, even if they don't do anything
+    public List<UnityEvent> spellActions;
+
     public float spellOffset = 1;
 
-    public List<SpellAbility> spells = new List<SpellAbility>();
+    Inventory inventory;
+    int spellIndex; // Index of the spell currently being cast
+    bool finishedLoadout = false; // Whether the player's loadout has finished updating
+
     public Dictionary<SpellAbility, float> spellCooldowns = new Dictionary<SpellAbility, float>(); // Keeps track of the cooldowns of all spells
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        foreach(SpellAbility spell in spells)
+        inventory = Inventory.instance;
+
+        for (int i = 0; i < inventory.spells.Count; i++)
         {
-            spellCooldowns.Add(spell, spell.cooldown);
+            spellCooldowns.Add(inventory.spells[i], inventory.spells[i].cooldown);
+
+            UnityAction action = (UnityAction)Delegate.CreateDelegate(typeof(UnityAction), this, inventory.spells[i].name);
+            spellActions[i].AddListener(delegate { action(); });
         }
+        finishedLoadout = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (spellCooldowns[spells[0]] <= spells[0].cooldown)
+        if (finishedLoadout && spellCooldowns[inventory.spells[0]] <= inventory.spells[0].cooldown)
         {
-            spellCooldowns[spells[0]] += Time.deltaTime;
+            spellCooldowns[inventory.spells[0]] += Time.deltaTime;
         }
 
         //Check if the player can fire
@@ -55,11 +69,19 @@ public class PlayerWeaponry : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.Alpha1) && spellCooldowns[spells[0]] >= spells[0].cooldown)
+        if (Input.GetKey(KeyCode.Alpha1) && spellCooldowns[inventory.spells[0]] >= inventory.spells[0].cooldown)
         {
             // Temporary code
-            Fireball(0);
-            spellCooldowns[spells[0]] = 0;
+            spellActions[0].Invoke();
+            spellIndex = 0;
+            spellCooldowns[inventory.spells[0]] = 0;
+        }
+        if (Input.GetKey(KeyCode.Alpha2) && spellCooldowns[inventory.spells[1]] >= inventory.spells[1].cooldown)
+        {
+            // Temporary code
+            spellActions[1].Invoke();
+            spellIndex = 1;
+            spellCooldowns[inventory.spells[1]] = 0;
         }
     }
 
@@ -88,15 +110,19 @@ public class PlayerWeaponry : MonoBehaviour
     #region Spells
     // Make sure every method has the same name as the spell
 
-    void Fireball(int index)
+    void Fireball()
     {
-        GameObject projectile = Instantiate(spells[index].spellPrefab, Camera.main.transform.position + (Camera.main.transform.forward * spellOffset), Quaternion.identity);
+        GameObject projectile = Instantiate(inventory.spells[spellIndex].spellPrefab, Camera.main.transform.position + (Camera.main.transform.forward * spellOffset), Quaternion.identity);
         Projectile prjScript = projectile.GetComponentInParent<Projectile>();
         if (prjScript != null)
         {
-            prjScript.Initialize(true, spells[index].damage, 50, Camera.main.transform.forward, false, 10, transform.tag);
+            prjScript.Initialize(true, inventory.spells[spellIndex].damage, 50, Camera.main.transform.forward, false, 10, transform.tag);
         }
     }
 
+    void Hand()
+    {
+        Debug.Log("Casted hand");
+    }
     #endregion
 }
