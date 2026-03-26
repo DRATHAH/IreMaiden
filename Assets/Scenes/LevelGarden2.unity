@@ -2828,21 +2828,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1555996026774006243, guid: 2d68af57e3ce79143a41892b123f3bb1, type: 3}
-      propertyPath: m_ClearFlags
-      value: 2
+    - target: {fileID: 1822770915598507245, guid: 2d68af57e3ce79143a41892b123f3bb1, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1555996026774006243, guid: 2d68af57e3ce79143a41892b123f3bb1, type: 3}
-      propertyPath: m_BackGroundColor.b
-      value: 0.18867922
+    - target: {fileID: 1822770915598507245, guid: 2d68af57e3ce79143a41892b123f3bb1, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1555996026774006243, guid: 2d68af57e3ce79143a41892b123f3bb1, type: 3}
-      propertyPath: m_BackGroundColor.g
-      value: 0.018689923
+    - target: {fileID: 1922171194982172910, guid: 2d68af57e3ce79143a41892b123f3bb1, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1555996026774006243, guid: 2d68af57e3ce79143a41892b123f3bb1, type: 3}
-      propertyPath: m_BackGroundColor.r
-      value: 0.08988312
+    - target: {fileID: 1922171194982172910, guid: 2d68af57e3ce79143a41892b123f3bb1, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2522488824229563712, guid: 2d68af57e3ce79143a41892b123f3bb1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2892,17 +2892,29 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6470945761975792261, guid: 2d68af57e3ce79143a41892b123f3bb1, type: 3}
-      propertyPath: health
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6470945761975792261, guid: 2d68af57e3ce79143a41892b123f3bb1, type: 3}
-      propertyPath: maxHealth
-      value: 100
+    - target: {fileID: 6009719480487513675, guid: 2d68af57e3ce79143a41892b123f3bb1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 22.099976
       objectReference: {fileID: 0}
     - target: {fileID: 6933985992299543328, guid: 2d68af57e3ce79143a41892b123f3bb1, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8224760588689318941, guid: 2d68af57e3ce79143a41892b123f3bb1, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8224760588689318941, guid: 2d68af57e3ce79143a41892b123f3bb1, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8241470097900437566, guid: 2d68af57e3ce79143a41892b123f3bb1, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8241470097900437566, guid: 2d68af57e3ce79143a41892b123f3bb1, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3038,12 +3050,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3847026970722304849, guid: cd4c1230c33c0bf4387acb9eafb0a645, type: 3}
       propertyPath: EnemySpawns.Array.size
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3847026970722304849, guid: cd4c1230c33c0bf4387acb9eafb0a645, type: 3}
       propertyPath: 'EnemySpawns.Array.data[0]'
       value: 
       objectReference: {fileID: 301120938}
+    - target: {fileID: 3847026970722304849, guid: cd4c1230c33c0bf4387acb9eafb0a645, type: 3}
+      propertyPath: 'EnemySpawns.Array.data[1]'
+      value: 
+      objectReference: {fileID: 889132154}
+    - target: {fileID: 3847026970722304849, guid: cd4c1230c33c0bf4387acb9eafb0a645, type: 3}
+      propertyPath: 'EnemySpawns.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1276657883}
+    - target: {fileID: 3847026970722304849, guid: cd4c1230c33c0bf4387acb9eafb0a645, type: 3}
+      propertyPath: 'EnemySpawns.Array.data[3]'
+      value: 
+      objectReference: {fileID: 1451303448}
     - target: {fileID: 4863210971656187398, guid: cd4c1230c33c0bf4387acb9eafb0a645, type: 3}
       propertyPath: m_Name
       value: Game Manager

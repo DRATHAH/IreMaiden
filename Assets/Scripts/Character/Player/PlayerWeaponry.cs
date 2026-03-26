@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class PlayerWeaponry : MonoBehaviour
 {
@@ -25,11 +26,19 @@ public class PlayerWeaponry : MonoBehaviour
 
     public float spellOffset = 1;
 
-    Inventory inventory;
+    private Inventory inventory;
     int spellIndex; // Index of the spell currently being cast
     bool finishedLoadout = false; // Whether the player's loadout has finished updating
 
     public Dictionary<SpellAbility, float> spellCooldowns = new Dictionary<SpellAbility, float>(); // Keeps track of the cooldowns of all spells
+
+
+    private List<Sprite> spellIcon = new List<Sprite>();
+    public Image[] BookIcons;
+    public Slider[] CooldownSliders;
+    private int spellIndex2 = 1; //Index of spell in 2nd slot
+    private int spellIndex3 = 2; //Index of spell in 3rd slot
+    private int spellIndex4 = 3; //Index of spell in 4th slot
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -38,11 +47,18 @@ public class PlayerWeaponry : MonoBehaviour
 
         for (int i = 0; i < inventory.spells.Count; i++)
         {
-            spellCooldowns.Add(inventory.spells[i], inventory.spells[i].cooldown);
-
+            spellCooldowns.Add(inventory.spells[i], 0);
+            spellIcon.Add(inventory.spells[i].icon);
             UnityAction action = (UnityAction)Delegate.CreateDelegate(typeof(UnityAction), this, inventory.spells[i].name);
             spellActions[i].AddListener(delegate { action(); });
+            BookIcons[i].sprite = spellIcon[i];
+            CooldownSliders[i].maxValue = inventory.spells[i].cooldown;
         }
+        for(int i = inventory.spells.Count; i < BookIcons.Length; i++)
+        {
+            BookIcons[i].transform.parent.gameObject.SetActive(false);
+        }
+        spellIndex = 0;
         finishedLoadout = true;
     }
 
@@ -51,11 +67,22 @@ public class PlayerWeaponry : MonoBehaviour
     {
         if (finishedLoadout && spellCooldowns[inventory.spells[0]] <= inventory.spells[0].cooldown)
         {
-            spellCooldowns[inventory.spells[0]] += Time.deltaTime;
+            spellCooldowns[inventory.spells[0]] -= Time.deltaTime;
         }
-
+        if(finishedLoadout && spellCooldowns.Count > 1 && spellCooldowns[inventory.spells[1]] <= inventory.spells[1].cooldown)
+        {
+            spellCooldowns[inventory.spells[1]] -= Time.deltaTime;
+        }
+        if (finishedLoadout && spellCooldowns.Count > 2 && spellCooldowns[inventory.spells[2]] <= inventory.spells[1].cooldown)
+        {
+            spellCooldowns[inventory.spells[2]] -= Time.deltaTime;
+        }
+        if (finishedLoadout && spellCooldowns.Count > 3 && spellCooldowns[inventory.spells[3]] <= inventory.spells[1].cooldown)
+        {
+            spellCooldowns[inventory.spells[3]] -= Time.deltaTime;
+        }
         //Check if the player can fire
-        if(fireCooldownPrimary1 > 0)
+        if (fireCooldownPrimary1 > 0)
         {
             //If no reduce cooldown
             fireCooldownPrimary1 -= Time.deltaTime;
@@ -69,19 +96,125 @@ public class PlayerWeaponry : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.Alpha1) && spellCooldowns[inventory.spells[0]] >= inventory.spells[0].cooldown)
+        if (Input.GetKey(KeyCode.Mouse1) && spellCooldowns[inventory.spells[spellIndex]] <= 0)
         {
-            // Temporary code
-            spellActions[0].Invoke();
-            spellIndex = 0;
-            spellCooldowns[inventory.spells[0]] = 0;
+            ShootWeaponSecondary1();
         }
-        if (Input.GetKey(KeyCode.Alpha2) && spellCooldowns[inventory.spells[1]] >= inventory.spells[1].cooldown)
+
+
+        if (Input.GetKey(KeyCode.Alpha1) && spellIcon.Count > 0)
         {
             // Temporary code
-            spellActions[1].Invoke();
+            //spellActions[0].Invoke();
+            spellIndex = 0;
+            spellIndex2 = 1;
+            spellIndex3 = 2;
+            spellIndex4 = 3;
+
+            BookIcons[0].sprite = spellIcon[spellIndex];
+            CooldownSliders[0].maxValue = inventory.spells[spellIndex].cooldown;
+
+            if(spellIcon.Count > 1)
+            {
+                BookIcons[1].sprite = spellIcon[spellIndex2];
+                CooldownSliders[1].maxValue = inventory.spells[spellIndex2].cooldown;
+            }
+            if (spellIcon.Count > 2)
+            {
+                BookIcons[2].sprite = spellIcon[spellIndex3];
+                CooldownSliders[2].maxValue = inventory.spells[spellIndex3].cooldown;
+            }
+            if (spellIcon.Count > 3)
+            {
+                BookIcons[3].sprite = spellIcon[spellIndex4];
+                CooldownSliders[3].maxValue = inventory.spells[spellIndex4].cooldown;
+            }
+            //spellCooldowns[inventory.spells[0]] = 0;
+        }
+        else if (Input.GetKey(KeyCode.Alpha2) && spellIcon.Count > 1)
+        {
+            // Temporary code
+            //spellActions[1].Invoke();
             spellIndex = 1;
-            spellCooldowns[inventory.spells[1]] = 0;
+            spellIndex2 = 0;
+            spellIndex3 = 2;
+            spellIndex4 = 3;
+
+            BookIcons[0].sprite = spellIcon[spellIndex];
+            CooldownSliders[0].maxValue = inventory.spells[spellIndex].cooldown;
+            
+            BookIcons[1].sprite = spellIcon[spellIndex2];
+            CooldownSliders[1].maxValue = inventory.spells[spellIndex2].cooldown;
+
+            if (spellIcon.Count > 2)
+            {
+                BookIcons[2].sprite = spellIcon[spellIndex3];
+                CooldownSliders[2].maxValue = inventory.spells[spellIndex3].cooldown;
+            }
+            if (spellIcon.Count > 3)
+            {
+                BookIcons[3].sprite = spellIcon[spellIndex4];
+                CooldownSliders[3].maxValue = inventory.spells[spellIndex4].cooldown;
+            }
+
+            //spellCooldowns[inventory.spells[1]] = 0;
+        }
+        else if (Input.GetKey(KeyCode.Alpha3) && spellIcon.Count > 2)
+        {
+            // Temporary code
+            spellIndex = 2;
+            spellIndex2 = 0;
+            spellIndex3 = 1;
+            spellIndex4 = 3;
+
+            BookIcons[0].sprite = spellIcon[spellIndex];
+            CooldownSliders[0].maxValue = inventory.spells[spellIndex].cooldown;
+
+            BookIcons[1].sprite = spellIcon[spellIndex2];
+            CooldownSliders[1].maxValue = inventory.spells[spellIndex2].cooldown;
+
+            BookIcons[2].sprite = spellIcon[spellIndex3];
+            CooldownSliders[2].maxValue = inventory.spells[spellIndex3].cooldown;
+
+            if (spellIcon.Count > 3)
+            {
+                BookIcons[3].sprite = spellIcon[spellIndex4];
+                CooldownSliders[3].maxValue = inventory.spells[spellIndex4].cooldown;
+            }
+        }
+        else if (Input.GetKey(KeyCode.Alpha4) && spellIcon.Count > 3)
+        {
+            // Temporary code
+            spellIndex = 3;
+            spellIndex2 = 0;
+            spellIndex3 = 1;
+            spellIndex4 = 2;
+
+            BookIcons[0].sprite = spellIcon[spellIndex];
+            CooldownSliders[0].maxValue = inventory.spells[spellIndex].cooldown;
+
+            BookIcons[1].sprite = spellIcon[spellIndex2];
+            CooldownSliders[1].maxValue = inventory.spells[spellIndex2].cooldown;
+
+            BookIcons[2].sprite = spellIcon[spellIndex3];
+            CooldownSliders[2].maxValue = inventory.spells[spellIndex3].cooldown;
+
+            BookIcons[3].sprite = spellIcon[spellIndex4];
+            CooldownSliders[3].maxValue = inventory.spells[spellIndex4].cooldown;
+        }
+
+        CooldownSliders[0].value = spellCooldowns[inventory.spells[spellIndex]];
+        if(spellIcon.Count > 1)
+        {
+            CooldownSliders[1].value = spellCooldowns[inventory.spells[spellIndex2]];
+        }
+        if(spellIcon.Count > 2)
+        {
+            CooldownSliders[2].value = spellCooldowns[inventory.spells[spellIndex3]];
+        }
+        if (spellIcon.Count > 3)
+        {
+            CooldownSliders[3].value = spellCooldowns[inventory.spells[spellIndex4]];
         }
     }
 
@@ -104,7 +237,8 @@ public class PlayerWeaponry : MonoBehaviour
     //Function for the secondary fire of weapon 1
     void ShootWeaponSecondary1()
     {
-
+        spellActions[spellIndex].Invoke();
+        spellCooldowns[inventory.spells[spellIndex]] = inventory.spells[spellIndex].cooldown;
     }
 
     #region Spells
@@ -123,6 +257,16 @@ public class PlayerWeaponry : MonoBehaviour
     void Hand()
     {
         Debug.Log("Casted hand");
+    }
+
+    void ExtraSpell()//Added for testing
+    {
+        Debug.Log("Extra");
+    }
+
+    void Nothing()//Added for testing
+    {
+        Debug.Log("Nothing");
     }
     #endregion
 }
