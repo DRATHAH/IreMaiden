@@ -44,6 +44,7 @@ public class EnemyHealth : DamageableCharacter
 
     public void ResetEnemy() //Func to reset enemy pos and health upon player death
     {
+        this.gameObject.GetComponent<EnemyAttack>().StopAttacking();
         Health = maxHealth;
         targetable = true;
         transform.position = spawnPoint;

@@ -5022,3 +5022,4 @@ MonoBehaviour:
   damage: 1
   knockback: 5
   explosionRadius: 5
+  delayLifetime: 5

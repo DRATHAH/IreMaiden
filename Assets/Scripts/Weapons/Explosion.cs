@@ -7,6 +7,7 @@ public class Explosion : MonoBehaviour
     public int damage = 1;
     public float knockback = 5f;
     public float explosionRadius = 5;
+    public float delayLifetime = 5;
 
     string ownerTag = "";
 
@@ -42,7 +43,7 @@ public class Explosion : MonoBehaviour
 
     private IEnumerator DelayDestroy()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(delayLifetime);
         Destroy(gameObject);
     }
 }

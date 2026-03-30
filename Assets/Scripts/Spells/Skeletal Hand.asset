@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e6567d4678fbc54aab295345693d990, type: 3}
-  m_Name: Fireball
+  m_Name: Skeletal Hand
   m_EditorClassIdentifier: Assembly-CSharp::SpellAbility
-  name: Fireball
-  icon: {fileID: 21300000, guid: b38f75bb4705fee4ca9de838a7d9c3db, type: 3}
-  desc: Creates a big explosion that deals lots of damage and knockback.
+  name: Hand
+  icon: {fileID: 21300000, guid: 6585df77252c9cd479f4a4530342b0d9, type: 3}
+  desc: Creates a skeletal hand that knocks back enemies and acts as cover.
   damage: 5
   cooldown: 5
-  spellPrefab: {fileID: 3832894018831257731, guid: 2bf65e260549ac44d8ca8babd85d6e77, type: 3}
-  spellId: 1
+  spellPrefab: {fileID: 6533491581710592899, guid: 1684e897b10d54844bbd8c8dd3048d43, type: 3}
+  spellId: 2

@@ -366,6 +366,7 @@ MonoBehaviour:
   health: 20
   regenDelay: 2
   regenRate: 1
+  targetable: 1
   WaveSource: {fileID: 0}
 --- !u!1 &5476287593105272982
 GameObject:
@@ -607,7 +608,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d30e4cbe23051ec45ab9540ce58ca135, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamagePlayer
-  damageValue: 10
+  damageValue: 30
 --- !u!1 &8344373953438746918
 GameObject:
   m_ObjectHideFlags: 0

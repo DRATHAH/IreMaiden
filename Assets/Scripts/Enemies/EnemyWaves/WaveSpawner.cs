@@ -48,7 +48,7 @@ public class WaveSpawner : MonoBehaviour
     {
         if(FreshMeat != null)
         {
-            for(int i = 0; i < EnemiesToSpawn.Length; i++)
+            for (int i = 0; i < EnemiesToSpawn.Length; i++)
             {
                 EnemiesToSpawn[i].GetComponent<EnemyHealth>().ResetEnemy();
             }
