@@ -256,7 +256,11 @@ public class PlayerWeaponry : MonoBehaviour
 
     void Hand()
     {
-        Debug.Log("Casted hand");
+        RaycastHit ray;
+        if (Physics.Raycast(Camera.main.transform.position + (Camera.main.transform.forward * spellOffset), Camera.main.transform.forward, out ray, 100))
+        {
+            Instantiate(inventory.spells[spellIndex].spellPrefab, ray.point, Quaternion.identity);
+        }
     }
 
     void ExtraSpell()//Added for testing
