@@ -251,6 +251,7 @@ public class PlayerWeaponry : MonoBehaviour
         if (prjScript != null)
         {
             prjScript.Initialize(true, inventory.spells[spellIndex].damage, 50, Camera.main.transform.forward, false, 10, transform.tag);
+            prjScript.Source = this.transform;
         }
     }
 

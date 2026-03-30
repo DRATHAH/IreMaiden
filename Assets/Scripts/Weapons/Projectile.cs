@@ -17,10 +17,18 @@ public class Projectile : MonoBehaviour
 
     bool hasHit = false;
 
+    private PlaySFX playSFX;
+    public AudioClip FireballEndingSFX;
+    [SerializeField, Range(-80, 0)] private float FireballVolume;
+
+    private Vector3 StartingPoint;
+    public Transform Source;
+    private Vector3 EndingPoint;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        playSFX = this.GetComponent<PlaySFX>();
     }
 
     public void Initialize(bool isExplosion, int dmg, float speed, Vector3 direction, bool gravity, float radius, string owner)
@@ -51,6 +59,8 @@ public class Projectile : MonoBehaviour
                 GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.LookRotation(collision.contacts[0].normal));
                 Explosion explode = explosion.GetComponent<Explosion>();
                 explode.Initialize(damage, explosionRadius, explosionForce, ownerTag);
+                EndingPoint = transform.position;
+                playSFX.PlaySound3D(FireballEndingSFX, Source.position, EndingPoint, FireballVolume);
             }
             else
             {
