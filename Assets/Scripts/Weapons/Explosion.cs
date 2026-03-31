@@ -21,6 +21,12 @@ public class Explosion : MonoBehaviour
             {
                 body.AddExplosionForce(knockback, transform.position, explosionRadius, 2);
             }
+            else if(col.tag == "Player")
+            {
+                Rigidbody rb = col.gameObject.GetComponentInChildren<Rigidbody>();
+                rb.AddExplosionForce(knockback, transform.position, explosionRadius, 2);
+            }
+
 
             if (col.transform.root.TryGetComponent<DamageableCharacter>(out DamageableCharacter character) && !col.transform.root.CompareTag(ownerTag))
             {

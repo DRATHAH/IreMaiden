@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
         PlayerContainer = GameObject.Find("PlayerContainer"); //Find the player
         PH = PlayerContainer.GetComponent<PlayerHealth>();
         PLM = PlayerContainer.GetComponent<PlayerLocomotionManager>(); //Define PLM
-        PlayerContainer.GetComponent<PlayerHealth>().gamemanager = this; //Define player health manager's gamemanager
+        PlayerContainer.GetComponentInChildren<PlayerHealth>().gamemanager = this; //Define player health manager's gamemanager
 
         PlayerSpawnOriginal = PlayerContainer.transform.position; //Set player origin
         PlayerSpawnActive = PlayerSpawnOriginal; //Set checkpoint spawn point
