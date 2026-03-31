@@ -135,7 +135,7 @@ MonoBehaviour:
   rb: {fileID: 2405709595269459035}
   ownerTag: 
   FireballEndingSFX: {fileID: 8300000, guid: d7fd64147839a5244af9f8185c4cacc5, type: 3}
-  FireballVolume: 0
+  FireballVolume: -18
   Source: {fileID: 0}
 --- !u!54 &2405709595269459035
 Rigidbody:

@@ -29,6 +29,10 @@ public class WaveSpawner : MonoBehaviour
         DeadEnemies = 0;
         CurrentWave = 0; //Current wave (For resets)
         EnemiesToSkip = 0; //Set Enemies to skip (For resets)
+        for (int i = 0; i < EnemiesToSpawn.Length; i++)
+        {
+            EnemiesToSpawn[i].gameObject.SetActive(false);
+        }
     }
 
     private void SpawnWave()
