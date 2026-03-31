@@ -28558,6 +28558,22 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4238168236840919948, guid: 5195f888cffffaf409258ad906819cfb, type: 3}
+      propertyPath: spells.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4238168236840919948, guid: 5195f888cffffaf409258ad906819cfb, type: 3}
+      propertyPath: 'spells.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 1d221979aabd19d4eb674820bb2f89f8, type: 2}
+    - target: {fileID: 4238168236840919948, guid: 5195f888cffffaf409258ad906819cfb, type: 3}
+      propertyPath: 'spells.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: ecaa531661494914bbe3025a9400fd5c, type: 2}
+    - target: {fileID: 4238168236840919948, guid: 5195f888cffffaf409258ad906819cfb, type: 3}
+      propertyPath: 'spells.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 817d28adf81aa8e45b1eac447d23949a, type: 2}
     - target: {fileID: 7436971878949960476, guid: 5195f888cffffaf409258ad906819cfb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
