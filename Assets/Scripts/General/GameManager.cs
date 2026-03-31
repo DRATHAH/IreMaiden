@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public List<bool> FinishedArenas; //Spawners player has cleared
     [HideInInspector] public List<bool> TempFinishedArenas;
 
-    private GameObject Player; //Player reference
+    private GameObject PlayerContainer; //Player reference
     private PlayerHealth PH;
     private PlayerLocomotionManager PLM; //Locomotion manager reference
     private Vector3 PlayerSpawnOriginal; //Player's starting position
@@ -35,12 +35,12 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        Player = GameObject.Find("Player"); //Find the player
-        PH = Player.GetComponent<PlayerHealth>();
-        PLM = Player.GetComponent<PlayerLocomotionManager>(); //Define PLM
-        Player.GetComponent<PlayerHealth>().gamemanager = this; //Define player health manager's gamemanager
+        PlayerContainer = GameObject.Find("PlayerContainer"); //Find the player
+        PH = PlayerContainer.GetComponent<PlayerHealth>();
+        PLM = PlayerContainer.GetComponent<PlayerLocomotionManager>(); //Define PLM
+        PlayerContainer.GetComponent<PlayerHealth>().gamemanager = this; //Define player health manager's gamemanager
 
-        PlayerSpawnOriginal = Player.transform.position; //Set player origin
+        PlayerSpawnOriginal = PlayerContainer.transform.position; //Set player origin
         PlayerSpawnActive = PlayerSpawnOriginal; //Set checkpoint spawn point
 
         if (EnemySpawns.Length > 0)
@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
 
     public void RestartFromCheckpoint() //Restarting from checkpoint
     {
-        Player.transform.position = PlayerSpawnActive; //Set player pos to checkpoint pos
+        PlayerContainer.transform.position = PlayerSpawnActive; //Set player pos to checkpoint pos
         PH.ResetHealth();
         DeathScreenCanvas.SetActive(false); //Disable death screen
         PLM.CanMove = true; //player can move again
@@ -118,7 +118,7 @@ public class GameManager : MonoBehaviour
         //LevelTime = 0; //Level time is reset
         KillCount = 0; //Kill count is reset
         SavedKillCount = KillCount; //Saved kill count is reset to prevent exploits
-        Player.transform.position = PlayerSpawnOriginal; //Set player back to their original spawn point
+        PlayerContainer.transform.position = PlayerSpawnOriginal; //Set player back to their original spawn point
         PlayerSpawnActive = PlayerSpawnOriginal; //Reset checkpoint spawn
         PH.ResetHealth();
         DeathScreenCanvas.SetActive(false); //Turn off deathscreen canvas
