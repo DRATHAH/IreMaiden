@@ -505,9 +505,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5377001314289251286, guid: 2d68af57e3ce79143a41892b123f3bb1, type: 3}
+      propertyPath: primarySpawnPoint
+      value: 
+      objectReference: {fileID: 1152581742}
+    - target: {fileID: 5377001314289251286, guid: 2d68af57e3ce79143a41892b123f3bb1, type: 3}
       propertyPath: spells.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5377001314289251286, guid: 2d68af57e3ce79143a41892b123f3bb1, type: 3}
+      propertyPath: primaryParticleFire
+      value: 
+      objectReference: {fileID: 7119386986141155223, guid: 1b22f7d5d3927ef4f888b4a351ea4a1b, type: 3}
     - target: {fileID: 5377001314289251286, guid: 2d68af57e3ce79143a41892b123f3bb1, type: 3}
       propertyPath: spellActions.Array.size
       value: 4
@@ -651,6 +659,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1152581742 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5534676774031713710, guid: 2d68af57e3ce79143a41892b123f3bb1, type: 3}
+  m_PrefabInstance: {fileID: 754895292}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1177834610
 GameObject:
   m_ObjectHideFlags: 0

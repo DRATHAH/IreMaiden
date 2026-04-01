@@ -1,7 +1,8 @@
-using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
@@ -31,6 +32,9 @@ public class PlayerWeaponry : MonoBehaviour
     bool finishedLoadout = false; // Whether the player's loadout has finished updating
 
     public Dictionary<SpellAbility, float> spellCooldowns = new Dictionary<SpellAbility, float>(); // Keeps track of the cooldowns of all spells
+
+    public TrailRenderer primaryParticleFire;
+    public Transform primarySpawnPoint;
 
 
     private List<Sprite> spellIcon = new List<Sprite>();
@@ -90,9 +94,10 @@ public class PlayerWeaponry : MonoBehaviour
         else
         {
             //If it can check for input
-            if (Input.GetKey(KeyCode.Mouse0))
+            if (Input.GetKey(KeyCode.Mouse0) && fireCooldownPrimary1 <= 0)
             {
                 ShootWeaponPrimary1();
+                fireCooldownPrimary1 = maxFireCooldownPrimary1;
             }
         }
 
@@ -104,8 +109,6 @@ public class PlayerWeaponry : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Alpha1) && spellIcon.Count > 0)
         {
-            // Temporary code
-            //spellActions[0].Invoke();
             spellIndex = 0;
             spellIndex2 = 1;
             spellIndex3 = 2;
@@ -129,12 +132,9 @@ public class PlayerWeaponry : MonoBehaviour
                 BookIcons[3].sprite = spellIcon[spellIndex4];
                 CooldownSliders[3].maxValue = inventory.spells[spellIndex4].cooldown;
             }
-            //spellCooldowns[inventory.spells[0]] = 0;
         }
         else if (Input.GetKey(KeyCode.Alpha2) && spellIcon.Count > 1)
         {
-            // Temporary code
-            //spellActions[1].Invoke();
             spellIndex = 1;
             spellIndex2 = 0;
             spellIndex3 = 2;
@@ -184,7 +184,6 @@ public class PlayerWeaponry : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.Alpha4) && spellIcon.Count > 3)
         {
-            // Temporary code
             spellIndex = 3;
             spellIndex2 = 0;
             spellIndex3 = 1;
@@ -224,6 +223,8 @@ public class PlayerWeaponry : MonoBehaviour
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         if (Physics.Raycast(ray, out RaycastHit hit, maxGunRangePrimary1))
         {
+            TrailRenderer trail = Instantiate(primaryParticleFire, primarySpawnPoint.position, Quaternion.identity);
+            StartCoroutine(SpawnTrail(trail, hit));
             DamageableCharacter enemyHealth = hit.collider.gameObject.GetComponentInParent<DamageableCharacter>();
             if (enemyHealth != null && hit.collider.transform.root.CompareTag("Enemy"))
             {
@@ -232,6 +233,22 @@ public class PlayerWeaponry : MonoBehaviour
                 Debug.Log("Shot " + hit.collider.name);
             }
         }
+    }
+
+    private IEnumerator SpawnTrail(TrailRenderer trail, RaycastHit hit)
+    {
+        float time = 0;
+        Vector3 startPos = trail.transform.position;
+        while (time < 1)
+        {
+            trail.transform.position = Vector3.Lerp(startPos, hit.point, time);
+            time += Time.deltaTime / trail.time;
+            yield return null;
+        }
+        trail.transform.position = hit.point;
+        // Instantiate(bullet hit effect, hit.point, Quaternion.LookRotation(hit.normal));
+
+        Destroy(trail.gameObject, trail.time);
     }
 
     //Function for the secondary fire of weapon 1
@@ -259,7 +276,10 @@ public class PlayerWeaponry : MonoBehaviour
         RaycastHit ray;
         if (Physics.Raycast(Camera.main.transform.position + (Camera.main.transform.forward * spellOffset), Camera.main.transform.forward, out ray, 100))
         {
-            Instantiate(inventory.spells[spellIndex].spellPrefab, ray.point, Quaternion.identity);
+            Debug.Log(ray.normal);
+            GameObject hand = Instantiate(inventory.spells[spellIndex].spellPrefab, ray.point, Quaternion.LookRotation(ray.normal));
+            hand.GetComponent<Explosion>().Initialize(5, 3, 1500, gameObject.tag);
+            Debug.DrawRay(ray.point, ray.normal, Color.blue, 10f, false);
         }
     }
 
