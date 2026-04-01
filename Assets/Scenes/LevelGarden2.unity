@@ -28574,6 +28574,10 @@ PrefabInstance:
       propertyPath: 'spells.Array.data[3]'
       value: 
       objectReference: {fileID: 11400000, guid: 817d28adf81aa8e45b1eac447d23949a, type: 2}
+    - target: {fileID: 7070029552731628637, guid: 5195f888cffffaf409258ad906819cfb, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7436971878949960476, guid: 5195f888cffffaf409258ad906819cfb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

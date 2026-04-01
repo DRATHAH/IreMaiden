@@ -340,11 +340,11 @@ GameObject:
   - component: {fileID: 5055506162795895392}
   - component: {fileID: 7070029552731628637}
   - component: {fileID: 7682416673649509931}
+  - component: {fileID: 6682714575241008062}
+  - component: {fileID: 5689473406017409756}
   - component: {fileID: 2694365780814277049}
   - component: {fileID: 1173293323654826030}
   - component: {fileID: 4238168236840919948}
-  - component: {fileID: 5689473406017409756}
-  - component: {fileID: 6682714575241008062}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -448,6 +448,61 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &6682714575241008062
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1453259664719390210}
+  serializedVersion: 5
+  m_Mass: 1.5
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 112
+  m_CollisionDetection: 1
+--- !u!114 &5689473406017409756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1453259664719390210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41021f4a8e0025a468350440be3c13ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IM.PlayerLocomotionManager
+  playerCam: {fileID: 2056223662869353158}
+  orientation: {fileID: 7549635539144596562}
+  rb: {fileID: 6682714575241008062}
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 768
+  whatIsWallrunnable:
+    serializedVersion: 2
+    m_Bits: 512
+  sensitivity: 200
+  moveSpeed: 4500
+  walkSpeed: 20
+  runSpeed: 10
+  grounded: 0
+  onWall: 0
+  CanMove: 1
 --- !u!114 &2694365780814277049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -519,61 +574,6 @@ MonoBehaviour:
   spellSpace: 4
   spells:
   - {fileID: 11400000, guid: aa27716512abf8f4e91d5b7eeeb672e9, type: 2}
---- !u!114 &5689473406017409756
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1453259664719390210}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41021f4a8e0025a468350440be3c13ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::IM.PlayerLocomotionManager
-  playerCam: {fileID: 2056223662869353158}
-  orientation: {fileID: 7549635539144596562}
-  rb: {fileID: 6682714575241008062}
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 768
-  whatIsWallrunnable:
-    serializedVersion: 2
-    m_Bits: 512
-  sensitivity: 200
-  moveSpeed: 4500
-  walkSpeed: 20
-  runSpeed: 10
-  grounded: 0
-  onWall: 0
-  CanMove: 1
---- !u!54 &6682714575241008062
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1453259664719390210}
-  serializedVersion: 5
-  m_Mass: 1.5
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 112
-  m_CollisionDetection: 1
 --- !u!1 &1537469135825683191
 GameObject:
   m_ObjectHideFlags: 0
