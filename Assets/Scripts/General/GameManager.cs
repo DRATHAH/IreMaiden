@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     {
         PlayerContainer = GameObject.Find("PlayerContainer"); //Find the player
         PH = PlayerContainer.GetComponentInChildren<PlayerHealth>();
-        PLM = PlayerContainer.GetComponent<PlayerLocomotionManager>(); //Define PLM
+        PLM = PlayerContainer.GetComponentInChildren<PlayerLocomotionManager>(); //Define PLM
         PH.gamemanager = this; //Define player health manager's gamemanager
 
         PlayerSpawnOriginal = PlayerContainer.transform.position;
@@ -73,6 +73,7 @@ public class GameManager : MonoBehaviour
     public void PlayerDeath() //When player dies
     {
         Debug.Log("Die");
+        MusicManager.SetVolume(0);
         PlayerDeaths++;
         DoneFromMenu = false;
         PLM.CanMove = false; //disable player movement
@@ -88,7 +89,7 @@ public class GameManager : MonoBehaviour
 
     public void RestartFromCheckpoint() //Restarting from checkpoint
     {
-        PlayerContainer.GetComponent<Rigidbody>().MovePosition(PlayerSpawnActive); //Set player pos to checkpoint pos
+        PlayerContainer.GetComponentInChildren<Rigidbody>().MovePosition(PlayerSpawnActive); //Set player pos to checkpoint pos
         PH.ResetHealth();
         DeathScreenCanvas.SetActive(false); //Disable death screen
         PLM.CanMove = true; //player can move again
@@ -110,6 +111,7 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+        MusicManager.UnpauseMusic();
     }
 
     public void RestartLevel()
@@ -118,7 +120,7 @@ public class GameManager : MonoBehaviour
         //LevelTime = 0; //Level time is reset
         KillCount = 0; //Kill count is reset
         SavedKillCount = KillCount; //Saved kill count is reset to prevent exploits
-        PlayerContainer.GetComponent<Rigidbody>().MovePosition(PlayerSpawnActive); //Set player pos to checkpoint pos
+        PlayerContainer.GetComponentInChildren<Rigidbody>().MovePosition(PlayerSpawnActive); //Set player pos to checkpoint pos
         PlayerSpawnActive = PlayerSpawnOriginal; //Reset checkpoint spawn
         PH.ResetHealth();
         DeathScreenCanvas.SetActive(false); //Turn off deathscreen canvas
@@ -149,6 +151,9 @@ public class GameManager : MonoBehaviour
                 LevelKeys[i] = false;
             }
         }
+        MusicManager.DecreaseIntensity();
+        MusicManager.StopMusic();
+        MusicManager.RestartMusic();
     }
 
     public void QuitLevel()

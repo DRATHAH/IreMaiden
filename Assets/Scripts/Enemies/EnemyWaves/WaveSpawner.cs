@@ -87,6 +87,7 @@ public class WaveSpawner : MonoBehaviour
                 {
                     gamemanager.UpdateArenas(PosInArray);
                 }
+                MusicManager.DecreaseIntensity();
                 DeactivateSelf(); //Turn off the spawner if all enemies are dead
             }
         }
@@ -98,6 +99,7 @@ public class WaveSpawner : MonoBehaviour
     {
         if(other.tag == "Player") //Is it the player?
         {
+            MusicManager.IncreaseIntensity();
             SpawnGates(); //Lock the player in if necessary
             SpawnWave(); //Spawn first wave
             SpawnTrigger.enabled = false; //Turn off trigger

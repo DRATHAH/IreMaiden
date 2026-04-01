@@ -132,7 +132,7 @@ namespace IM
             private void StartCrouch()
             {
                 float num = 400f;
-                base.transform.localScale = new Vector3(1f, 0.5f, 1f);
+                base.transform.localScale = new Vector3(1f, 0.75f, 1f);
                 base.transform.position = new Vector3(base.transform.position.x, base.transform.position.y - 0.5f, base.transform.position.z);
                 if (rb.linearVelocity.magnitude > 0.1f && grounded)
                 {
@@ -143,7 +143,7 @@ namespace IM
             //Scale player to original size
             private void StopCrouch()
             {
-                base.transform.localScale = new Vector3(1f, 1f, 1f);
+                base.transform.localScale = new Vector3(1f, 1.5f, 1f);
                 base.transform.position = new Vector3(base.transform.position.x, base.transform.position.y + 0.5f, base.transform.position.z);
             }
 
