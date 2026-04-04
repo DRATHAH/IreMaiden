@@ -212,6 +212,37 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &926041593795493928
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3837185110421026873}
+  m_Layer: 0
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3837185110421026873
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 926041593795493928}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.25, y: -0.25, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3279358440258559178}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1102647661515349949
 GameObject:
   m_ObjectHideFlags: 0
@@ -729,7 +760,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3837185110421026873}
   m_Father: {fileID: 3998500843699337967}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &1555996026774006243
@@ -1584,6 +1616,7 @@ GameObject:
   - component: {fileID: 6470945761975792261}
   - component: {fileID: 5377001314289251286}
   - component: {fileID: 1796386258587143819}
+  - component: {fileID: 7624914578074543266}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1790,6 +1823,8 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls: []
   spellOffset: 1
+  primaryParticleFire: {fileID: 7119386986141155223, guid: 1b22f7d5d3927ef4f888b4a351ea4a1b, type: 3}
+  primarySpawnPoint: {fileID: 3837185110421026873}
   BookIcons:
   - {fileID: 2177972624226972826}
   - {fileID: 5866364505253754966}
@@ -1818,6 +1853,22 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1d221979aabd19d4eb674820bb2f89f8, type: 2}
   - {fileID: 11400000, guid: ecaa531661494914bbe3025a9400fd5c, type: 2}
   - {fileID: 11400000, guid: 817d28adf81aa8e45b1eac447d23949a, type: 2}
+--- !u!114 &7624914578074543266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6933985992299543328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c1206f575d601c4ca344789c6fb626f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Inventory
+  spellSpace: 4
+  spells:
+  - {fileID: 11400000, guid: 1d221979aabd19d4eb674820bb2f89f8, type: 2}
+  - {fileID: 11400000, guid: aa27716512abf8f4e91d5b7eeeb672e9, type: 2}
 --- !u!1 &7995512579109558530
 GameObject:
   m_ObjectHideFlags: 0
