@@ -74,6 +74,7 @@ public class WaveSpawner : MonoBehaviour
     public void EnemyDied() //To be called by an enemy when it dies
     {
         DeadEnemies++; //+1 to number of dead enemies
+        gamemanager.KillCount++;
         if (FreshMeat != null && DeadEnemies == FreshMeat.Count && FreshMeat.Count > 0) //Detemine if the enemies can spawn
         {
             if (CurrentWave + 1 < TotalWaves) //Are we at the end of the total waves

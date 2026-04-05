@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -24,6 +26,8 @@ public class Projectile : MonoBehaviour
     private Vector3 StartingPoint;
     public Transform Source;
     private Vector3 EndingPoint;
+
+    private List<Transform> HitObjects = new List<Transform>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -64,8 +68,9 @@ public class Projectile : MonoBehaviour
             }
             else
             {
-                if (collision.transform.GetComponent<DamageableCharacter>() && collision.transform.CompareTag("Enemy"))
+                if (collision.transform.GetComponent<DamageableCharacter>() && collision.transform.CompareTag("Enemy") && HitObjects.Contains(collision.transform.root) == false)
                 {
+                    HitObjects.Add(collision.transform.root);
                     hasHit = true;
                     collision.transform.GetComponent<DamageableCharacter>().OnHit(damage, collision.transform.gameObject, false);
                 }

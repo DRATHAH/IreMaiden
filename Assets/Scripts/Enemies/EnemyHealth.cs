@@ -33,6 +33,7 @@ public class EnemyHealth : DamageableCharacter
             targetable = true;
             transform.position = spawnPoint;
             WaveSource.EnemyDied();
+            Debug.Log("Die");
             this.gameObject.GetComponent<EnemyAttack>().StopAttacking();
             gameObject.SetActive(false);
         }
