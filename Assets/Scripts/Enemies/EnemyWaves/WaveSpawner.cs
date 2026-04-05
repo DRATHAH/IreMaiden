@@ -29,6 +29,10 @@ public class WaveSpawner : MonoBehaviour
         DeadEnemies = 0;
         CurrentWave = 0; //Current wave (For resets)
         EnemiesToSkip = 0; //Set Enemies to skip (For resets)
+        for (int i = 0; i < EnemiesToSpawn.Length; i++)
+        {
+            EnemiesToSpawn[i].gameObject.SetActive(false);
+        }
     }
 
     private void SpawnWave()
@@ -83,6 +87,7 @@ public class WaveSpawner : MonoBehaviour
                 {
                     gamemanager.UpdateArenas(PosInArray);
                 }
+                MusicManager.DecreaseIntensity();
                 DeactivateSelf(); //Turn off the spawner if all enemies are dead
             }
         }
@@ -94,6 +99,7 @@ public class WaveSpawner : MonoBehaviour
     {
         if(other.tag == "Player") //Is it the player?
         {
+            MusicManager.IncreaseIntensity();
             SpawnGates(); //Lock the player in if necessary
             SpawnWave(); //Spawn first wave
             SpawnTrigger.enabled = false; //Turn off trigger
