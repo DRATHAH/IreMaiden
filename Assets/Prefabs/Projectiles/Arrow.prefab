@@ -155,7 +155,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d30e4cbe23051ec45ab9540ce58ca135, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamagePlayer
-  damageValue: 10
+  damageValue: 50
+  hitPlayer: 0
 --- !u!114 &6895217736119633861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,4 +170,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyProjectiles
   velocity: {x: 0, y: 0, z: 0}
-  projectileSpeed: 50
+  projectileSpeed: 75

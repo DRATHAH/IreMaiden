@@ -1105,11 +1105,6 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
---- !u!4 &163331827 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7568141604014520048, guid: 5195f888cffffaf409258ad906819cfb, type: 3}
-  m_PrefabInstance: {fileID: 4854213198846456684}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &242799831
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4950,7 +4945,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 97f2d0ac72a692b41a446e6fa7efe03f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 13.4
+      value: 16.51
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 97f2d0ac72a692b41a446e6fa7efe03f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6132,37 +6127,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d8f2a32311bb1c4a8a5f7351c5e1658, type: 3}
---- !u!1 &1101251813
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1101251814}
-  m_Layer: 0
-  m_Name: Primary Fire Spawn Point
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1101251814
+--- !u!4 &1101251814 stripped
 Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 633883897557061133, guid: 5195f888cffffaf409258ad906819cfb, type: 3}
+  m_PrefabInstance: {fileID: 4854213198846456684}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1101251813}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.096, z: 0.399}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 163331827}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1110317242
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6278,7 +6247,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c01d72721c86f034a8a746e251ef2650, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 21.68
+      value: 24.79
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c01d72721c86f034a8a746e251ef2650, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6557,7 +6526,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c22ab4b35ff6b484c9afb392f5f2996f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.030001
+      value: 12.140001
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c22ab4b35ff6b484c9afb392f5f2996f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -31422,14 +31391,6 @@ PrefabInstance:
       propertyPath: 'spells.Array.data[1]'
       value: 
       objectReference: {fileID: 11400000, guid: 1d221979aabd19d4eb674820bb2f89f8, type: 2}
-    - target: {fileID: 4238168236840919948, guid: 5195f888cffffaf409258ad906819cfb, type: 3}
-      propertyPath: 'spells.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: ecaa531661494914bbe3025a9400fd5c, type: 2}
-    - target: {fileID: 4238168236840919948, guid: 5195f888cffffaf409258ad906819cfb, type: 3}
-      propertyPath: 'spells.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 817d28adf81aa8e45b1eac447d23949a, type: 2}
     - target: {fileID: 7070029552731628637, guid: 5195f888cffffaf409258ad906819cfb, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -31482,6 +31443,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7930176492520098311, guid: 5195f888cffffaf409258ad906819cfb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.11
+      objectReference: {fileID: 0}
     - target: {fileID: 8422059807133923930, guid: 5195f888cffffaf409258ad906819cfb, type: 3}
       propertyPath: m_Name
       value: PlayerContainer
@@ -31504,10 +31469,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 7568141604014520048, guid: 5195f888cffffaf409258ad906819cfb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1101251814}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5195f888cffffaf409258ad906819cfb, type: 3}
 --- !u!1660057539 &9223372036854775807
