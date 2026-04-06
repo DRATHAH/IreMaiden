@@ -64,7 +64,7 @@ public class Projectile : MonoBehaviour
                 Explosion explode = explosion.GetComponent<Explosion>();
                 explode.Initialize(damage, explosionRadius, explosionForce, ownerTag);
                 EndingPoint = transform.position;
-                playSFX.PlaySound3D(FireballEndingSFX, Source.position, EndingPoint, FireballVolume);
+                //playSFX.PlaySound3D(FireballEndingSFX, Source.position, EndingPoint, FireballVolume);
             }
             else
             {

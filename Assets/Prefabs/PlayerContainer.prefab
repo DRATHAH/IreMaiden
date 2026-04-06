@@ -384,7 +384,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1453259664719390210}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -549,6 +549,8 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls: []
   spellOffset: 1
+  primaryParticleFire: {fileID: 4558106104663825070, guid: 0bea847dfb07b1b4eace006ce5326a45, type: 3}
+  primarySpawnPoint: {fileID: 3328032407182595604}
   BookIcons:
   - {fileID: 4294191604594123674}
   - {fileID: 7720636290164051969}
@@ -574,6 +576,7 @@ MonoBehaviour:
   spellSpace: 4
   spells:
   - {fileID: 11400000, guid: aa27716512abf8f4e91d5b7eeeb672e9, type: 2}
+  - {fileID: 11400000, guid: 1d221979aabd19d4eb674820bb2f89f8, type: 2}
 --- !u!1 &1537469135825683191
 GameObject:
   m_ObjectHideFlags: 0
