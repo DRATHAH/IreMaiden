@@ -24,6 +24,7 @@ public class PlayerHealth : DamageableCharacter
     public void ResetHealth()
     {
         health = maxHealth;
+        HPSlider.value = health;
         targetable = true;
     }
 

@@ -17,17 +17,20 @@ public class KeyCheck : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        if(YellowDoor == true && GM.LevelKeys[0] == true)
+        if(other.tag == "Player")
         {
-            this.gameObject.SetActive(false); //If has yellow key and is yellow door, deactivate
-        }
-        else if (BlueDoor == true && GM.LevelKeys.Length >= 2 && GM.LevelKeys[1] == true)
-        {
-            this.gameObject.SetActive(false); //If has blue key and is blue door, deactivate
-        }
-        else if (RedDoor == true && GM.LevelKeys.Length >= 3 && GM.LevelKeys[2] == true)
-        {
-            this.gameObject.SetActive(false); //If has red key and is red door, deactivate
+            if (YellowDoor == true && GM.LevelKeys[0] == true)
+            {
+                this.gameObject.SetActive(false); //If has yellow key and is yellow door, deactivate
+            }
+            else if (BlueDoor == true && GM.LevelKeys.Length >= 2 && GM.LevelKeys[1] == true)
+            {
+                this.gameObject.SetActive(false); //If has blue key and is blue door, deactivate
+            }
+            else if (RedDoor == true && GM.LevelKeys.Length >= 3 && GM.LevelKeys[2] == true)
+            {
+                this.gameObject.SetActive(false); //If has red key and is red door, deactivate
+            }
         }
     }
 }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3800171862766762940}
   - component: {fileID: 7311117466623071224}
   - component: {fileID: 5095419453947947982}
+  - component: {fileID: 6597551169463492288}
   - component: {fileID: 8213205713058496960}
   m_Layer: 8
   m_Name: KeyDoor
@@ -28,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5498943627447570726}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.07188119, z: -0, w: 0.9974132}
+  m_LocalRotation: {x: 0, y: 0.071880475, z: 0, w: 0.9974133}
   m_LocalPosition: {x: -20.56, y: 10.59, z: -14.38}
   m_LocalScale: {x: 21.79557, y: 21.600225, z: 1}
   m_ConstrainProportionsScale: 0
@@ -111,6 +112,27 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &6597551169463492288
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5498943627447570726}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.1, y: 1.1, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8213205713058496960
 MonoBehaviour:

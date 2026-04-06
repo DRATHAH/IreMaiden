@@ -9,17 +9,17 @@ using UnityEngine.UI;
 public class PlayerWeaponry : MonoBehaviour
 {
     //Vars for the primary fire of weapon 1
-       
-        //Range for primary fire 1
+
+    //Range for primary fire 1
     public float maxGunRangePrimary1;
-        
-        //Current cooldown for primary fire 1
+
+    //Current cooldown for primary fire 1
     private float fireCooldownPrimary1;
 
-        //Maximum cooldown for primary fire 1
+    //Maximum cooldown for primary fire 1
     public float maxFireCooldownPrimary1;
-        
-        //Damage Dealt by primary fire 1
+
+    //Damage Dealt by primary fire 1
     public int GunDamagePrimary1;
 
     [Header("Spell Events")] // These run when you press the num keys. Make sure to have 4, even if they don't do anything
@@ -58,7 +58,7 @@ public class PlayerWeaponry : MonoBehaviour
             BookIcons[i].sprite = spellIcon[i];
             CooldownSliders[i].maxValue = inventory.spells[i].cooldown;
         }
-        for(int i = inventory.spells.Count; i < BookIcons.Length; i++)
+        for (int i = inventory.spells.Count; i < BookIcons.Length; i++)
         {
             BookIcons[i].transform.parent.gameObject.SetActive(false);
         }
@@ -73,7 +73,7 @@ public class PlayerWeaponry : MonoBehaviour
         {
             spellCooldowns[inventory.spells[0]] -= Time.deltaTime;
         }
-        if(finishedLoadout && spellCooldowns.Count > 1 && spellCooldowns[inventory.spells[1]] <= inventory.spells[1].cooldown)
+        if (finishedLoadout && spellCooldowns.Count > 1 && spellCooldowns[inventory.spells[1]] <= inventory.spells[1].cooldown)
         {
             spellCooldowns[inventory.spells[1]] -= Time.deltaTime;
         }
@@ -117,7 +117,7 @@ public class PlayerWeaponry : MonoBehaviour
             BookIcons[0].sprite = spellIcon[spellIndex];
             CooldownSliders[0].maxValue = inventory.spells[spellIndex].cooldown;
 
-            if(spellIcon.Count > 1)
+            if (spellIcon.Count > 1)
             {
                 BookIcons[1].sprite = spellIcon[spellIndex2];
                 CooldownSliders[1].maxValue = inventory.spells[spellIndex2].cooldown;
@@ -142,7 +142,7 @@ public class PlayerWeaponry : MonoBehaviour
 
             BookIcons[0].sprite = spellIcon[spellIndex];
             CooldownSliders[0].maxValue = inventory.spells[spellIndex].cooldown;
-            
+
             BookIcons[1].sprite = spellIcon[spellIndex2];
             CooldownSliders[1].maxValue = inventory.spells[spellIndex2].cooldown;
 
@@ -203,11 +203,11 @@ public class PlayerWeaponry : MonoBehaviour
         }
 
         CooldownSliders[0].value = spellCooldowns[inventory.spells[spellIndex]];
-        if(spellIcon.Count > 1)
+        if (spellIcon.Count > 1)
         {
             CooldownSliders[1].value = spellCooldowns[inventory.spells[spellIndex2]];
         }
-        if(spellIcon.Count > 2)
+        if (spellIcon.Count > 2)
         {
             CooldownSliders[2].value = spellCooldowns[inventory.spells[spellIndex3]];
         }

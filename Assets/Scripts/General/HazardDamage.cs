@@ -16,7 +16,8 @@ public class HazardDamage : MonoBehaviour
                 damageComponent.Recoil(recoil, true);
             }
             else if (other.tag == "Player" && teleport == true){
-                other.transform.position = teleportSpot;
+                Rigidbody rb = other.GetComponent<Rigidbody>();
+                rb.MovePosition(teleportSpot);
             }
         }
         

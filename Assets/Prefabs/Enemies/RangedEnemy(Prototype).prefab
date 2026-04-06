@@ -569,7 +569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 833c191587d7cf2438ee46dc321c7276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ArcherMovement
-  acceleration: 2
+  acceleration: 0
   head: {fileID: 1956406472550775539}
   aimingNode: {fileID: 5624859856272275727}
   rotationSpeed: 15
@@ -606,20 +606,7 @@ MonoBehaviour:
   health: 3
   regenDelay: 2
   regenRate: 1
-  bodyArray:
-  - {fileID: 2397862342364176691}
-  - {fileID: 6845796854891609491}
-  - {fileID: 8626765229065228506}
-  - {fileID: 5907074426444134051}
-  - {fileID: 6546096865513329875}
-  - {fileID: 3189914733888564784}
-  limbDamageMultiplier:
-  - 1
-  - 3
-  - 1.5
-  - 1.5
-  - 1.5
-  - 1.5
+  targetable: 1
   WaveSource: {fileID: 0}
 --- !u!1 &6546096865513329875
 GameObject:
