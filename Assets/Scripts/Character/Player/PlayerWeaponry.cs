@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 public class PlayerWeaponry : MonoBehaviour
 {
+    [HideInInspector] public bool CanShoot = true; //Can the player shoot?
+
     //Vars for the primary fire of weapon 1
 
     //Range for primary fire 1
@@ -47,6 +49,7 @@ public class PlayerWeaponry : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        CanShoot = true;
         inventory = Inventory.instance;
 
         for (int i = 0; i < inventory.spells.Count; i++)
@@ -94,14 +97,14 @@ public class PlayerWeaponry : MonoBehaviour
         else
         {
             //If it can check for input
-            if (Input.GetKey(KeyCode.Mouse0) && fireCooldownPrimary1 <= 0)
+            if (Input.GetKey(KeyCode.Mouse0) && fireCooldownPrimary1 <= 0 && CanShoot == true)
             {
                 ShootWeaponPrimary1();
                 fireCooldownPrimary1 = maxFireCooldownPrimary1;
             }
         }
 
-        if (Input.GetKey(KeyCode.Mouse1) && spellCooldowns[inventory.spells[spellIndex]] <= 0)
+        if (Input.GetKey(KeyCode.Mouse1) && spellCooldowns[inventory.spells[spellIndex]] <= 0 && CanShoot == true)
         {
             ShootWeaponSecondary1();
         }

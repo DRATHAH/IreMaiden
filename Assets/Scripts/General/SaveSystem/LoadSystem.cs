@@ -8,14 +8,37 @@ public static class LoadSystem
 {
     public static SaveData LoadGameData()
     {
-        try
+        string filePathLevel = Application.persistentDataPath + SaveSystem.FILENAME_SAVEDATA;
+
+        if (File.Exists(filePathLevel))
         {
-            string filePath = Application.persistentDataPath + SaveSystem.FILENAME_SAVEDATA;
-            string fileContent = File.ReadAllText(filePath);
-            SaveData saveData = JsonUtility.FromJson<SaveData>(fileContent);
-            return saveData;
+            using (StreamReader stream = new StreamReader(filePathLevel))
+            {
+                string jsonString = stream.ReadToEnd();
+                SaveData CurrentSave = JsonUtility.FromJson<SaveData>(jsonString);
+                return CurrentSave;
+            }
         }
-        catch
+        else
+        {
+            return null;
+        }
+
+    }
+
+    public static SettingsSaveData LoadSettingsData()
+    {
+        string filePathSettings = Application.persistentDataPath + SaveSystem.FILENAME_SETTINGSDATA;
+        if (File.Exists(filePathSettings))
+        {
+            using (StreamReader stream = new StreamReader(filePathSettings))
+            {
+                string jsonString = stream.ReadToEnd();
+                SettingsSaveData CurrentSave = JsonUtility.FromJson<SettingsSaveData>(jsonString);
+                return CurrentSave;
+            }
+        }
+        else
         {
             return null;
         }

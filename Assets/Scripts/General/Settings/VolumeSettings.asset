@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ea874dd2633b8334bbe385346bed9c77, type: 3}
-  m_Name: Level1
-  m_EditorClassIdentifier: Assembly-CSharp::LevelDataSO
+  m_Name: VolumeSettings
+  m_EditorClassIdentifier: Assembly-CSharp::FloatArraySO
   _value:
-  - 0
-  - 0
-  - 0
+  - 1
+  - 0.31372938
+  - 1

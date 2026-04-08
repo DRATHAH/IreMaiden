@@ -7,7 +7,7 @@ public class EndOfLevel : MonoBehaviour
     private GameManager GM;
     private DataManager DM;
 
-    public LevelDataSO levelData;
+    public FloatArraySO levelData;
     float[] pastValues;
     private float FinalTime;
 

@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "LevelDataSO", menuName = "Scriptable Objects/LevelDataSO")]
-public class LevelDataSO : ScriptableObject
+[CreateAssetMenu(fileName = "FloatArraySO", menuName = "Scriptable Objects/FloatArraySO")]
+public class FloatArraySO : ScriptableObject
 {        
     [SerializeField] private float[] _value;
 
