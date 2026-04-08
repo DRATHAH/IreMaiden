@@ -6,6 +6,14 @@ using IM;
 
 public class GameManager : MonoBehaviour
 {
+    #region Singleton
+    public static GameManager instance;
+    private void Awake()
+    {
+        instance = this;
+    }
+    #endregion
+
     private bool TimerActive = false; //Is the time in level incrementing?
      public float LevelMinutes = 0; //Time spent in the level
      public float LevelSeconds = 0;
