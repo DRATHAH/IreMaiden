@@ -28,6 +28,9 @@ public class KnightAttack : EnemyAttack
 
     private Rigidbody rb;
 
+    private Animator anim;
+
+
     void Start()
     {
         //Define Knight Movement
@@ -40,6 +43,8 @@ public class KnightAttack : EnemyAttack
         attackBox.SetActive(false);
 
         rb = this.GetComponent<Rigidbody>();
+
+        //anim = this.GetComponent<Animator>();
     }
 
     void Update()
@@ -68,7 +73,8 @@ public class KnightAttack : EnemyAttack
     IEnumerator AttackRoutine()
     {
         //Windup
-            //Set the attacking bool to be true
+        //Set the attacking bool to be true
+       // anim.SetBool("Attacking", true);
         knightMovement.attacking = true;
             //Start the windup frames
         yield return new WaitForSeconds(windup);
@@ -85,6 +91,7 @@ public class KnightAttack : EnemyAttack
             //Start the cooldown before the enemy can attack again
         cooldown = maxCooldown;
             //Set the attacking bool to be false
+       // anim.SetBool("Attacking", false);
         knightMovement.attacking = false;
             //Set the coroutine to be null to reset the enemy attacks
         attack = null;
@@ -95,6 +102,7 @@ public class KnightAttack : EnemyAttack
     {
         if(attack != null)
         {
+            //anim.SetBool("Attacking", false);
             StopCoroutine(attack);
             attackBox.SetActive(false);
             cooldown = maxCooldown;

@@ -39,6 +39,8 @@ public class KnightMovement : MonoBehaviour
     public Transform head;
     public Transform attackBox;
 
+    public Animator anim;
+
     void Start()
     {
         //Define the enemy's nav mesh agent component
@@ -54,6 +56,8 @@ public class KnightMovement : MonoBehaviour
         rb = this.GetComponent<Rigidbody>();
 
         knightAttack = this.GetComponent<KnightAttack>();
+
+       // anim = this.GetComponent<Animator>();
     }
 
     /*
@@ -136,6 +140,8 @@ public class KnightMovement : MonoBehaviour
                 enemyNav.speed += Time.deltaTime * acceleration;
             }
         }
+
+       // anim.SetFloat("Movement", enemyNav.speed);
     }
 
     void SlowDown()
