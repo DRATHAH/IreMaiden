@@ -22,6 +22,7 @@ public class MusicManager : MonoBehaviour
     {
         MusicPlayer = GetComponent<AudioSource>();
         MusicPlayer.volume = LowIntensityVolume;
+        instance.LastVolume = instance.LowIntensityVolume;
     }
 
     private void Update()
@@ -37,7 +38,7 @@ public class MusicManager : MonoBehaviour
         }
     }
 
-    public static void SetVolume(float vol)
+    public static void SetVolume(float vol) //Volume is a float from 0 to 1
     {
         instance.finalVol = vol;
         instance.fadeIn = true;
@@ -60,8 +61,7 @@ public class MusicManager : MonoBehaviour
 
     public static void PauseMusic()
     {
-        instance.finalVol = instance.PauseVolume;
-        instance.fadeIn = true;
+        instance.MusicPlayer.volume = instance.PauseVolume;
     }
 
     public static void UnpauseMusic()

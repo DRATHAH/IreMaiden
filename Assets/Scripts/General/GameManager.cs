@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using IM;
 
 public class GameManager : MonoBehaviour
 {
-    private bool TimerActive = false; //Is the time in level incrementing?
+    public bool TimerActive = false; //Is the time in level incrementing?
      public float LevelMinutes = 0; //Time spent in the level
      public float LevelSeconds = 0;
     public float ParTime; //Time for player to beat (Minutes.Seconds)
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour
     public GameObject PlayerContainer; //Player reference
     private PlayerHealth PH;
     private PlayerLocomotionManager PLM; //Locomotion manager reference
+    private PlayerWeaponry PW; //Player weapon reference
     private Vector3 PlayerSpawnOriginal; //Player's starting position
     public Vector3 PlayerSpawnActive; //Player's current spawn point
 
@@ -33,16 +35,24 @@ public class GameManager : MonoBehaviour
     public bool[] LevelKeys; //Array to store keys
     public GameObject[] RespawnableObjects; //Objects to be reset upon player restarting level (Keys, Doors)
 
+    //PauseMenu
+    public GameObject pauseMenu;
+    private bool paused;
+    public Button[] BackButton;
+
     void Start()
     {
-        TimerActive = true;
         PlayerContainer = GameObject.Find("PlayerContainer"); //Find the player
-        PH = PlayerContainer.GetComponentInChildren<PlayerHealth>();
-        PLM = PlayerContainer.GetComponentInChildren<PlayerLocomotionManager>(); //Define PLM
-        PH.gamemanager = this; //Define player health manager's gamemanager
+        if(PlayerContainer != null)
+        {
+            PH = PlayerContainer.GetComponentInChildren<PlayerHealth>();
+            PLM = PlayerContainer.GetComponentInChildren<PlayerLocomotionManager>(); //Define PLM
+            PW = PlayerContainer.GetComponentInChildren<PlayerWeaponry>(); //Define PW
+            PH.gamemanager = this; //Define player health manager's gamemanager
 
-        PlayerSpawnOriginal = PlayerContainer.transform.position;
-        PlayerSpawnActive = PlayerSpawnOriginal; //Set checkpoint spawn point
+            PlayerSpawnOriginal = PlayerContainer.transform.position;
+            PlayerSpawnActive = PlayerSpawnOriginal; //Set checkpoint spawn point
+        }
 
         if (EnemySpawns.Length > 0)
         {
@@ -72,6 +82,21 @@ public class GameManager : MonoBehaviour
             LevelMinutes += 1;
         }
 
+        if (Input.GetKeyDown(KeyCode.Escape) && paused == false)
+        {
+            PauseGame();
+            paused = true;
+        }
+        else if(Input.GetKeyDown(KeyCode.Escape) && paused == true)
+        {
+            for (int i = 0; i < BackButton.Length; i++)
+            {
+                if (BackButton[i].gameObject.activeInHierarchy == true)
+                {
+                    BackButton[i].onClick.Invoke();
+                }
+            }
+        }
     }
 
 
@@ -111,6 +136,7 @@ public class GameManager : MonoBehaviour
             }
         }
         MusicManager.UnpauseMusic();
+        UnpauseGame();
     }
 
     public void RestartLevel()
@@ -141,7 +167,23 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame()
     {
+        TimerActive = false;
+        MusicManager.PauseMusic();
         Time.timeScale = 0;
         PLM.CanMove = false;
+        PW.CanShoot = false;
+        pauseMenu.SetActive(true);
     }
+
+    public void UnpauseGame()
+    {
+        MusicManager.UnpauseMusic();
+        paused = false;
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1;
+        PLM.CanMove = true;
+        PW.CanShoot = true;
+        TimerActive = true;
+    }
+
 }

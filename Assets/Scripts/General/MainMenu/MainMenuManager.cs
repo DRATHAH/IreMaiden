@@ -6,7 +6,7 @@ using TMPro;
 
 public class MainMenuManager : MonoBehaviour
 {
-    public LevelDataSO level1;
+    public FloatArraySO level1;
     private float[] levelData;
 
     public TextMeshProUGUI[] BestTimeDisplay;
@@ -73,7 +73,7 @@ public class MainMenuManager : MonoBehaviour
         switch (levelData[0])
         {
             case 0:
-                levelRank.sprite = Ranks[0];
+                levelRank.gameObject.SetActive(false);
                 break;
             case 1:
                 levelRank.sprite = Ranks[1];

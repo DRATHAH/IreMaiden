@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Level1
   m_EditorClassIdentifier: Assembly-CSharp::LevelDataSO
   _value:
-  - 5
-  - 0.3445976
-  - 0.3445976
+  - 0
+  - 0
+  - 0

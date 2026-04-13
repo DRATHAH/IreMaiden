@@ -361,7 +361,7 @@ Transform:
   m_GameObject: {fileID: 1453259664719390210}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.11, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -549,8 +549,8 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls: []
   spellOffset: 1
-  primaryParticleFire: {fileID: 7119386986141155223, guid: 1b22f7d5d3927ef4f888b4a351ea4a1b, type: 3}
-  primarySpawnPoint: {fileID: 633883897557061133}
+  primaryParticleFire: {fileID: 4558106104663825070, guid: 0bea847dfb07b1b4eace006ce5326a45, type: 3}
+  primarySpawnPoint: {fileID: 3328032407182595604}
   BookIcons:
   - {fileID: 4294191604594123674}
   - {fileID: 7720636290164051969}
@@ -742,37 +742,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1 &1706594168374110853
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 633883897557061133}
-  m_Layer: 0
-  m_Name: Primary Fire Spawn Point
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &633883897557061133
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1706594168374110853}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.096, z: 0.399}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7568141604014520048}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3127638881054045359
 GameObject:
   m_ObjectHideFlags: 0
@@ -1947,7 +1916,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3328032407182595604}
-  - {fileID: 633883897557061133}
   m_Father: {fileID: 7778651358415237778}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &204872303072029587
