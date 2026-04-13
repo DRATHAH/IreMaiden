@@ -4657,6 +4657,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 6222939612634158471, guid: cd4c1230c33c0bf4387acb9eafb0a645, type: 3}
+      propertyPath: levelData
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497811031558548681, guid: cd4c1230c33c0bf4387acb9eafb0a645, type: 3}
+      propertyPath: level1
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8014,11 +8022,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d8f2a32311bb1c4a8a5f7351c5e1658, type: 3}
---- !u!4 &1101251814 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 633883897557061133, guid: 5195f888cffffaf409258ad906819cfb, type: 3}
-  m_PrefabInstance: {fileID: 4854213198846456684}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1110317242
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34738,7 +34741,7 @@ PrefabInstance:
     - target: {fileID: 1173293323654826030, guid: 5195f888cffffaf409258ad906819cfb, type: 3}
       propertyPath: primarySpawnPoint
       value: 
-      objectReference: {fileID: 1101251814}
+      objectReference: {fileID: 0}
     - target: {fileID: 1173293323654826030, guid: 5195f888cffffaf409258ad906819cfb, type: 3}
       propertyPath: primaryParticleFire
       value: 
