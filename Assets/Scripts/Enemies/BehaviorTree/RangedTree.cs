@@ -25,7 +25,9 @@ public class RangedTree : MonoBehaviour
     public float retreatRange = 10f;
     public float attackSpeed = 1;
     public int damage = 5;
+    public float arrowSpeed = 100f;
     public GameObject projectile;
+    public Transform arrowSpawn;
 
     float timeBetweenAttack = 0;
 
@@ -36,24 +38,26 @@ public class RangedTree : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
 
         tree = new BehaviorTree();
-        Leaf detectPlayer = new Leaf("Player In Sight", PlayerInSight);
         Sequence idleLoop = new Sequence("Idle or Act");
+        Leaf detectPlayer = new Leaf("Player In Sight", PlayerInSight);
         Selector rangeIncrement = new Selector("Get Player In Range");
         Leaf playerTooClose = new Leaf("Player Too Close", Retreat);
         Leaf playerTooFar = new Leaf("Player Too Far", Approach);
         Sequence attackSequence = new Sequence("Attack the Player");
-        //Leaf shoot = new Leaf("Shoot the Player", RangedAttack);
+        Leaf shoot = new Leaf("Shoot the Player", RangedAttack);
         //Leaf reposition = new Leaf("Reposition After Attack", Reposition);
 
         idleLoop.AddChild(detectPlayer);
         idleLoop.AddChild(rangeIncrement);
         rangeIncrement.AddChild(playerTooClose);
         rangeIncrement.AddChild(playerTooFar);
-        /*rangeIncrement.AddChild(attackSequence);
+        rangeIncrement.AddChild(attackSequence);
         attackSequence.AddChild(shoot);
-        attackSequence.AddChild(reposition);*/
+        //attackSequence.AddChild(reposition);
         tree.AddChild(idleLoop);
         tree.AddChild(rangeIncrement);
+        
+        tree.PrintTree();
     }
 
     // Update is called once per frame
@@ -63,15 +67,16 @@ public class RangedTree : MonoBehaviour
         {
             treeStatus = tree.Process();
         }
+
+        timeBetweenAttack += Time.deltaTime;
     }
 
     public Node.Status PlayerInSight()
     {
         if (GameManager.instance.PlayerContainer != null)
         {
-            player = GameManager.instance.PlayerContainer.GetComponentInChildren<PlayerLocomotionManager>().transform;
+            player = GameManager.instance.PlayerContainer.GetComponentInChildren<PlayerHealth>().transform;
             float distance = (transform.position - player.position).magnitude;
-            Debug.Log(distance);
             if (distance < sightRange)
             {
                 return Node.Status.SUCCESS;
@@ -105,13 +110,21 @@ public class RangedTree : MonoBehaviour
         return Node.Status.FAILURE;
     }
 
-    /*public Node.Status RangedAttack()
+    public Node.Status RangedAttack()
     {
-        if (state == ActionState.IDLE && timeBetweenAttack >= attackSpeed)
+        agent.SetDestination(transform.position);
+        transform.LookAt(player.position);
+        if (timeBetweenAttack >= attackSpeed)
         {
-
+            Debug.Log("attack");
+            GameObject arrow = Instantiate(projectile, arrowSpawn.position + (transform.forward * 0.5f), Quaternion.identity);
+            Projectile proj = arrow.GetComponent<Projectile>();
+            proj.Initialize(false, damage, arrowSpeed, (player.position - arrowSpawn.position).normalized, false, 0, "Enemy");
+            timeBetweenAttack = 0;
+            return Node.Status.SUCCESS;
         }
-    }*/
+        return Node.Status.FAILURE;
+    }
 
     /*public Node.Status Reposition()
     {

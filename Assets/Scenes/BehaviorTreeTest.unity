@@ -2180,6 +2180,9 @@ MonoBehaviour:
   retreatRange: 10
   attackSpeed: 1
   damage: 5
+  arrowSpeed: 100
+  projectile: {fileID: 3832894018831257731, guid: 2bf65e260549ac44d8ca8babd85d6e77, type: 3}
+  arrowSpawn: {fileID: 5624859856871969235}
 --- !u!1 &6546096865584856079
 GameObject:
   m_ObjectHideFlags: 0
