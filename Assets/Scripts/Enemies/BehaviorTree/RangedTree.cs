@@ -42,6 +42,7 @@ public class RangedTree : MonoBehaviour
         Leaf detectPlayer = new Leaf("Player In Sight", PlayerInSight);
         Selector rangeIncrement = new Selector("Get Player In Range");
         Leaf playerTooClose = new Leaf("Player Too Close", Retreat);
+        Sequence attacking = new Sequence("Do Things to Attack");
         Leaf playerTooFar = new Leaf("Player Too Far", Approach);
         Sequence attackSequence = new Sequence("Attack the Player");
         Leaf shoot = new Leaf("Shoot the Player", RangedAttack);
@@ -50,8 +51,9 @@ public class RangedTree : MonoBehaviour
         idleLoop.AddChild(detectPlayer);
         idleLoop.AddChild(rangeIncrement);
         rangeIncrement.AddChild(playerTooClose);
-        rangeIncrement.AddChild(playerTooFar);
-        rangeIncrement.AddChild(attackSequence);
+        attacking.AddChild(playerTooFar);
+        attacking.AddChild(attackSequence);
+        rangeIncrement.AddChild(attacking);
         attackSequence.AddChild(shoot);
         //attackSequence.AddChild(reposition);
         tree.AddChild(idleLoop);
@@ -100,7 +102,8 @@ public class RangedTree : MonoBehaviour
         if ((transform.position - player.position).magnitude > attackRange)
         {
             Debug.Log("approach");
-            return GoToLocation(player.position);
+            agent.SetDestination(player.position);
+            return Node.Status.RUNNING;
         }
         else if ((transform.position - player.position).magnitude <= attackRange)
         {
