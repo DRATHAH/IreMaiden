@@ -282,7 +282,7 @@ ModelImporter:
       takeName: Take 001
       internalID: 9093586079265926502
       firstFrame: 460
-      lastFrame: 480
+      lastFrame: 470
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -305,7 +305,7 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 470
     - serializedVersion: 16
       name: grave hand
       takeName: Take 001
