@@ -46,7 +46,7 @@ public class RangedTree : MonoBehaviour
         Leaf playerTooFar = new Leaf("Player Too Far", Approach);
         Sequence attackSequence = new Sequence("Attack the Player");
         Leaf shoot = new Leaf("Shoot the Player", RangedAttack);
-        //Leaf reposition = new Leaf("Reposition After Attack", Reposition);
+        Leaf reposition = new Leaf("Reposition After Attack", Reposition);
 
         idleLoop.AddChild(detectPlayer);
         idleLoop.AddChild(rangeIncrement);
@@ -55,7 +55,7 @@ public class RangedTree : MonoBehaviour
         attacking.AddChild(attackSequence);
         rangeIncrement.AddChild(attacking);
         attackSequence.AddChild(shoot);
-        //attackSequence.AddChild(reposition);
+        attackSequence.AddChild(reposition);
         tree.AddChild(idleLoop);
         tree.AddChild(rangeIncrement);
         
@@ -68,6 +68,12 @@ public class RangedTree : MonoBehaviour
         if (treeStatus != Node.Status.SUCCESS)
         {
             treeStatus = tree.Process();
+        }
+
+        if (treeStatus == Node.Status.SUCCESS)
+        {
+            Debug.Log("finish");
+            treeStatus = Node.Status.RUNNING;
         }
 
         timeBetweenAttack += Time.deltaTime;
@@ -92,7 +98,8 @@ public class RangedTree : MonoBehaviour
     {
         if ((transform.position - player.position).magnitude < retreatRange)
         {
-            return GoToLocation(transform.position + (transform.forward * -retreatRange));
+            GetComponent<Rigidbody>().AddExplosionForce(10000, transform.position + transform.forward, 1);
+            return Node.Status.SUCCESS;
         }
         return Node.Status.FAILURE;
     }
@@ -107,8 +114,7 @@ public class RangedTree : MonoBehaviour
         }
         else if ((transform.position - player.position).magnitude <= attackRange)
         {
-            agent.SetDestination(transform.position);
-            return Node.Status.SUCCESS;
+            return GoToLocation(transform.position);
         }
         return Node.Status.FAILURE;
     }
@@ -129,10 +135,19 @@ public class RangedTree : MonoBehaviour
         return Node.Status.FAILURE;
     }
 
-    /*public Node.Status Reposition()
+    public Node.Status Reposition()
     {
-
-    }*/
+        if ((transform.position - player.position).magnitude < retreatRange)
+        {
+            GetComponent<Rigidbody>().AddExplosionForce(10000, transform.position + transform.forward, 1);
+            return Node.Status.RUNNING;
+        }
+        else
+        {
+            agent.SetDestination(transform.position);
+            return Node.Status.SUCCESS;
+        }
+    }
 
     Node.Status GoToLocation(Vector3 destination)
     {

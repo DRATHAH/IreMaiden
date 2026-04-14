@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class BehaviorTree : Node
 {
+    public bool isRepeatable = true;
+
     public BehaviorTree()
     {
         name = "Tree";
@@ -16,6 +18,10 @@ public class BehaviorTree : Node
 
     public override Status Process()
     {
+        if (isRepeatable && currentChild >= children.Count)
+        {
+            currentChild = 0;
+        }
         return children[currentChild].Process();
     }
 
