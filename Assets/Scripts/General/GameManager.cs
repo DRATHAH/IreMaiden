@@ -117,30 +117,39 @@ public class GameManager : MonoBehaviour
 
     public void RestartFromCheckpoint() //Restarting from checkpoint
     {
-        PlayerContainer.GetComponentInChildren<Rigidbody>().MovePosition(PlayerSpawnActive); //Set player pos to checkpoint pos
-        PH.ResetHealth();
-        DeathScreenCanvas.SetActive(false); //Disable death screen
-        PLM.CanMove = true; //player can move again
-        KillCount = SavedKillCount; //Reset kill count to what it was when checkpoint was hit
-        PlayerDeaths++;
-        if (EnemySpawns.Length > 0)
+        if(PlayerSpawnActive == PlayerSpawnOriginal)
         {
-            for (int i = 0; i < EnemySpawns.Length; i++)
+            UnpauseGame();
+            RestartLevel();
+        }
+        else
+        {
+            PlayerContainer.GetComponentInChildren<Rigidbody>().MovePosition(PlayerSpawnActive); //Set player pos to checkpoint pos
+            PH.ResetHealth();
+            DeathScreenCanvas.SetActive(false); //Disable death screen
+            PLM.CanMove = true; //player can move again
+            KillCount = SavedKillCount; //Reset kill count to what it was when checkpoint was hit
+            PlayerDeaths++;
+            if (EnemySpawns.Length > 0)
             {
-                if (FinishedArenas[i] == false)
+                for (int i = 0; i < EnemySpawns.Length; i++)
                 {
-                    //Reset enemy arenas
-                    EnemySpawns[i].SetActive(true);
-                    TempFinishedArenas[i] = false;
+                    if (FinishedArenas[i] == false)
+                    {
+                        //Reset enemy arenas
+                        EnemySpawns[i].SetActive(true);
+                        TempFinishedArenas[i] = false;
+                    }
                 }
             }
+            MusicManager.UnpauseMusic();
+            UnpauseGame();
         }
-        MusicManager.UnpauseMusic();
-        UnpauseGame();
     }
 
     public void RestartLevel()
     {
+        UnpauseGame();
         Scene sceneToReload = SceneManager.GetActiveScene();
         SceneManager.LoadScene(sceneToReload.name);
     }

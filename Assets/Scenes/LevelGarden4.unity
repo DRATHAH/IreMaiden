@@ -8095,6 +8095,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 88573698617533202, guid: cd4c1230c33c0bf4387acb9eafb0a645, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 88573698617533202, guid: cd4c1230c33c0bf4387acb9eafb0a645, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 88573698617533202, guid: cd4c1230c33c0bf4387acb9eafb0a645, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 835958303586579178, guid: cd4c1230c33c0bf4387acb9eafb0a645, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3138670593943384095, guid: cd4c1230c33c0bf4387acb9eafb0a645, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -8133,6 +8149,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3138670593943384095, guid: cd4c1230c33c0bf4387acb9eafb0a645, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3256155041045408328, guid: cd4c1230c33c0bf4387acb9eafb0a645, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3256155041045408328, guid: cd4c1230c33c0bf4387acb9eafb0a645, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3256155041045408328, guid: cd4c1230c33c0bf4387acb9eafb0a645, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511701402469767409, guid: cd4c1230c33c0bf4387acb9eafb0a645, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511701402469767409, guid: cd4c1230c33c0bf4387acb9eafb0a645, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3847026970722304849, guid: cd4c1230c33c0bf4387acb9eafb0a645, type: 3}
@@ -8187,9 +8223,41 @@ PrefabInstance:
       propertyPath: 'RespawnableObjects.Array.data[0]'
       value: 
       objectReference: {fileID: 1964303099}
+    - target: {fileID: 4783049334333711459, guid: cd4c1230c33c0bf4387acb9eafb0a645, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4783049334333711459, guid: cd4c1230c33c0bf4387acb9eafb0a645, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4783049334333711459, guid: cd4c1230c33c0bf4387acb9eafb0a645, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4863210971656187398, guid: cd4c1230c33c0bf4387acb9eafb0a645, type: 3}
       propertyPath: m_Name
       value: Game Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4889236633278873281, guid: cd4c1230c33c0bf4387acb9eafb0a645, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4889236633278873281, guid: cd4c1230c33c0bf4387acb9eafb0a645, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6794998487624572568, guid: cd4c1230c33c0bf4387acb9eafb0a645, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6794998487624572568, guid: cd4c1230c33c0bf4387acb9eafb0a645, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074395574653909280, guid: cd4c1230c33c0bf4387acb9eafb0a645, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
