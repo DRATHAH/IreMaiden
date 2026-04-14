@@ -72,7 +72,6 @@ public class RangedTree : MonoBehaviour
 
         if (treeStatus == Node.Status.SUCCESS)
         {
-            Debug.Log("finish");
             treeStatus = Node.Status.RUNNING;
         }
 
@@ -98,14 +97,21 @@ public class RangedTree : MonoBehaviour
     {
         if ((transform.position - player.position).magnitude < retreatRange)
         {
-            GetComponent<Rigidbody>().AddExplosionForce(10000, transform.position + transform.forward, 1);
-            return Node.Status.SUCCESS;
+            agent.updateRotation = false;
+            Debug.Log("retreat");
+            agent.SetDestination(transform.position - (transform.forward * retreatRange));
+            /*if (NavMesh.SamplePosition(transform.position - (transform.forward * retreatRange), out NavMeshHit hit, retreatRange, ))
+            {
+                return Node.Status.FAILURE;
+            }*/
+            return GoToLocation(transform.position - (transform.forward * retreatRange));
         }
         return Node.Status.FAILURE;
     }
 
     public Node.Status Approach()
     {
+        agent.updateRotation = true;
         if ((transform.position - player.position).magnitude > attackRange)
         {
             Debug.Log("approach");
