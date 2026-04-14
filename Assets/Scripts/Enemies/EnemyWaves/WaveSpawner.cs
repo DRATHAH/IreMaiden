@@ -96,7 +96,7 @@ public class WaveSpawner : MonoBehaviour
 
 
     //Trigger Stuff
-    void OnTriggerExit(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player") //Is it the player?
         {
