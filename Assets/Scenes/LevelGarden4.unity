@@ -12867,6 +12867,10 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 964565481543105595, guid: cd4c1230c33c0bf4387acb9eafb0a645, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3138670593943384095, guid: cd4c1230c33c0bf4387acb9eafb0a645, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -52710,6 +52714,10 @@ PrefabInstance:
       propertyPath: 'spells.Array.data[1]'
       value: 
       objectReference: {fileID: 11400000, guid: 1d221979aabd19d4eb674820bb2f89f8, type: 2}
+    - target: {fileID: 6693599481643464010, guid: 5195f888cffffaf409258ad906819cfb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7054882815964357510, guid: 5195f888cffffaf409258ad906819cfb, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -52773,6 +52781,10 @@ PrefabInstance:
     - target: {fileID: 8422059807133923930, guid: 5195f888cffffaf409258ad906819cfb, type: 3}
       propertyPath: m_Name
       value: PlayerContainer
+      objectReference: {fileID: 0}
+    - target: {fileID: 8422059807133923930, guid: 5195f888cffffaf409258ad906819cfb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9134083186094747750, guid: 5195f888cffffaf409258ad906819cfb, type: 3}
       propertyPath: m_AnchorMax.x
