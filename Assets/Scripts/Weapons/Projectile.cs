@@ -57,11 +57,11 @@ public class Projectile : MonoBehaviour
             }
             else
             {
-                if (collision.transform.GetComponent<DamageableCharacter>() && collision.transform.CompareTag("Enemy") && HitObjects.Contains(collision.transform.root) == false)
+                if (collision.transform.GetComponentInChildren<DamageableCharacter>())
                 {
                     HitObjects.Add(collision.transform.root);
                     hasHit = true;
-                    collision.transform.GetComponent<DamageableCharacter>().OnHit(damage, collision.transform.gameObject, false);
+                    collision.transform.GetComponentInChildren<DamageableCharacter>().OnHit(damage, collision.transform.gameObject, false);
                 }
             }
 

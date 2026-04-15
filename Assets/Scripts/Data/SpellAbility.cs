@@ -11,6 +11,7 @@ public class SpellAbility : ScriptableObject
     [TextArea]
     public string desc; // Description of the spell
     public int damage; // How much damage the spell will do
+    public float force; // Used for speed, knockback, etc. Essentially an extra value
     public float cooldown; // How long the spell will be on cooldown after being used
     public GameObject spellPrefab; // The prefab that is made when the spell is used
     public int spellId; // Id of the spell (for identification purposes)

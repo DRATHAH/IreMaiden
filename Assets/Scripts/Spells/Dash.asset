@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e6567d4678fbc54aab295345693d990, type: 3}
-  m_Name: ExtraSpell
+  m_Name: Dash
   m_EditorClassIdentifier: Assembly-CSharp::SpellAbility
-  name: ExtraSpell
+  name: Dash
   icon: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  desc: Creates a big explosion that deals lots of damage and knockback.
-  damage: 5
+  desc: Dash forward and create an explosion where you land!
+  damage: 10
+  force: 50
   cooldown: 5
-  spellPrefab: {fileID: 3832894018831257731, guid: 2bf65e260549ac44d8ca8babd85d6e77, type: 3}
+  spellPrefab: {fileID: 5409785869634432155, guid: 4a9fa821d52ece34cac2c34f6e374cf3, type: 3}
   spellId: 3

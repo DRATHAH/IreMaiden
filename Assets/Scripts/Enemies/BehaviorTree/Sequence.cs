@@ -16,10 +16,12 @@ public class Sequence : Node
         {
             return Status.RUNNING;
         }
+
         if (childStatus == Status.FAILURE)
         {
             return childStatus;
         }
+
         currentChild++;
         if (currentChild >= children.Count)
         {
