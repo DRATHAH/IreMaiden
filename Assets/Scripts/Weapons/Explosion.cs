@@ -16,17 +16,23 @@ public class Explosion : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        foreach(Collider col in Physics.OverlapSphere(transform.position, explosionRadius, Physics.AllLayers, QueryTriggerInteraction.Ignore))
+        Explode();
+    }
+
+    public void Explode()
+    {
+        foreach (Collider col in Physics.OverlapSphere(transform.position, explosionRadius, Physics.AllLayers, QueryTriggerInteraction.Ignore))
         {
-           // Debug.Log(col.name);
+            // Debug.Log(col.name);
             if (col.transform.root.TryGetComponent<Rigidbody>(out Rigidbody body))
             {
                 body.AddExplosionForce(knockback, transform.position, explosionRadius, 2);
             }
-            else if(col.tag == "Player")
+            else if (col.transform.root.CompareTag("Player"))
             {
                 Rigidbody rb = col.transform.root.GetComponentInChildren<Rigidbody>();
                 rb.AddExplosionForce(knockback, transform.position, explosionRadius, 2);
+                Debug.Log(rb.name);
             }
 
             if (col.transform.root.GetComponentInChildren<DamageableCharacter>() && !col.transform.root.CompareTag(ownerTag) && HitObjects.Contains(col.transform.root) == false)
@@ -55,5 +61,11 @@ public class Explosion : MonoBehaviour
     {
         yield return new WaitForSeconds(delayLifetime);
         Destroy(gameObject);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, explosionRadius);
     }
 }

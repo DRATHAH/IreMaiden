@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2076586922969171120}
   - component: {fileID: 4294439503353407901}
   - component: {fileID: 2463439194035461396}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Torso
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ GameObject:
   - component: {fileID: 8162872785012807474}
   - component: {fileID: 8086032397480315313}
   - component: {fileID: 408388061610436743}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Limb (LegL)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -243,7 +243,7 @@ GameObject:
   - component: {fileID: 5407474721090110886}
   - component: {fileID: 1150557115878850232}
   - component: {fileID: 5437234493358380299}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Limb (ArmR)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -379,7 +379,7 @@ GameObject:
   - component: {fileID: 7011110100753552872}
   - component: {fileID: 2410454738649978367}
   - component: {fileID: 5626953689107793518}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RangedEnemy(BehaviorTree)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -491,7 +491,7 @@ GameObject:
   - component: {fileID: 8476653108539428805}
   - component: {fileID: 1622318042426563722}
   - component: {fileID: 7655029522875338862}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AimingNode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -593,7 +593,7 @@ GameObject:
   - component: {fileID: 5860871613916850696}
   - component: {fileID: 2485328296299619083}
   - component: {fileID: 1548210569117945474}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -704,7 +704,7 @@ GameObject:
   - component: {fileID: 4220410746562255675}
   - component: {fileID: 1965382516238947792}
   - component: {fileID: 9061838086169271674}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Limb (LegR)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -818,7 +818,7 @@ GameObject:
   - component: {fileID: 7274104038302306843}
   - component: {fileID: 5438519278298887099}
   - component: {fileID: 7306699150345937943}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Limb (ArmL)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

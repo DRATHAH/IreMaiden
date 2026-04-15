@@ -334,9 +334,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Explosion
   damage: 5
-  knockback: 1000
-  explosionRadius: 3
-  delayLifetime: 10
+  knockback: 50
+  explosionRadius: 3.5
+  delayLifetime: 6
 --- !u!1001 &1399730209842540288
 PrefabInstance:
   m_ObjectHideFlags: 0
