@@ -16,6 +16,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: b38f75bb4705fee4ca9de838a7d9c3db, type: 3}
   desc: Creates a big explosion that deals lots of damage and knockback.
   damage: 5
+  force: 50
   cooldown: 5
   spellPrefab: {fileID: 3832894018831257731, guid: 2bf65e260549ac44d8ca8babd85d6e77, type: 3}
   spellId: 1

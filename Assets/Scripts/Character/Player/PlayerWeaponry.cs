@@ -1,6 +1,8 @@
+using IM;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
@@ -267,7 +269,7 @@ public class PlayerWeaponry : MonoBehaviour
         Projectile prjScript = projectile.GetComponentInParent<Projectile>();
         if (prjScript != null)
         {
-            prjScript.Initialize(true, inventory.spells[spellIndex].damage, 50, Camera.main.transform.forward, false, 10, transform.tag);
+            prjScript.Initialize(true, inventory.spells[spellIndex].damage, inventory.spells[spellIndex].force, Camera.main.transform.forward, false, 10, transform.tag);
         }
     }
 
@@ -283,9 +285,44 @@ public class PlayerWeaponry : MonoBehaviour
         }
     }
 
-    void ExtraSpell()//Added for testing
+    void Dash()
     {
-        Debug.Log("Extra");
+        float force = inventory.spells[spellIndex].force;
+        Debug.Log(Camera.main.transform.parent.transform.eulerAngles.x);
+        if (Camera.main.transform.parent.transform.eulerAngles.x < 335 && Camera.main.transform.parent.transform.eulerAngles.x > 90)
+        {
+            force /= 3;
+        }
+        GetComponent<Rigidbody>().AddForce(Camera.main.transform.parent.transform.forward * force, ForceMode.Impulse);
+        StartCoroutine(DashExplosion());
+    }
+
+    IEnumerator DashExplosion()
+    {
+        yield return new WaitForSeconds(.1f);
+        bool charged = true;
+        while (charged)
+        {
+            if (GetComponent<PlayerLocomotionManager>().grounded)
+            {
+                GameObject explode = Instantiate(inventory.spells[spellIndex].spellPrefab, transform.position + transform.up / .75f, Quaternion.Euler(transform.eulerAngles.x + 270, transform.eulerAngles.y, transform.eulerAngles.z));
+                explode.GetComponent<Explosion>().Initialize(inventory.spells[spellIndex].damage, 5, 250, "Player");
+                charged = false;
+            }
+            else 
+            {
+                foreach (Collider col in Physics.OverlapSphere(transform.position, 1, Physics.AllLayers, QueryTriggerInteraction.Ignore))
+                {
+                    if (col.transform.root.CompareTag("Enemy"))
+                    {
+                        GameObject explode = Instantiate(inventory.spells[spellIndex].spellPrefab, transform.position + transform.up / .75f, Quaternion.Euler(transform.eulerAngles.x + 270, transform.eulerAngles.y, transform.eulerAngles.z));
+                        explode.GetComponent<Explosion>().Initialize(inventory.spells[spellIndex].damage, 5, 250, "Player");
+                        charged = false;
+                    }
+                }
+            }
+            yield return null;
+        }
     }
 
     void Nothing()//Added for testing

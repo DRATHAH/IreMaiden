@@ -29,15 +29,17 @@ public class Explosion : MonoBehaviour
                 rb.AddExplosionForce(knockback, transform.position, explosionRadius, 2);
             }
 
-            if (col.transform.root.TryGetComponent<DamageableCharacter>(out DamageableCharacter character) && !col.transform.root.CompareTag(ownerTag) && HitObjects.Contains(col.transform.root) == false)
+            if (col.transform.root.GetComponentInChildren<DamageableCharacter>() && !col.transform.root.CompareTag(ownerTag) && HitObjects.Contains(col.transform.root) == false)
             {
                 HitObjects.Add(col.transform.root);
-                character.OnHit(damage, col.transform.root.gameObject, false);
-                character.Recoil(Vector3.zero, false);
-                Debug.Log("Damaged " + col.transform.name);
             }
         }
 
+        foreach (Transform damageable in HitObjects)
+        {
+            damageable.GetComponentInChildren<DamageableCharacter>().OnHit(damage, damageable.transform.root.gameObject, false);
+            Debug.Log("Damaged " + damageable.transform.name);
+        }
         StartCoroutine(DelayDestroy());
     }
 

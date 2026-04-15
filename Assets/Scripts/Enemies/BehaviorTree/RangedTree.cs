@@ -5,7 +5,7 @@ using UnityEngine.AI;
 using UnityEngine.InputSystem;
 using IM;
 
-public class RangedTree : MonoBehaviour
+public class RangedTree : DamageableCharacter
 {
     BehaviorTree tree;
     public Transform player;
@@ -95,16 +95,14 @@ public class RangedTree : MonoBehaviour
 
     public Node.Status Retreat()
     {
-        if ((transform.position - player.position).magnitude < retreatRange)
+        if (NavMesh.SamplePosition(transform.position - (transform.forward * retreatRange), out NavMeshHit hit, retreatRange / 2, NavMesh.AllAreas))
         {
-            agent.updateRotation = false;
-            Debug.Log("retreat");
-            agent.SetDestination(transform.position - (transform.forward * retreatRange));
-            /*if (NavMesh.SamplePosition(transform.position - (transform.forward * retreatRange), out NavMeshHit hit, retreatRange, ))
+            if ((transform.position - player.position).magnitude < retreatRange)
             {
-                return Node.Status.FAILURE;
-            }*/
-            return GoToLocation(transform.position - (transform.forward * retreatRange));
+                agent.updateRotation = false;
+                return GoToLocation(hit.position);
+            }
+            return Node.Status.FAILURE;
         }
         return Node.Status.FAILURE;
     }
@@ -114,13 +112,13 @@ public class RangedTree : MonoBehaviour
         agent.updateRotation = true;
         if ((transform.position - player.position).magnitude > attackRange)
         {
-            Debug.Log("approach");
             agent.SetDestination(player.position);
             return Node.Status.RUNNING;
         }
         else if ((transform.position - player.position).magnitude <= attackRange)
         {
-            return GoToLocation(transform.position);
+            GoToLocation(transform.position);
+            return Node.Status.SUCCESS;
         }
         return Node.Status.FAILURE;
     }
@@ -128,7 +126,7 @@ public class RangedTree : MonoBehaviour
     public Node.Status RangedAttack()
     {
         agent.SetDestination(transform.position);
-        transform.LookAt(player.position);
+        transform.LookAt(new Vector3(player.position.x, transform.position.y, player.position.z));
         if (timeBetweenAttack >= attackSpeed)
         {
             Debug.Log("attack");
