@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2120965786367726805}
   - component: {fileID: 1567855892769003638}
   - component: {fileID: 5696451251232729907}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Limb (ArmL)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 5613285309616107272}
   - component: {fileID: 6354785106817633498}
   - component: {fileID: 5584331604505268425}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Limb (LegR)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 8291542806353238101}
   - component: {fileID: 4219674637374703557}
   - component: {fileID: 3192864726952541616}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MeleeEnemy(Prototype)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -385,7 +385,7 @@ GameObject:
   - component: {fileID: 6236151017095208039}
   - component: {fileID: 743785921760086295}
   - component: {fileID: 8206150781003269581}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Torso
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -599,7 +599,7 @@ GameObject:
   - component: {fileID: 6258656156311152742}
   - component: {fileID: 2128389739021037427}
   - component: {fileID: 7966799628028835938}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AttackBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -724,7 +724,7 @@ GameObject:
   - component: {fileID: 8589676784044178047}
   - component: {fileID: 8019313570952270156}
   - component: {fileID: 3548480477774066923}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Limb (LegL)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -837,7 +837,7 @@ GameObject:
   - component: {fileID: 3025613907221672768}
   - component: {fileID: 4446688818763115171}
   - component: {fileID: 986564826599779966}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Limb (ArmR)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -950,7 +950,7 @@ GameObject:
   - component: {fileID: 7627784694001009563}
   - component: {fileID: 322308805598290787}
   - component: {fileID: 1940082601405369669}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}

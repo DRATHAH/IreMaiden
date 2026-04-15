@@ -127,14 +127,22 @@ public class RangedTree : DamageableCharacter
     {
         agent.SetDestination(transform.position);
         transform.LookAt(new Vector3(player.position.x, transform.position.y, player.position.z));
-        if (timeBetweenAttack >= attackSpeed)
+        Ray ray = new Ray(transform.position, (player.position - transform.position).normalized);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
         {
-            Debug.Log("attack");
-            GameObject arrow = Instantiate(projectile, arrowSpawn.position + (transform.forward * 0.5f), Quaternion.identity);
-            Projectile proj = arrow.GetComponent<Projectile>();
-            proj.Initialize(false, damage, arrowSpeed, (player.position - arrowSpawn.position).normalized, false, 0, "Enemy");
-            timeBetweenAttack = 0;
-            return Node.Status.SUCCESS;
+            if (hit.collider.transform.root.GetComponentInChildren<PlayerHealth>())
+            {
+                if (timeBetweenAttack >= attackSpeed)
+                {
+                    Debug.Log("attack");
+                    GameObject arrow = Instantiate(projectile, arrowSpawn.position + (transform.forward * 0.5f), Quaternion.identity);
+                    Projectile proj = arrow.GetComponent<Projectile>();
+                    proj.Initialize(false, damage, arrowSpeed, (player.position - arrowSpawn.position).normalized, false, 0, "Enemy");
+                    timeBetweenAttack = 0;
+                    return Node.Status.SUCCESS;
+                }
+            }
         }
         return Node.Status.FAILURE;
     }
