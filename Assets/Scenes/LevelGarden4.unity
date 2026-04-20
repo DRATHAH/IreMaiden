@@ -10006,7 +10006,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HazardDamage
   teleport: 1
   teleportSpot: {x: -74.6, y: -16.5, z: 226.09}
-  recoil: {x: 0, y: 0, z: 0}
+  recoil: 0
   damage: 10
 --- !u!65 &439645738
 BoxCollider:
@@ -13810,13 +13810,37 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5498943627447570726, guid: d493e276f210d5849ac4374e8d97601e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 570902130}
   m_SourcePrefab: {fileID: 100100000, guid: d493e276f210d5849ac4374e8d97601e, type: 3}
 --- !u!4 &570902128 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3838094955851624416, guid: d493e276f210d5849ac4374e8d97601e, type: 3}
   m_PrefabInstance: {fileID: 570902127}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &570902129 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5498943627447570726, guid: d493e276f210d5849ac4374e8d97601e, type: 3}
+  m_PrefabInstance: {fileID: 570902127}
+  m_PrefabAsset: {fileID: 0}
+--- !u!208 &570902130
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570902129}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &583271707
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15965,7 +15989,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HazardDamage
   teleport: 1
   teleportSpot: {x: -78.18, y: 16.7, z: 27.14}
-  recoil: {x: 0, y: 0, z: 0}
+  recoil: 0
   damage: 10
 --- !u!65 &714396208
 BoxCollider:
@@ -23267,7 +23291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HazardDamage
   teleport: 1
   teleportSpot: {x: -41.2, y: 16.7, z: 56.3}
-  recoil: {x: 0, y: 0, z: 0}
+  recoil: 0
   damage: 10
 --- !u!65 &964372023
 BoxCollider:
@@ -36675,7 +36699,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HazardDamage
   teleport: 1
   teleportSpot: {x: -28.9, y: 9.1, z: -56.9}
-  recoil: {x: 0, y: 0, z: 0}
+  recoil: 0
   damage: 10
 --- !u!65 &1716334833
 BoxCollider:
@@ -38215,7 +38239,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HazardDamage
   teleport: 1
   teleportSpot: {x: -55.7, y: 9.1, z: -1.1}
-  recoil: {x: 0, y: 0, z: 0}
+  recoil: 0
   damage: 10
 --- !u!65 &1816108365
 BoxCollider:
