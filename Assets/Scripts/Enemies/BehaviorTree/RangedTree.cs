@@ -110,12 +110,12 @@ public class RangedTree : DamageableCharacter
     public Node.Status Approach()
     {
         agent.updateRotation = true;
-        if ((transform.position - player.position).magnitude > attackRange)
+        if ((transform.position - player.position).magnitude > attackRange && agent.isOnNavMesh)
         {
             agent.SetDestination(player.position);
             return Node.Status.RUNNING;
         }
-        else if ((transform.position - player.position).magnitude <= attackRange)
+        else if ((transform.position - player.position).magnitude <= attackRange && agent.isOnNavMesh)
         {
             GoToLocation(transform.position);
             return Node.Status.SUCCESS;
@@ -125,7 +125,10 @@ public class RangedTree : DamageableCharacter
 
     public Node.Status RangedAttack()
     {
-        agent.SetDestination(transform.position);
+        if (agent.isOnNavMesh)
+        {
+            agent.SetDestination(transform.position);
+        }
         transform.LookAt(new Vector3(player.position.x, transform.position.y, player.position.z));
         Ray ray = new Ray(transform.position, (player.position - transform.position).normalized);
         RaycastHit hit;
@@ -156,13 +159,21 @@ public class RangedTree : DamageableCharacter
         }
         else
         {
-            agent.SetDestination(transform.position);
-            return Node.Status.SUCCESS;
+            if (agent.isOnNavMesh)
+            {
+                agent.SetDestination(transform.position);
+                return Node.Status.SUCCESS;
+            }
+            return Node.Status.FAILURE;
         }
     }
 
     Node.Status GoToLocation(Vector3 destination)
     {
+        if (!agent.isOnNavMesh)
+        {
+            return Node.Status.FAILURE;
+        }
         float distanceToTarget = Vector3.Distance(transform.position, destination);
         if (state == ActionState.IDLE)
         {

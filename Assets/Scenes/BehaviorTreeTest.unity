@@ -1542,12 +1542,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5626953689107793518, guid: c135484611d634b4e89c148132279632, type: 3}
+      propertyPath: health
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5626953689107793518, guid: c135484611d634b4e89c148132279632, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5626953689107793518, guid: c135484611d634b4e89c148132279632, type: 3}
+      propertyPath: maxHealth
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5626953689107793518, guid: c135484611d634b4e89c148132279632, type: 3}
       propertyPath: sightRange
       value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 7011110100753552872, guid: c135484611d634b4e89c148132279632, type: 3}
+      propertyPath: m_Mass
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

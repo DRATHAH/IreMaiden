@@ -279,7 +279,7 @@ public class PlayerWeaponry : MonoBehaviour
     void Hand()
     {
         RaycastHit ray;
-        if (Physics.Raycast(Camera.main.transform.position + (Camera.main.transform.forward * spellOffset), Camera.main.transform.forward, out ray, 100))
+        if (Physics.Raycast(Camera.main.transform.position + (Camera.main.transform.forward * spellOffset), Camera.main.transform.forward, out ray, 100, -1, QueryTriggerInteraction.Ignore))
         {
             Debug.Log(ray.normal);
             GameObject hand = Instantiate(inventory.spells[spellIndex].spellPrefab, ray.point, Quaternion.LookRotation(ray.normal));

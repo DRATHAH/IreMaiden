@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.AI;
 
 public class DamageableCharacter : MonoBehaviour, IDamageable
 {
@@ -41,6 +42,7 @@ public class DamageableCharacter : MonoBehaviour, IDamageable
     public int health = 10;
     public float regenDelay = 2f;
     public float regenRate = 1f;
+    public bool isGrounded = true;
 
     public bool targetable = true;
 
@@ -49,9 +51,16 @@ public class DamageableCharacter : MonoBehaviour, IDamageable
         
     }
 
-    public virtual void Recoil(Vector3 knockback, bool takesKnockBack)
+    public virtual void Recoil(float knockback, Vector3 position, float radius, float upwardsMod, float stunTime)
     {
-        // Code for applying knockback effects
+        if (GetComponent<NavMeshAgent>())
+        {
+            GetComponent<NavMeshAgent>().enabled = false;
+            GetComponent<Rigidbody>().isKinematic = false;
+        }
+        GetComponent<Rigidbody>().AddExplosionForce(knockback, position, 0, upwardsMod);
+
+        //StartCoroutine(EnableNavAgent(stunTime));
     }
 
     public virtual void OnHit(int damage, GameObject hit, bool limbDamage)
@@ -72,8 +81,33 @@ public class DamageableCharacter : MonoBehaviour, IDamageable
         Health -= damage;
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            if (GetComponent<NavMeshAgent>())
+            {
+                GetComponent<NavMeshAgent>().enabled = true;
+                GetComponent<Rigidbody>().isKinematic = true;
+            }
+        }
+    }
+
     public virtual void RemoveCharacter()
     {
         Destroy(gameObject);
+    }
+
+    IEnumerator EnableNavAgent(float stunTime)
+    {
+        yield return new WaitForSeconds(stunTime);
+        if (GetComponent<NavMeshAgent>())
+        {
+            
+            GetComponent<NavMeshAgent>().enabled = true;
+            GetComponent<Rigidbody>().isKinematic = true;
+
+
+        }
     }
 }
