@@ -23,7 +23,12 @@ public class DataManager : MonoBehaviour
         SaveData savedata = LoadSystem.LoadGameData();
         if (savedata != null)
         {
-            level1.Value = savedata.leveldata.Level1Stats;
+            level1.Value[0] = savedata.leveldata.Level1Stats[0];
+            level1.Value[1] = savedata.leveldata.Level1Stats[1];
+            level1.Value[2] = savedata.leveldata.Level1Stats[2];
+            //Debug.Log(savedata.leveldata.Level1Stats[0]);
+            //Debug.Log(savedata.leveldata.Level1Stats[1]);
+            //Debug.Log(savedata.leveldata.Level1Stats[2]);
         }
     }
 

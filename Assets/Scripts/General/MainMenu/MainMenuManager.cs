@@ -21,6 +21,7 @@ public class MainMenuManager : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1f;
         levelData = level1.Value;
         PrepareMenu();
     }

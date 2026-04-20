@@ -537,7 +537,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerWeaponry
   CanShoot: 1
-  maxGunRangePrimary1: 100
+  maxGunRangePrimary1: 500
   maxFireCooldownPrimary1: 0.25
   GunDamagePrimary1: 1
   spellActions:
