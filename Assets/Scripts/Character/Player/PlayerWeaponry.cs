@@ -229,7 +229,7 @@ public class PlayerWeaponry : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit hit, maxGunRangePrimary1))
         {
             TrailRenderer trail = Instantiate(primaryParticleFire, primarySpawnPoint.position, Quaternion.identity);
-            StartCoroutine(SpawnTrail(trail, hit));
+            StartCoroutine(SpawnTrail(trail, hit.point));
             DamageableCharacter enemyHealth = hit.collider.gameObject.GetComponentInParent<DamageableCharacter>();
             if (enemyHealth != null && hit.collider.transform.root.CompareTag("Enemy"))
             {
@@ -238,19 +238,25 @@ public class PlayerWeaponry : MonoBehaviour
                 Debug.Log("Shot " + hit.collider.name);
             }
         }
+        else
+        {
+            Vector3 endPoint = Camera.main.transform.position + Camera.main.transform.forward * maxGunRangePrimary1;
+            TrailRenderer trail = Instantiate(primaryParticleFire, primarySpawnPoint.position, Quaternion.identity);
+            StartCoroutine(SpawnTrail(trail, endPoint));
+        }
     }
 
-    private IEnumerator SpawnTrail(TrailRenderer trail, RaycastHit hit)
+    private IEnumerator SpawnTrail(TrailRenderer trail, Vector3 hit)
     {
         float time = 0;
         Vector3 startPos = trail.transform.position;
         while (time < 1)
         {
-            trail.transform.position = Vector3.Lerp(startPos, hit.point, time);
+            trail.transform.position = Vector3.Lerp(startPos, hit, time);
             time += Time.deltaTime / trail.time;
             yield return null;
         }
-        trail.transform.position = hit.point;
+        trail.transform.position = hit;
         // Instantiate(bullet hit effect, hit.point, Quaternion.LookRotation(hit.normal));
 
         Destroy(trail.gameObject, trail.time);

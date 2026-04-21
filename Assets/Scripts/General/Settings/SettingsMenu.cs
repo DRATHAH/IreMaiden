@@ -64,13 +64,13 @@ public class SettingsMenu : MonoBehaviour
     {
         VolumeSliders[0].value = VolumeSO.Value[0];
         VolumeValues[0] = VolumeSO.Value[0];
-        AM.SetFloat("MasterVolume", VolumeSO.Value[0]);
+        AM.SetFloat("MasterVolume", Mathf.Log10(VolumeSO.Value[0]) * 20);
         VolumeSliders[1].value = VolumeSO.Value[1];
         VolumeValues[1] = VolumeSO.Value[1];
-        AM.SetFloat("MusicVolume", VolumeSO.Value[1]);
+        AM.SetFloat("MusicVolume", Mathf.Log10(VolumeSO.Value[1]) * 20);
         VolumeSliders[2].value = VolumeSO.Value[2];
         VolumeValues[2] = VolumeSO.Value[2];
-        AM.SetFloat("SFXVolume", VolumeSO.Value[2]);
+        AM.SetFloat("SFXVolume", Mathf.Log10(VolumeSO.Value[2]) * 20);
         FullScreenToggle.isOn = FullScreen.Value;
         Screen.fullScreen = FullScreen.Value;
         fullscreen = FullScreen.Value;
