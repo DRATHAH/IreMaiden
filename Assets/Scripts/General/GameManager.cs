@@ -164,6 +164,7 @@ public class GameManager : MonoBehaviour
 
     public void QuitLevel()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
     }
 
