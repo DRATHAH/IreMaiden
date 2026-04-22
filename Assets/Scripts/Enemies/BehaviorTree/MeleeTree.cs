@@ -22,12 +22,9 @@ public class MeleeTree : DamageableCharacter
     [Header("Stats")]
     public float sightRange = 100;
     public float attackRange = 100;
-    public float retreatRange = 10f;
     public float attackSpeed = 1;
     public int damage = 5;
-    public float arrowSpeed = 100f;
-    public GameObject projectile;
-    public Transform arrowSpawn;
+    public GameObject swordCast;
 
     float timeBetweenAttack = 0;
 
@@ -40,26 +37,20 @@ public class MeleeTree : DamageableCharacter
         tree = new BehaviorTree();
         Sequence idleLoop = new Sequence("Idle or Act");
         Leaf detectPlayer = new Leaf("Player In Sight", PlayerInSight);
-        Selector rangeIncrement = new Selector("Get Player In Range");
-        Leaf playerTooClose = new Leaf("Player Too Close", Retreat);
         Sequence attacking = new Sequence("Do Things to Attack");
         Leaf playerTooFar = new Leaf("Player Too Far", Approach);
         Sequence attackSequence = new Sequence("Attack the Player");
-        Leaf shoot = new Leaf("Shoot the Player", RangedAttack);
-        Leaf reposition = new Leaf("Reposition After Attack", Reposition);
+        Leaf melee = new Leaf("Shoot the Player", MeleeAttack);
 
         idleLoop.AddChild(detectPlayer);
-        idleLoop.AddChild(rangeIncrement);
-        rangeIncrement.AddChild(playerTooClose);
+        idleLoop.AddChild(attacking);
         attacking.AddChild(playerTooFar);
         attacking.AddChild(attackSequence);
-        rangeIncrement.AddChild(attacking);
-        attackSequence.AddChild(shoot);
-        attackSequence.AddChild(reposition);
+        attackSequence.AddChild(melee);
         tree.AddChild(idleLoop);
-        tree.AddChild(rangeIncrement);
 
         tree.PrintTree();
+        swordCast.GetComponent<DamagePlayer>().damageValue = damage;
     }
 
     // Update is called once per frame
@@ -93,20 +84,6 @@ public class MeleeTree : DamageableCharacter
         return Node.Status.FAILURE;
     }
 
-    public Node.Status Retreat()
-    {
-        if (NavMesh.SamplePosition(transform.position - (transform.forward * retreatRange), out NavMeshHit hit, retreatRange / 2, NavMesh.AllAreas))
-        {
-            if ((transform.position - player.position).magnitude < retreatRange)
-            {
-                agent.updateRotation = false;
-                return GoToLocation(hit.position);
-            }
-            return Node.Status.FAILURE;
-        }
-        return Node.Status.FAILURE;
-    }
-
     public Node.Status Approach()
     {
         agent.updateRotation = true;
@@ -123,42 +100,23 @@ public class MeleeTree : DamageableCharacter
         return Node.Status.FAILURE;
     }
 
-    public Node.Status RangedAttack()
+    public Node.Status MeleeAttack()
     {
         agent.SetDestination(transform.position);
         transform.LookAt(new Vector3(player.position.x, transform.position.y, player.position.z));
-        Ray ray = new Ray(transform.position, (player.position - transform.position).normalized);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
+
+        if (timeBetweenAttack >= attackSpeed)
         {
-            if (hit.collider.transform.root.GetComponentInChildren<PlayerHealth>())
-            {
-                if (timeBetweenAttack >= attackSpeed)
-                {
-                    Debug.Log("attack");
-                    GameObject arrow = Instantiate(projectile, arrowSpawn.position + (transform.forward * 0.5f), Quaternion.identity);
-                    Projectile proj = arrow.GetComponent<Projectile>();
-                    proj.Initialize(false, damage, arrowSpeed, (player.position - arrowSpawn.position).normalized, false, 0, "Enemy");
-                    timeBetweenAttack = 0;
-                    return Node.Status.SUCCESS;
-                }
-            }
+            Debug.Log("attack");
+            // Attack animation
+            return Node.Status.SUCCESS;
         }
         return Node.Status.FAILURE;
     }
 
-    public Node.Status Reposition()
+    public void ToggleSwordCast()
     {
-        if ((transform.position - player.position).magnitude < retreatRange)
-        {
-            GetComponent<Rigidbody>().AddExplosionForce(10000, transform.position + transform.forward, 1);
-            return Node.Status.RUNNING;
-        }
-        else
-        {
-            agent.SetDestination(transform.position);
-            return Node.Status.SUCCESS;
-        }
+        swordCast.SetActive(!swordCast.activeSelf);
     }
 
     Node.Status GoToLocation(Vector3 destination)
@@ -187,7 +145,6 @@ public class MeleeTree : DamageableCharacter
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, sightRange);
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, retreatRange);
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, attackRange);
     }

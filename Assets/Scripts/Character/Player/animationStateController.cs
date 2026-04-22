@@ -63,7 +63,7 @@ public class animationStateController : MonoBehaviour
    */
 
 
-        if (Input.GetMouseButtonDown(0))
+        /*if (Input.GetMouseButtonDown(0))
         {
             animator.SetTrigger("basicAttack");
         }
@@ -71,7 +71,7 @@ public class animationStateController : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             animator.SetTrigger("fireBall");
-        }
+        }*/
 
     }
 

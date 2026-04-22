@@ -37,8 +37,10 @@ public class PlayerWeaponry : MonoBehaviour
 
     public Dictionary<SpellAbility, float> spellCooldowns = new Dictionary<SpellAbility, float>(); // Keeps track of the cooldowns of all spells
 
+    [Header("Object References")]
     public TrailRenderer primaryParticleFire;
     public Transform primarySpawnPoint;
+    public Animator handAnimator;
 
 
     private List<Sprite> spellIcon = new List<Sprite>();
@@ -228,6 +230,7 @@ public class PlayerWeaponry : MonoBehaviour
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         if (Physics.Raycast(ray, out RaycastHit hit, maxGunRangePrimary1))
         {
+            handAnimator.SetTrigger("basicAttack");
             TrailRenderer trail = Instantiate(primaryParticleFire, primarySpawnPoint.position, Quaternion.identity);
             StartCoroutine(SpawnTrail(trail, hit));
             DamageableCharacter enemyHealth = hit.collider.gameObject.GetComponentInParent<DamageableCharacter>();
@@ -235,7 +238,6 @@ public class PlayerWeaponry : MonoBehaviour
             {
                 enemyHealth.OnHit(GunDamagePrimary1, hit.collider.gameObject, true);
                 fireCooldownPrimary1 = maxFireCooldownPrimary1;
-                Debug.Log("Shot " + hit.collider.name);
             }
         }
     }
@@ -274,6 +276,7 @@ public class PlayerWeaponry : MonoBehaviour
         {
             prjScript.Initialize(true, inventory.spells[spellIndex].damage, inventory.spells[spellIndex].force, Camera.main.transform.forward, false, 10, transform.tag);
         }
+        handAnimator.SetTrigger("fireBall");
     }
 
     void Hand()
@@ -281,6 +284,7 @@ public class PlayerWeaponry : MonoBehaviour
         RaycastHit ray;
         if (Physics.Raycast(Camera.main.transform.position + (Camera.main.transform.forward * spellOffset), Camera.main.transform.forward, out ray, 100, -1, QueryTriggerInteraction.Ignore))
         {
+            handAnimator.SetTrigger("graveHand");
             Debug.Log(ray.normal);
             GameObject hand = Instantiate(inventory.spells[spellIndex].spellPrefab, ray.point, Quaternion.LookRotation(ray.normal));
             hand.GetComponent<Explosion>().Initialize(5, 3, 1500, gameObject.tag);
@@ -290,6 +294,7 @@ public class PlayerWeaponry : MonoBehaviour
 
     void Dash()
     {
+        handAnimator.SetTrigger("lightning");
         float force = inventory.spells[spellIndex].force;
         Debug.Log(Camera.main.transform.parent.transform.eulerAngles.x);
         if (Camera.main.transform.parent.transform.eulerAngles.x < 335 && Camera.main.transform.parent.transform.eulerAngles.x > 90)

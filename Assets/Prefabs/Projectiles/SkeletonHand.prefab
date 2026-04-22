@@ -338,6 +338,7 @@ MonoBehaviour:
   knockback: 50
   explosionRadius: 6
   delayLifetime: 6
+  stunDuration: 1
 --- !u!208 &-625669811946034333
 NavMeshObstacle:
   m_ObjectHideFlags: 0
