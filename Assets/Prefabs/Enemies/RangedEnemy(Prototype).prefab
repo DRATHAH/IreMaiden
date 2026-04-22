@@ -578,8 +578,6 @@ GameObject:
   - component: {fileID: 4836357487547524769}
   - component: {fileID: 6366843523379522839}
   - component: {fileID: 2677614579229053295}
-  - component: {fileID: 8400916573658949197}
-  - component: {fileID: 4831110025923325023}
   - component: {fileID: 5149631116884584434}
   - component: {fileID: 416780239686665295}
   m_Layer: 10
@@ -656,39 +654,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
---- !u!114 &8400916573658949197
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6474119806598299671}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 833c191587d7cf2438ee46dc321c7276, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ArcherMovement
-  acceleration: 0
-  head: {fileID: 1956406472550775539}
-  aimingNode: {fileID: 5624859856272275727}
-  rotationSpeed: 15
-  attacking: 0
---- !u!114 &4831110025923325023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6474119806598299671}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 850421aef5fea8e47b7760436f6dfafa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ArcherAttack
-  arrow: {fileID: 5883699683667901807, guid: ee46d94bf18b88744bda7403b64dc281, type: 3}
-  windup: 0.5
-  winddown: 0.25
-  maxCooldown: 1
 --- !u!114 &5149631116884584434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -696,7 +661,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6474119806598299671}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a28a6b3439e5134ab1c33bff1d575e5, type: 3}
   m_Name: 
@@ -736,6 +701,7 @@ MonoBehaviour:
   arrowSpeed: 100
   projectile: {fileID: 3832894018831257731, guid: 2bf65e260549ac44d8ca8babd85d6e77, type: 3}
   arrowSpawn: {fileID: 5624859856272275727}
+  DeathSounds: []
 --- !u!1 &6546096865513329875
 GameObject:
   m_ObjectHideFlags: 0

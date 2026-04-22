@@ -6,6 +6,8 @@ public class SFXManager : MonoBehaviour
 {
     private static SFXManager instance;
 
+    public static List<AudioClip> activeSounds = new List<AudioClip>();
+
     [SerializeField]private GameObject sfxPlayer;
 
     private void Awake()
@@ -15,8 +17,11 @@ public class SFXManager : MonoBehaviour
 
     public static void PlaySound(AudioClip sound, Vector3 spawnPos)
     {
-        GameObject currentsfx = Instantiate(instance.sfxPlayer, spawnPos, Quaternion.identity) as GameObject;
-        currentsfx.GetComponent<PlaySFX>().AudioToPlay = sound;
-        currentsfx.GetComponent<PlaySFX>().PlaySound();
+        if (!activeSounds.Contains(sound))
+        {
+            GameObject currentsfx = Instantiate(instance.sfxPlayer, spawnPos, Quaternion.identity) as GameObject;
+            currentsfx.GetComponent<PlaySFX>().AudioToPlay = sound;
+            currentsfx.GetComponent<PlaySFX>().PlaySound();
+        }
     }
 }

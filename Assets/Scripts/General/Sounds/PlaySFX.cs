@@ -10,6 +10,7 @@ public class PlaySFX : MonoBehaviour
 
     public void PlaySound()
     {
+        SFXManager.activeSounds.Add(AudioToPlay);
         AS.PlayOneShot(AudioToPlay, 1);
         StartCoroutine(DestroySource(AudioToPlay.length));
     }
@@ -17,6 +18,7 @@ public class PlaySFX : MonoBehaviour
     private IEnumerator DestroySource(float AudioLength)
     {
         yield return new WaitForSeconds(AudioLength);
+        SFXManager.activeSounds.Remove(AudioToPlay);
         Destroy(this.gameObject);
     }
 }

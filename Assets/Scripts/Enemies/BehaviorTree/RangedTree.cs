@@ -30,12 +30,15 @@ public class RangedTree : DamageableCharacter
     public Transform arrowSpawn;
 
     float timeBetweenAttack = 0;
-
+    public AudioClip[] DeathSounds;
+    private Vector3 spawnPoint;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        spawnPoint = this.transform.position;
+
 
         tree = new BehaviorTree();
         Sequence idleLoop = new Sequence("Idle or Act");
@@ -191,4 +194,23 @@ public class RangedTree : DamageableCharacter
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, attackRange);
     }
+
+    //public override void RemoveCharacter()
+    //{
+    //    if (WaveSource != null)
+    //    {
+    //        SFXManager.PlaySound(DeathSounds[Random.Range(0, DeathSounds.Length)], this.transform.position);
+    //        Health = maxHealth;
+    //        targetable = true;
+    //        transform.position = spawnPoint;
+    //        WaveSource.EnemyDied();
+    //        gameObject.SetActive(false);
+    //    }
+    //    else
+    //    {
+    //        SFXManager.PlaySound(DeathSounds[Random.Range(0, DeathSounds.Length)], this.transform.position);
+    //        Destroy(this.gameObject);
+    //    }
+    //}
+
 }
