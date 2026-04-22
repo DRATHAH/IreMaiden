@@ -61,6 +61,7 @@ public class DataManager : MonoBehaviour
     public void ResetData()
     {
         level1.Value = new float[3] { 0, 0, 0 };
+        level1Results = level1.Value;
         UpdateVars();
         SaveTheGame();
     }
