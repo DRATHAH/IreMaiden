@@ -351,6 +351,9 @@ MonoBehaviour:
   winddown: 0.5
   maxCooldown: 0.1
   attackBox: {fileID: 6617393744527151166}
+  AttackSFX:
+  - {fileID: 8300000, guid: d0df4f2cbe3ae9a49984bab442b3b5b3, type: 3}
+  - {fileID: 8300000, guid: 16dbfbaf13a66264fb47899c6adc946f, type: 3}
 --- !u!114 &3192864726952541616
 MonoBehaviour:
   m_ObjectHideFlags: 0

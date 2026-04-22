@@ -30,6 +30,8 @@ public class KnightAttack : EnemyAttack
 
     private Animator anim;
 
+    public AudioClip[] AttackSFX;
+
 
     void Start()
     {
@@ -79,7 +81,9 @@ public class KnightAttack : EnemyAttack
             //Start the windup frames
         yield return new WaitForSeconds(windup);
         //Attack
-            //Set the attacking hitbox to be active
+
+        SFXManager.PlaySound(AttackSFX[Random.Range(0, AttackSFX.Length)], this.transform.position);
+        //Set the attacking hitbox to be active
         attackBox.SetActive(true);
 
         yield return new WaitForSeconds(activeAttack); //Wait for the frames that the hitbox should be active for

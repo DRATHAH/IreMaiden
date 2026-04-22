@@ -48,6 +48,9 @@ public class PlayerWeaponry : MonoBehaviour
     private int spellIndex3 = 2; //Index of spell in 3rd slot
     private int spellIndex4 = 3; //Index of spell in 4th slot
 
+    //SFX
+    public AudioClip primaryFireSFX;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -225,6 +228,7 @@ public class PlayerWeaponry : MonoBehaviour
     //Function for the primary fire of weapon 1
     void ShootWeaponPrimary1()
     {
+        SFXManager.PlaySound(primaryFireSFX, this.transform.position);
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         if (Physics.Raycast(ray, out RaycastHit hit, maxGunRangePrimary1))
         {
