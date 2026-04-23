@@ -37,7 +37,11 @@ public class EnemyHealth : DamageableCharacter
     {
         if (WaveSource != null)
         {
-            this.gameObject.GetComponent<EnemyAttack>().StopAttacking();
+            SFXManager.PlaySound(DeathSounds[Random.Range(0, DeathSounds.Length)], this.transform.position);
+            if (this.gameObject.TryGetComponent<EnemyAttack>(out EnemyAttack attackingScript))
+            {
+                attackingScript.StopAttacking();
+            }
             Health = maxHealth;
             targetable = true;
             transform.position = spawnPoint;
@@ -46,7 +50,7 @@ public class EnemyHealth : DamageableCharacter
         }
         else
         {
-            SFX.PlayOneShot(DeathSounds[Random.Range(0, DeathSounds.Length)]);
+            SFXManager.PlaySound(DeathSounds[Random.Range(0, DeathSounds.Length)], this.transform.position);
             Destroy(this.gameObject);
         }
     }

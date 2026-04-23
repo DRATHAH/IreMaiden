@@ -150,6 +150,13 @@ public class GameManager : MonoBehaviour
                     }
                 }
             }
+            if(RespawnableObjects.Length > 0)
+            {
+                for (int j = 0; j < RespawnableObjects.Length; j++)
+                {
+                    RespawnableObjects[j].SetActive(true);
+                }
+            }
             MusicManager.UnpauseMusic();
             UnpauseGame();
         }
@@ -164,6 +171,7 @@ public class GameManager : MonoBehaviour
 
     public void QuitLevel()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
     }
 

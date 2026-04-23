@@ -32,6 +32,7 @@ public class ArcherAttack : EnemyAttack
     //Reference to Coroutine for attack that does the attacking sequence
     private IEnumerator attack;
 
+    public AudioClip[] AttackSFX;
 
     void OnEnable()
     {
@@ -83,8 +84,10 @@ public class ArcherAttack : EnemyAttack
             //Create Projectile
             //*****ROTATION CODE NEEDS TO BE FIXED*********
         GameObject projectile = Instantiate(arrow, aimingNode.position, Quaternion.Euler(transform.rotation.x + aimingNode.rotation.x + 90, aimingNode.rotation.y, aimingNode.rotation.z));
-        
-            //Get Projectile Script
+
+        SFXManager.PlaySound(AttackSFX[Random.Range(0, AttackSFX.Length)], this.transform.position);
+
+        //Get Projectile Script
         EnemyProjectile projectileScript = projectile.GetComponent<EnemyProjectile>();
 
             //Calculate where to shoot

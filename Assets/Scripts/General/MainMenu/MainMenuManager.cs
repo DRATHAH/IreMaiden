@@ -15,18 +15,21 @@ public class MainMenuManager : MonoBehaviour
     public GameObject BestTimeContainer;
     public GameObject BestPTimeContainer;
 
+    public GameObject RankContainer;
     public Image levelRank;
     public Sprite[] Ranks;
 
 
     void Start()
     {
+        Time.timeScale = 1f;
         levelData = level1.Value;
         PrepareMenu();
     }
 
     public void PrepareMenu()
     {
+        levelData = level1.Value;
         ShowRank();
         if (levelData[1] == 0)
         {
@@ -70,10 +73,11 @@ public class MainMenuManager : MonoBehaviour
 
     private void ShowRank()
     {
+        RankContainer.SetActive(true);
         switch (levelData[0])
         {
             case 0:
-                levelRank.gameObject.SetActive(false);
+                RankContainer.SetActive(false);
                 break;
             case 1:
                 levelRank.sprite = Ranks[1];

@@ -50,6 +50,9 @@ public class PlayerWeaponry : MonoBehaviour
     private int spellIndex3 = 2; //Index of spell in 3rd slot
     private int spellIndex4 = 3; //Index of spell in 4th slot
 
+    //SFX
+    public AudioClip primaryFireSFX;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -227,12 +230,13 @@ public class PlayerWeaponry : MonoBehaviour
     //Function for the primary fire of weapon 1
     void ShootWeaponPrimary1()
     {
+        SFXManager.PlaySound(primaryFireSFX, this.transform.position);
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         if (Physics.Raycast(ray, out RaycastHit hit, maxGunRangePrimary1))
         {
             handAnimator.SetTrigger("basicAttack");
             TrailRenderer trail = Instantiate(primaryParticleFire, primarySpawnPoint.position, Quaternion.identity);
-            StartCoroutine(SpawnTrail(trail, hit));
+            StartCoroutine(SpawnTrail(trail, hit.point));
             DamageableCharacter enemyHealth = hit.collider.gameObject.GetComponentInParent<DamageableCharacter>();
             if (enemyHealth != null && hit.collider.transform.root.CompareTag("Enemy"))
             {
@@ -240,19 +244,25 @@ public class PlayerWeaponry : MonoBehaviour
                 fireCooldownPrimary1 = maxFireCooldownPrimary1;
             }
         }
+        else
+        {
+            Vector3 endPoint = Camera.main.transform.position + Camera.main.transform.forward * maxGunRangePrimary1;
+            TrailRenderer trail = Instantiate(primaryParticleFire, primarySpawnPoint.position, Quaternion.identity);
+            StartCoroutine(SpawnTrail(trail, endPoint));
+        }
     }
 
-    private IEnumerator SpawnTrail(TrailRenderer trail, RaycastHit hit)
+    private IEnumerator SpawnTrail(TrailRenderer trail, Vector3 hit)
     {
         float time = 0;
         Vector3 startPos = trail.transform.position;
         while (time < 1)
         {
-            trail.transform.position = Vector3.Lerp(startPos, hit.point, time);
+            trail.transform.position = Vector3.Lerp(startPos, hit, time);
             time += Time.deltaTime / trail.time;
             yield return null;
         }
-        trail.transform.position = hit.point;
+        trail.transform.position = hit;
         // Instantiate(bullet hit effect, hit.point, Quaternion.LookRotation(hit.normal));
 
         Destroy(trail.gameObject, trail.time);

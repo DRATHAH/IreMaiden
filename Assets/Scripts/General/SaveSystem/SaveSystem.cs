@@ -21,6 +21,7 @@ public static class SaveSystem
         {
             stream.WriteLine(txt);
         }
+        Debug.Log("Success");
     }
 
     public static void SaveSettings()

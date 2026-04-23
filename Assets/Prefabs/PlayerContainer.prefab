@@ -516,7 +516,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   maxHealth: 100
-  health: 10
+  health: 100
   regenDelay: 2
   regenRate: 1
   targetable: 1
@@ -537,7 +537,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerWeaponry
   CanShoot: 1
-  maxGunRangePrimary1: 100
+  maxGunRangePrimary1: 500
   maxFireCooldownPrimary1: 0.25
   GunDamagePrimary1: 1
   spellActions:
@@ -562,6 +562,7 @@ MonoBehaviour:
   - {fileID: 3851835359905392188}
   - {fileID: 5510121834074968391}
   - {fileID: 7821003226779668877}
+  primaryFireSFX: {fileID: 8300000, guid: 7fd287b68de78c646b449bcb17ed8565, type: 3}
 --- !u!114 &4238168236840919948
 MonoBehaviour:
   m_ObjectHideFlags: 0
