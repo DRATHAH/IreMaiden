@@ -51,7 +51,8 @@ public class PlayerWeaponry : MonoBehaviour
     private int spellIndex4 = 3; //Index of spell in 4th slot
 
     //SFX
-    public AudioClip primaryFireSFX;
+    public GameObject soundParticle;
+    public AudioSource primaryFireSFX;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -230,7 +231,9 @@ public class PlayerWeaponry : MonoBehaviour
     //Function for the primary fire of weapon 1
     void ShootWeaponPrimary1()
     {
-        SFXManager.PlaySound(primaryFireSFX, this.transform.position);
+        GameObject sound = Instantiate(soundParticle, transform.position, Quaternion.identity);
+        sound.GetComponent<SoundObject>().Initialize(primaryFireSFX);
+        //SFXManager.PlaySound(primaryFireSFX, this.transform.position);
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         if (Physics.Raycast(ray, out RaycastHit hit, maxGunRangePrimary1))
         {
@@ -238,6 +241,7 @@ public class PlayerWeaponry : MonoBehaviour
             TrailRenderer trail = Instantiate(primaryParticleFire, primarySpawnPoint.position, Quaternion.identity);
             StartCoroutine(SpawnTrail(trail, hit.point));
             DamageableCharacter enemyHealth = hit.collider.gameObject.GetComponentInParent<DamageableCharacter>();
+            Debug.Log(hit.collider.gameObject.name);
             if (enemyHealth != null && hit.collider.transform.root.CompareTag("Enemy"))
             {
                 enemyHealth.OnHit(GunDamagePrimary1, hit.collider.gameObject, true);

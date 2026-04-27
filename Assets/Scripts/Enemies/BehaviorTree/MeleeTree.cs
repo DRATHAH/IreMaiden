@@ -25,6 +25,8 @@ public class MeleeTree : DamageableCharacter
     public float attackSpeed = 1;
     public int damage = 5;
     public GameObject swordCast;
+    public Animator animationController;
+    public AnimationClip attackClip;
 
     float timeBetweenAttack = 0;
 
@@ -50,7 +52,9 @@ public class MeleeTree : DamageableCharacter
         tree.AddChild(idleLoop);
 
         tree.PrintTree();
+        attackSpeed = attackClip.length;
         swordCast.GetComponent<DamagePlayer>().damageValue = damage;
+        swordCast.SetActive(false);
     }
 
     // Update is called once per frame
@@ -67,6 +71,7 @@ public class MeleeTree : DamageableCharacter
         }
 
         timeBetweenAttack += Time.deltaTime;
+        animationController.SetFloat("Movement", agent.velocity.magnitude / agent.speed);
     }
 
     public Node.Status PlayerInSight()
@@ -89,7 +94,7 @@ public class MeleeTree : DamageableCharacter
         agent.updateRotation = true;
         if ((transform.position - player.position).magnitude > attackRange)
         {
-            agent.SetDestination(player.position);
+            GoToLocation(player.position);
             return Node.Status.RUNNING;
         }
         else if ((transform.position - player.position).magnitude <= attackRange)
@@ -102,13 +107,15 @@ public class MeleeTree : DamageableCharacter
 
     public Node.Status MeleeAttack()
     {
-        agent.SetDestination(transform.position);
+        GoToLocation(transform.position);
         transform.LookAt(new Vector3(player.position.x, transform.position.y, player.position.z));
 
         if (timeBetweenAttack >= attackSpeed)
         {
-            Debug.Log("attack");
-            // Attack animation
+            agent.updateRotation = false;
+            //Debug.Log("attack");
+            timeBetweenAttack = 0;
+            animationController.SetTrigger("Attacking");
             return Node.Status.SUCCESS;
         }
         return Node.Status.FAILURE;
@@ -121,6 +128,10 @@ public class MeleeTree : DamageableCharacter
 
     Node.Status GoToLocation(Vector3 destination)
     {
+        if (!agent.isOnNavMesh)
+        {
+            return Node.Status.FAILURE;
+        }
         float distanceToTarget = Vector3.Distance(transform.position, destination);
         if (state == ActionState.IDLE)
         {

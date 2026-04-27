@@ -27,6 +27,8 @@ public class RangedTree : DamageableCharacter
     public int damage = 5;
     public float arrowSpeed = 100f;
     public GameObject projectile;
+    public GameObject soundParticle;
+    public AudioSource fireSound;
     public Transform arrowSpawn;
 
     float timeBetweenAttack = 0;
@@ -146,6 +148,8 @@ public class RangedTree : DamageableCharacter
                     Projectile proj = arrow.GetComponent<Projectile>();
                     proj.Initialize(false, damage, arrowSpeed, (player.position - arrowSpawn.position).normalized, false, 0, "Enemy");
                     timeBetweenAttack = 0;
+                    GameObject sound = Instantiate(soundParticle, transform.position, Quaternion.identity);
+                    sound.GetComponent<SoundObject>().Initialize(fireSound);
                     return Node.Status.SUCCESS;
                 }
             }
