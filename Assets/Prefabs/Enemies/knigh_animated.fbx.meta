@@ -132,7 +132,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.9173729
+      - time: 0.7517678
         functionName: ToggleSwordCast
         data: 
         objectReferenceParameter: {instanceID: 0}

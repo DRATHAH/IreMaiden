@@ -348,6 +348,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DamagePlayer
   damageValue: 0
   hitPlayer: 1
+  soundParticle: {fileID: 0}
+  hitSound: {fileID: 0}
 --- !u!136 &364764366
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -440,6 +442,34 @@ CapsuleCollider:
   serializedVersion: 2
   m_Radius: 0.15
   m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &656281791 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -7145886183675403481, guid: 0ccd71f37ce928943914a681ccc1c74a, type: 3}
+  m_PrefabInstance: {fileID: 824474582}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &656281793
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656281791}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.3
+  m_Height: 0.5
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &672049161 stripped
@@ -895,11 +925,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0ccd71f37ce928943914a681ccc1c74a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0ccd71f37ce928943914a681ccc1c74a, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0ccd71f37ce928943914a681ccc1c74a, type: 3}
       propertyPath: m_LocalRotation.y
@@ -911,7 +941,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0ccd71f37ce928943914a681ccc1c74a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0ccd71f37ce928943914a681ccc1c74a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -935,6 +965,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0ccd71f37ce928943914a681ccc1c74a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1250289298}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0ccd71f37ce928943914a681ccc1c74a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1250289299}
+    - targetCorrespondingSourceObject: {fileID: 9156580437256327065, guid: 0ccd71f37ce928943914a681ccc1c74a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1734819099}
+    - targetCorrespondingSourceObject: {fileID: -7145886183675403481, guid: 0ccd71f37ce928943914a681ccc1c74a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 656281793}
   m_SourcePrefab: {fileID: 100100000, guid: 0ccd71f37ce928943914a681ccc1c74a, type: 3}
 --- !u!1 &889967979 stripped
 GameObject:
@@ -1232,6 +1271,32 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1250289299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250289296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7505446be05ab444ab56f6f56ccabe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MeleeTree
+  maxHealth: 10
+  health: 10
+  regenDelay: 2
+  regenRate: 1
+  isGrounded: 1
+  targetable: 1
+  player: {fileID: 0}
+  sightRange: 30
+  attackRange: 2
+  attackSpeed: 1
+  damage: 20
+  swordCast: {fileID: 1587474853}
+  animationController: {fileID: 1250289298}
+  attackClip: {fileID: 3060872287085348379, guid: 0ccd71f37ce928943914a681ccc1c74a, type: 3}
 --- !u!1 &1291338948
 GameObject:
   m_ObjectHideFlags: 0
@@ -1542,7 +1607,6 @@ GameObject:
   - component: {fileID: 1587474856}
   - component: {fileID: 1587474855}
   - component: {fileID: 1587474857}
-  - component: {fileID: 1587474858}
   m_Layer: 0
   m_Name: SwordCast
   m_TagString: Untagged
@@ -1579,6 +1643,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DamagePlayer
   damageValue: 0
   hitPlayer: 1
+  soundParticle: {fileID: 2389440222983486469, guid: d642615504fb8a646bde903246dc2550, type: 3}
+  hitSound: {fileID: 1587474857}
 --- !u!136 &1587474856
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1594,7 +1660,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1602,62 +1668,103 @@ CapsuleCollider:
   m_Height: 0.75
   m_Direction: 0
   m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &1587474857
-MeshRenderer:
+--- !u!82 &1587474857
+AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1587474853}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1587474858
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1587474853}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: d0df4f2cbe3ae9a49984bab442b3b5b3, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.5
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &1654881956 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5016363380664450077, guid: 0ccd71f37ce928943914a681ccc1c74a, type: 3}
@@ -1853,6 +1960,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1734819097 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9156580437256327065, guid: 0ccd71f37ce928943914a681ccc1c74a, type: 3}
+  m_PrefabInstance: {fileID: 824474582}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &1734819099
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1734819097}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.4
+  m_Height: 1.5
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.25, z: 0}
 --- !u!1 &1958839447
 GameObject:
   m_ObjectHideFlags: 0
@@ -2131,6 +2266,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0ccd71f37ce928943914a681ccc1c74a, type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0ccd71f37ce928943914a681ccc1c74a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0ccd71f37ce928943914a681ccc1c74a, type: 3}
       propertyPath: m_TagString
@@ -2544,6 +2683,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DamagePlayer
   damageValue: 30
   hitPlayer: 0
+  soundParticle: {fileID: 0}
+  hitSound: {fileID: 0}
 --- !u!54 &652965318142211255
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3212,7 +3353,6 @@ GameObject:
   - component: {fileID: 7115203987889465252}
   - component: {fileID: 652965318142211255}
   - component: {fileID: 5291482569613299968}
-  - component: {fileID: 7115203987889465253}
   m_Layer: 10
   m_Name: MeleeEnemy(Prototype)
   m_TagString: Enemy
@@ -3255,32 +3395,6 @@ Transform:
   - {fileID: 6212636965388538574}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7115203987889465253
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6866015324685967544}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7505446be05ab444ab56f6f56ccabe8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MeleeTree
-  maxHealth: 10
-  health: 10
-  regenDelay: 2
-  regenRate: 1
-  isGrounded: 1
-  targetable: 1
-  player: {fileID: 0}
-  sightRange: 30
-  attackRange: 1.5
-  attackSpeed: 1
-  damage: 20
-  swordCast: {fileID: 1587474853}
-  animationController: {fileID: 1250289298}
-  attackClip: {fileID: 3060872287085348379, guid: 0ccd71f37ce928943914a681ccc1c74a, type: 3}
 --- !u!136 &7157703468438179396
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3338,6 +3452,10 @@ PrefabInstance:
     - target: {fileID: 2527339326387301890, guid: c135484611d634b4e89c148132279632, type: 3}
       propertyPath: m_Name
       value: RangedEnemy(BehaviorTree)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2527339326387301890, guid: c135484611d634b4e89c148132279632, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3147666668070050634, guid: c135484611d634b4e89c148132279632, type: 3}
       propertyPath: m_LocalPosition.x

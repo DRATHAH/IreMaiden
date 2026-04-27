@@ -34,7 +34,7 @@ public class MeleeTree : DamageableCharacter
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
+        agent = GetComponentInParent<NavMeshAgent>();
 
         tree = new BehaviorTree();
         Sequence idleLoop = new Sequence("Idle or Act");
@@ -91,7 +91,6 @@ public class MeleeTree : DamageableCharacter
 
     public Node.Status Approach()
     {
-        agent.updateRotation = true;
         if ((transform.position - player.position).magnitude > attackRange)
         {
             GoToLocation(player.position);
@@ -112,10 +111,8 @@ public class MeleeTree : DamageableCharacter
 
         if (timeBetweenAttack >= attackSpeed)
         {
-            agent.updateRotation = false;
-            //Debug.Log("attack");
-            timeBetweenAttack = 0;
             animationController.SetTrigger("Attacking");
+            timeBetweenAttack = 0;
             return Node.Status.SUCCESS;
         }
         return Node.Status.FAILURE;
