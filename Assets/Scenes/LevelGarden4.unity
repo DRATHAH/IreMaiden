@@ -12810,6 +12810,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3477010036685641586, guid: 7fda4f679beea6c41a669bbb28a26698, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 39139546036420c409c85d14990eb8cf, type: 2}
     - target: {fileID: 3913571675327637483, guid: 7fda4f679beea6c41a669bbb28a26698, type: 3}
       propertyPath: m_Name
       value: MeleeEnemy(Prototype)

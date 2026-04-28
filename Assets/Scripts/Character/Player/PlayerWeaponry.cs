@@ -328,6 +328,7 @@ public class PlayerWeaponry : MonoBehaviour
             if (GetComponent<PlayerLocomotionManager>().grounded)
             {
                 GameObject explode = Instantiate(inventory.spells[spellIndex].spellPrefab, transform.position + transform.up / .75f, Quaternion.Euler(transform.eulerAngles.x + 270, transform.eulerAngles.y, transform.eulerAngles.z));
+                Debug.Log(explode);
                 explode.GetComponent<Explosion>().Initialize(inventory.spells[spellIndex].damage, 5, 250, "Player");
                 charged = false;
             }

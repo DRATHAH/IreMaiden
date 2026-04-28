@@ -14,7 +14,6 @@ public class EnemyHealth : DamageableCharacter
 
     private Animator anim;
 
-
     void Start()
     {
         spawnPoint = transform.position; //Set the point where the enemy should respawn if respawned.
@@ -57,7 +56,10 @@ public class EnemyHealth : DamageableCharacter
 
     public void ResetEnemy() //Func to reset enemy pos and health upon player death
     {
-        this.gameObject.GetComponent<EnemyAttack>().StopAttacking();
+        if (this.gameObject.TryGetComponent<EnemyAttack>(out EnemyAttack attackingScript))
+        {
+            attackingScript.StopAttacking();
+        }
         Health = maxHealth;
         targetable = true;
         transform.position = spawnPoint;
