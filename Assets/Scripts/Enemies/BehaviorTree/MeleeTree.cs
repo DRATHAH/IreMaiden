@@ -39,10 +39,10 @@ public class MeleeTree : DamageableCharacter
         tree = new BehaviorTree();
         Sequence idleLoop = new Sequence("Idle or Act");
         Leaf detectPlayer = new Leaf("Player In Sight", PlayerInSight);
-        Sequence attacking = new Sequence("Do Things to Attack");
+        Selector attacking = new Selector("Do Things to Attack");
         Leaf playerTooFar = new Leaf("Player Too Far", Approach);
         Sequence attackSequence = new Sequence("Attack the Player");
-        Leaf melee = new Leaf("Shoot the Player", MeleeAttack);
+        Leaf melee = new Leaf("Swing Sword", MeleeAttack);
 
         idleLoop.AddChild(detectPlayer);
         idleLoop.AddChild(attacking);
@@ -91,15 +91,11 @@ public class MeleeTree : DamageableCharacter
 
     public Node.Status Approach()
     {
-        if ((transform.position - player.position).magnitude > attackRange)
+        AnimatorStateInfo state = animationController.GetCurrentAnimatorStateInfo(0);
+        if ((transform.position - player.position).magnitude > attackRange && !state.IsTag("Attacking"))
         {
             GoToLocation(player.position);
             return Node.Status.RUNNING;
-        }
-        else if ((transform.position - player.position).magnitude <= attackRange)
-        {
-            GoToLocation(transform.position);
-            return Node.Status.SUCCESS;
         }
         return Node.Status.FAILURE;
     }
