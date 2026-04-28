@@ -127,10 +127,10 @@ AudioSource:
   m_GameObject: {fileID: 2397862342364176691}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5756670562686038685, guid: 8cc1138c35aca4d4690b947c8556b1e2, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_Resource: {fileID: 8300000, guid: a4be0349915f0a948abdf4fea0b3c1ea, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -139,8 +139,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 3
-  MaxDistance: 9
+  MinDistance: 1
+  MaxDistance: 5
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -670,6 +670,7 @@ MonoBehaviour:
   health: 3
   regenDelay: 2
   regenRate: 1
+  isGrounded: 1
   targetable: 1
   DeathSounds:
   - {fileID: 8300000, guid: 8abe578fd604a5343aa75dffe5114f0d, type: 3}
@@ -691,6 +692,7 @@ MonoBehaviour:
   health: 10
   regenDelay: 2
   regenRate: 1
+  isGrounded: 1
   targetable: 1
   player: {fileID: 0}
   sightRange: 50
@@ -700,6 +702,8 @@ MonoBehaviour:
   damage: 5
   arrowSpeed: 100
   projectile: {fileID: 3832894018831257731, guid: 2bf65e260549ac44d8ca8babd85d6e77, type: 3}
+  soundParticle: {fileID: 2389440222983486469, guid: d642615504fb8a646bde903246dc2550, type: 3}
+  fireSound: {fileID: 4520102993456712435}
   arrowSpawn: {fileID: 5624859856272275727}
   DeathSounds: []
 --- !u!1 &6546096865513329875

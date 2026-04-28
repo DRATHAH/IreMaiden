@@ -27,7 +27,15 @@ public class Explosion : MonoBehaviour
         foreach (Collider col in Physics.OverlapSphere(transform.position, explosionRadius, Physics.AllLayers, QueryTriggerInteraction.Ignore))
         {
             // Debug.Log(col.name);
-            if (col.transform.root.TryGetComponent<Rigidbody>(out Rigidbody body))
+            if(col.transform.root.tag == "Player")
+            {
+                if (col.transform.root.GetComponentInChildren<Rigidbody>() && !KnockbackObjects.Contains(col.transform.root))
+                {
+                    Debug.Log(col.transform.root);
+                    KnockbackObjects.Add(col.transform.root);
+                }
+            }
+            else if (col.transform.root.TryGetComponent<Rigidbody>(out Rigidbody body))
             {
                 if (col.transform.root.GetComponentInChildren<Rigidbody>() && !KnockbackObjects.Contains(col.transform.root))
                 {
@@ -54,7 +62,7 @@ public class Explosion : MonoBehaviour
             }
             else
             {
-                obj.GetComponent<Rigidbody>().AddExplosionForce(knockback, transform.position, 0, 2);
+                obj.GetComponentInChildren<Rigidbody>().AddExplosionForce(knockback, transform.position, 0, 2);
             }
         }
 

@@ -284,23 +284,25 @@ public class PlayerWeaponry : MonoBehaviour
 
     void Fireball()
     {
-        GameObject projectile = Instantiate(inventory.spells[spellIndex].spellPrefab, Camera.main.transform.position + (Camera.main.transform.forward * spellOffset), Quaternion.identity);
+        int currSpell = spellIndex;
+        GameObject projectile = Instantiate(inventory.spells[currSpell].spellPrefab, Camera.main.transform.position + (Camera.main.transform.forward * spellOffset), Quaternion.identity);
         Projectile prjScript = projectile.GetComponentInParent<Projectile>();
         if (prjScript != null)
         {
-            prjScript.Initialize(true, inventory.spells[spellIndex].damage, inventory.spells[spellIndex].force, Camera.main.transform.forward, false, 10, transform.tag);
+            prjScript.Initialize(true, inventory.spells[currSpell].damage, inventory.spells[currSpell].force, Camera.main.transform.forward, false, 10, transform.tag);
         }
         handAnimator.SetTrigger("fireBall");
     }
 
     void Hand()
     {
+        int currSpell = spellIndex;
         RaycastHit ray;
         if (Physics.Raycast(Camera.main.transform.position + (Camera.main.transform.forward * spellOffset), Camera.main.transform.forward, out ray, 100, -1, QueryTriggerInteraction.Ignore))
         {
             handAnimator.SetTrigger("graveHand");
             Debug.Log(ray.normal);
-            GameObject hand = Instantiate(inventory.spells[spellIndex].spellPrefab, ray.point, Quaternion.LookRotation(ray.normal));
+            GameObject hand = Instantiate(inventory.spells[currSpell].spellPrefab, ray.point, Quaternion.LookRotation(ray.normal));
             hand.GetComponent<Explosion>().Initialize(5, 3, 1500, gameObject.tag);
             Debug.DrawRay(ray.point, ray.normal, Color.blue, 10f, false);
         }
@@ -308,8 +310,9 @@ public class PlayerWeaponry : MonoBehaviour
 
     void Dash()
     {
+        int currSpell = spellIndex;
         handAnimator.SetTrigger("lightning");
-        float force = inventory.spells[spellIndex].force;
+        float force = inventory.spells[currSpell].force;
         Debug.Log(Camera.main.transform.parent.transform.eulerAngles.x);
         if (Camera.main.transform.parent.transform.eulerAngles.x < 335 && Camera.main.transform.parent.transform.eulerAngles.x > 90)
         {
@@ -321,15 +324,15 @@ public class PlayerWeaponry : MonoBehaviour
 
     IEnumerator DashExplosion()
     {
+        int currSpell = spellIndex;
         yield return new WaitForSeconds(.1f);
         bool charged = true;
         while (charged)
         {
             if (GetComponent<PlayerLocomotionManager>().grounded)
             {
-                GameObject explode = Instantiate(inventory.spells[spellIndex].spellPrefab, transform.position + transform.up / .75f, Quaternion.Euler(transform.eulerAngles.x + 270, transform.eulerAngles.y, transform.eulerAngles.z));
-                Debug.Log(explode);
-                explode.GetComponent<Explosion>().Initialize(inventory.spells[spellIndex].damage, 5, 250, "Player");
+                GameObject explode = Instantiate(inventory.spells[currSpell].spellPrefab, transform.position + transform.up / .75f, Quaternion.Euler(transform.eulerAngles.x + 270, transform.eulerAngles.y, transform.eulerAngles.z));
+                explode.GetComponent<Explosion>().Initialize(inventory.spells[currSpell].damage, 5, 250, "Player");
                 charged = false;
             }
             else 
@@ -338,8 +341,8 @@ public class PlayerWeaponry : MonoBehaviour
                 {
                     if (col.transform.root.CompareTag("Enemy"))
                     {
-                        GameObject explode = Instantiate(inventory.spells[spellIndex].spellPrefab, transform.position + transform.up / .75f, Quaternion.Euler(transform.eulerAngles.x + 270, transform.eulerAngles.y, transform.eulerAngles.z));
-                        explode.GetComponent<Explosion>().Initialize(inventory.spells[spellIndex].damage, 5, 250, "Player");
+                        GameObject explode = Instantiate(inventory.spells[currSpell].spellPrefab, transform.position + transform.up / .75f, Quaternion.Euler(transform.eulerAngles.x + 270, transform.eulerAngles.y, transform.eulerAngles.z));
+                        explode.GetComponent<Explosion>().Initialize(inventory.spells[currSpell].damage, 5, 250, "Player");
                         charged = false;
                     }
                 }
