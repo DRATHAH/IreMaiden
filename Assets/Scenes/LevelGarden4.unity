@@ -10419,7 +10419,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HazardDamage
   teleport: 1
   teleportSpot: {x: -74.6, y: -16.5, z: 226.09}
-  recoil: {x: 0, y: 0, z: 0}
+  recoil: 0
   damage: 10
 --- !u!65 &439645738
 BoxCollider:
@@ -13162,6 +13162,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d8f2a32311bb1c4a8a5f7351c5e1658, type: 3}
+--- !u!95 &486192266 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8633906297858602780, guid: 5195f888cffffaf409258ad906819cfb, type: 3}
+  m_PrefabInstance: {fileID: 4854213198846456684}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &486586321
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16464,7 +16469,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HazardDamage
   teleport: 1
   teleportSpot: {x: -78.18, y: 16.7, z: 27.14}
-  recoil: {x: 0, y: 0, z: 0}
+  recoil: 0
   damage: 10
 --- !u!65 &714396208
 BoxCollider:
@@ -24176,7 +24181,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HazardDamage
   teleport: 1
   teleportSpot: {x: -41.2, y: 16.7, z: 56.3}
-  recoil: {x: 0, y: 0, z: 0}
+  recoil: 0
   damage: 10
 --- !u!65 &964372023
 BoxCollider:
@@ -38844,7 +38849,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HazardDamage
   teleport: 1
   teleportSpot: {x: -28.9, y: 9.1, z: -56.9}
-  recoil: {x: 0, y: 0, z: 0}
+  recoil: 0
   damage: 10
 --- !u!65 &1716334833
 BoxCollider:
@@ -40384,7 +40389,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HazardDamage
   teleport: 1
   teleportSpot: {x: -55.7, y: 9.1, z: -1.1}
-  recoil: {x: 0, y: 0, z: 0}
+  recoil: 0
   damage: 10
 --- !u!65 &1816108365
 BoxCollider:
@@ -59609,6 +59614,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1173293323654826030, guid: 5195f888cffffaf409258ad906819cfb, type: 3}
+      propertyPath: handAnimator
+      value: 
+      objectReference: {fileID: 486192266}
     - target: {fileID: 2148478143450519270, guid: 5195f888cffffaf409258ad906819cfb, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
