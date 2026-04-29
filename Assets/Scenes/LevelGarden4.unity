@@ -13448,6 +13448,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3847026970722304849, guid: cd4c1230c33c0bf4387acb9eafb0a645, type: 3}
+      propertyPath: RankKillRequirements.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3847026970722304849, guid: cd4c1230c33c0bf4387acb9eafb0a645, type: 3}
       propertyPath: 'RespawnableObjects.Array.data[0]'
       value: 
       objectReference: {fileID: 1964303099}
@@ -13455,6 +13459,18 @@ PrefabInstance:
       propertyPath: 'RespawnableObjects.Array.data[1]'
       value: 
       objectReference: {fileID: 1431340251}
+    - target: {fileID: 3847026970722304849, guid: cd4c1230c33c0bf4387acb9eafb0a645, type: 3}
+      propertyPath: 'RankKillRequirements.Array.data[0]'
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3847026970722304849, guid: cd4c1230c33c0bf4387acb9eafb0a645, type: 3}
+      propertyPath: 'RankKillRequirements.Array.data[1]'
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 3847026970722304849, guid: cd4c1230c33c0bf4387acb9eafb0a645, type: 3}
+      propertyPath: 'RankKillRequirements.Array.data[2]'
+      value: 26
+      objectReference: {fileID: 0}
     - target: {fileID: 4783049334333711459, guid: cd4c1230c33c0bf4387acb9eafb0a645, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
