@@ -89,9 +89,8 @@ public class EndOfLevel : MonoBehaviour
 
         //Average the two ranks
         float AverageRank = Mathf.Floor((TimerRank + KillRank) / 2);
-
         //Assign Final Rank
-        if(AverageRank == 4 && GM.PlayerDeaths == 0)
+        if (AverageRank == 4 && GM.PlayerDeaths == 0)
         {
             FinalRank = 5;
         }
@@ -168,16 +167,15 @@ public class EndOfLevel : MonoBehaviour
         float LevelSeconds = Mathf.Floor(FinalTime * 100);
 
         TimerDisplay[0].text = LevelMinutes.ToString();
-        TimerDisplay[1].text = LevelSeconds.ToString();
+        TimerDisplay[1].text = LevelSeconds.ToString("00");
 
         LevelMinutes = Mathf.Floor(pastValues[1]);
         pastValues[1] -= LevelMinutes;
         LevelSeconds = Mathf.Floor(pastValues[1] * 100);
 
         BestTimeDisplay[0].text = LevelMinutes.ToString();
-        BestTimeDisplay[1].text = LevelSeconds.ToString();
+        BestTimeDisplay[1].text = LevelSeconds.ToString("00");
 
-        Debug.Log(GM.KillCount);
         KillCountText.text = GM.KillCount.ToString();
     }
 }

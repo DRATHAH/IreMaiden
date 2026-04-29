@@ -81,7 +81,6 @@ public class GameManager : MonoBehaviour
         if(TimerActive == true && LevelSeconds < 9999.99f)
         {
             LevelSeconds += Time.deltaTime;
-            LevelSeconds = Mathf.Clamp(LevelSeconds, 0, 60);
         }
 
         if(LevelSeconds > 60)
