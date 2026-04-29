@@ -1355,13 +1355,49 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -8239681876249755940, guid: c0e64bf8167fa124d87dc50464726031, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -8108157781050867452, guid: c0e64bf8167fa124d87dc50464726031, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -7182404208268796317, guid: c0e64bf8167fa124d87dc50464726031, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -5770523896182256627, guid: c0e64bf8167fa124d87dc50464726031, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: -4509823143501964880, guid: c0e64bf8167fa124d87dc50464726031, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 9fc13048868413a4598fc91658e40aec, type: 2}
+    - target: {fileID: -3875488960800711865, guid: c0e64bf8167fa124d87dc50464726031, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c0e64bf8167fa124d87dc50464726031, type: 3}
       propertyPath: m_Name
       value: house_square_mid
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c0e64bf8167fa124d87dc50464726031, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1283589592141837155, guid: c0e64bf8167fa124d87dc50464726031, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3587788796799408565, guid: c0e64bf8167fa124d87dc50464726031, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8402098509399645163, guid: c0e64bf8167fa124d87dc50464726031, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4353,7 +4389,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2cdd981d4555ca842a32ace48fe7b3a3, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.065
+      value: 0.040912297
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2cdd981d4555ca842a32ace48fe7b3a3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4361,7 +4397,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2cdd981d4555ca842a32ace48fe7b3a3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 40.254498
+      value: 35.54
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2cdd981d4555ca842a32ace48fe7b3a3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4397,7 +4433,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2cdd981d4555ca842a32ace48fe7b3a3, type: 3}
       propertyPath: m_ConstrainProportionsScale
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2cdd981d4555ca842a32ace48fe7b3a3, type: 3}
       propertyPath: m_Name
@@ -18095,7 +18131,8 @@ GameObject:
   - component: {fileID: 759453606}
   - component: {fileID: 759453608}
   - component: {fileID: 759453607}
-  m_Layer: 0
+  - component: {fileID: 759453609}
+  m_Layer: 9
   m_Name: square_base (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18174,6 +18211,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 759453605}
   m_Mesh: {fileID: -9201953228305864244, guid: 6b8e33cc15346f845bb3997a0eff3491, type: 3}
+--- !u!65 &759453609
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 759453605}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 9.865166, y: 9.86514, z: 19.48167}
+  m_Center: {x: 0, y: -0.00000048656466, z: 9.740833}
 --- !u!43 &774245530
 Mesh:
   m_ObjectHideFlags: 0
@@ -31467,6 +31525,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: house_square_mid (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c0e64bf8167fa124d87dc50464726031, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -34027,10 +34089,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: house_square_base
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6b8e33cc15346f845bb3997a0eff3491, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4740610365751480709, guid: 6b8e33cc15346f845bb3997a0eff3491, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 9fc13048868413a4598fc91658e40aec, type: 2}
+    - target: {fileID: 5497198145520501214, guid: 6b8e33cc15346f845bb3997a0eff3491, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -34074,8 +34144,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 143.88487, y: 143.0466, z: 277.5895}
-  m_Center: {x: -0.19478431, y: 1.333343, z: -57.606552}
+  m_Size: {x: 145.27165, y: 143.0466, z: 313.15683}
+  m_Center: {x: -24.531086, y: 1.3333395, z: -39.822807}
 --- !u!1001 &1579938891
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34716,7 +34786,8 @@ GameObject:
   - component: {fileID: 1641491406}
   - component: {fileID: 1641491408}
   - component: {fileID: 1641491407}
-  m_Layer: 0
+  - component: {fileID: 1641491409}
+  m_Layer: 9
   m_Name: square_base (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34795,6 +34866,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1641491405}
   m_Mesh: {fileID: -9201953228305864244, guid: 6b8e33cc15346f845bb3997a0eff3491, type: 3}
+--- !u!65 &1641491409
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641491405}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 9.865172, y: 9.865145, z: 23.662498}
+  m_Center: {x: 0.000007751962, y: 0.0000008785134, z: 11.83124}
 --- !u!1 &1646410282
 GameObject:
   m_ObjectHideFlags: 0
@@ -53162,13 +53254,49 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -8239681876249755940, guid: c0e64bf8167fa124d87dc50464726031, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -8108157781050867452, guid: c0e64bf8167fa124d87dc50464726031, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -7182404208268796317, guid: c0e64bf8167fa124d87dc50464726031, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -5770523896182256627, guid: c0e64bf8167fa124d87dc50464726031, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: -4509823143501964880, guid: c0e64bf8167fa124d87dc50464726031, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 9fc13048868413a4598fc91658e40aec, type: 2}
+    - target: {fileID: -3875488960800711865, guid: c0e64bf8167fa124d87dc50464726031, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c0e64bf8167fa124d87dc50464726031, type: 3}
       propertyPath: m_Name
       value: house_square_mid (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c0e64bf8167fa124d87dc50464726031, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1283589592141837155, guid: c0e64bf8167fa124d87dc50464726031, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3587788796799408565, guid: c0e64bf8167fa124d87dc50464726031, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8402098509399645163, guid: c0e64bf8167fa124d87dc50464726031, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -56521,6 +56649,22 @@ PrefabInstance:
     - target: {fileID: 8422059807133923930, guid: 5195f888cffffaf409258ad906819cfb, type: 3}
       propertyPath: m_Name
       value: PlayerContainer
+      objectReference: {fileID: 0}
+    - target: {fileID: 8779487487072684132, guid: 5195f888cffffaf409258ad906819cfb, type: 3}
+      propertyPath: m_ClearFlags
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8779487487072684132, guid: 5195f888cffffaf409258ad906819cfb, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.1981132
+      objectReference: {fileID: 0}
+    - target: {fileID: 8779487487072684132, guid: 5195f888cffffaf409258ad906819cfb, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.0046724807
+      objectReference: {fileID: 0}
+    - target: {fileID: 8779487487072684132, guid: 5195f888cffffaf409258ad906819cfb, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.06809393
       objectReference: {fileID: 0}
     - target: {fileID: 9134083186094747750, guid: 5195f888cffffaf409258ad906819cfb, type: 3}
       propertyPath: m_AnchorMax.x
