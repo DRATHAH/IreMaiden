@@ -95,7 +95,7 @@ public class EndOfLevel : MonoBehaviour
         Debug.Log(AverageRank);
 
         //Assign Final Rank
-        if (AverageRank == 4 && GM.PlayerDeaths == 0)
+        if (TimerRank == 4 && KillRank  == 4 && GM.PlayerDeaths == 0)
         {
             FinalRank = 5;
         }
