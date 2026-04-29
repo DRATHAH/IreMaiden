@@ -99,7 +99,7 @@ public class EndOfLevel : MonoBehaviour
         {
             FinalRank = 5;
         }
-        else if(AverageRank == 4 && GM.PlayerDeaths > 0)
+        else if(AverageRank == 4)
         {
             FinalRank = 4;
         }
