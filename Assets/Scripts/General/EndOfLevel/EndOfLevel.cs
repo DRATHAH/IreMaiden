@@ -88,11 +88,11 @@ public class EndOfLevel : MonoBehaviour
         }
 
         //Average the two ranks
-        float AverageRank = Mathf.Floor((TimerRank + KillRank) / 2);
+        float AverageRank = Mathf.Ceil((TimerRank + KillRank) / 2);
 
-        //Debug.Log(TimerRank);
-        //Debug.Log(KillRank);
-        //Debug.Log(AverageRank);
+        Debug.Log(TimerRank);
+        Debug.Log(KillRank);
+        Debug.Log(AverageRank);
 
         //Assign Final Rank
         if (AverageRank == 4 && GM.PlayerDeaths == 0)
