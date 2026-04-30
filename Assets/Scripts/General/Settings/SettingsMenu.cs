@@ -5,6 +5,12 @@ using TMPro;
 
 public class SettingsMenu : MonoBehaviour
 {
+    [Header("Sensitivity")]
+    public Slider SensitivitySlider;
+    public FloatSO SensitivitySO;
+    public float SensitivityValue;
+    public PlayerLocomotionManager player;
+
     public AudioMixer AM;
 
     //Settings Menu Stuff
@@ -74,5 +80,20 @@ public class SettingsMenu : MonoBehaviour
         FullScreenToggle.isOn = FullScreen.Value;
         Screen.fullScreen = FullScreen.Value;
         fullscreen = FullScreen.Value;
+
+        SensitivitySlider.value = SensitivitySO.Value;
+        SensitivityValue = SensitivitySO.Value;
+
+        if (player != null)
+            player.sensitivity = SensitivitySO.Value;
+    }
+
+    public void SetSensitivity(float value)
+    {
+        SensitivitySO.Value = value;
+        SensitivityValue = value;
+
+        if (player != null)
+            player.sensitivity = value;
     }
 }

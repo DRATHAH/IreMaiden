@@ -1,8 +1,6 @@
 using System;
 using UnityEngine;
 
-namespace IM
-{
     public class PlayerLocomotionManager : MonoBehaviour
     {
             [Header("Assignables")]
@@ -510,5 +508,4 @@ namespace IM
             {
                 return rb;
             }
-        }
-}
+    }   

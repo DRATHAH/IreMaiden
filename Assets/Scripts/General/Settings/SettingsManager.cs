@@ -10,8 +10,11 @@ public class SettingsManager : MonoBehaviour
 
     public BoolSO FullScreen;
 
+    public FloatSO SensitivitySO;
+
     public float[] VolumeSettings;
     public bool fullscreen;
+    public float sensitivity;
 
     void Awake()
     {
@@ -28,6 +31,7 @@ public class SettingsManager : MonoBehaviour
         {
             VolumeSO.Value = settingsdata.settingsdata.SoundSettings;
             FullScreen.Value = settingsdata.settingsdata.FullScreen;
+            SensitivitySO.Value = settingsdata.settingsdata.Sensitivity;
         }
 
         UpdateVars();
@@ -40,6 +44,8 @@ public class SettingsManager : MonoBehaviour
         VolumeSettings[1] = settingsMenu.VolumeValues[1];
         VolumeSettings[2] = settingsMenu.VolumeValues[2];
         fullscreen = settingsMenu.fullscreen;
+
+        sensitivity = SensitivitySO.Value;
     }
 
     public void SaveSettings()
