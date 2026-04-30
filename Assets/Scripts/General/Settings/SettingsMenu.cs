@@ -2,9 +2,18 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
 using TMPro;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class SettingsMenu : MonoBehaviour
 {
+    [Header("Brightness")]
+    public Slider BrightnessSlider;
+    public FloatSO BrightnessSO;
+    public Volume GlobalVolume;
+
+    private ColorAdjustments colorAdjustments;
+
     [Header("Sensitivity")]
     public Slider SensitivitySlider;
     public FloatSO SensitivitySO;
@@ -36,6 +45,8 @@ public class SettingsMenu : MonoBehaviour
         //FullScreenToggle = GameObject.Find("FullScreenToggle").GetComponent<Toggle>();
 
         SetValues();
+
+        GlobalVolume.profile.TryGet(out colorAdjustments);
     }
 
     public void MasterVolume(float masterVolume)
@@ -86,6 +97,11 @@ public class SettingsMenu : MonoBehaviour
 
         if (player != null)
             player.sensitivity = SensitivitySO.Value;
+
+        BrightnessSlider.value = BrightnessSO.Value;
+
+        if (colorAdjustments != null)
+            colorAdjustments.postExposure.value = BrightnessSO.Value;
     }
 
     public void SetSensitivity(float value)
@@ -95,5 +111,13 @@ public class SettingsMenu : MonoBehaviour
 
         if (player != null)
             player.sensitivity = value;
+    }
+
+    public void SetBrightness(float value)
+    {
+        BrightnessSO.Value = value;
+
+        if (colorAdjustments != null)
+            colorAdjustments.postExposure.value = value;
     }
 }
