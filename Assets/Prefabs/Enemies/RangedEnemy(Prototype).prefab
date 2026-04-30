@@ -298,13 +298,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1216359630527148741}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.51745915, y: 0.47776723, z: 0.4508089, w: 0.54840297}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2619253726935263899}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &2397862342364176691
 GameObject:
   m_ObjectHideFlags: 0
@@ -898,10 +898,10 @@ MonoBehaviour:
   attackSpeed: 1.1
   damage: 15
   arrowSpeed: 100
-  projectile: {fileID: 3832894018831257731, guid: 2bf65e260549ac44d8ca8babd85d6e77, type: 3}
+  projectile: {fileID: 5883699683667901807, guid: ee46d94bf18b88744bda7403b64dc281, type: 3}
   soundParticle: {fileID: 2389440222983486469, guid: d642615504fb8a646bde903246dc2550, type: 3}
   fireSound: {fileID: 4520102993456712435}
-  arrowSpawn: {fileID: 1507302969963314287}
+  arrowSpawn: {fileID: 1180293629762569013}
   DeathSounds: []
   anim: {fileID: 8026013030445423108}
 --- !u!1 &6546096865513329875
@@ -1375,6 +1375,11 @@ PrefabInstance:
 --- !u!4 &644657825198131247 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2825504177776734930, guid: 02d0cb5d80422d444b8ae01462a5bb37, type: 3}
+  m_PrefabInstance: {fileID: 3442014503139539709}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1180293629762569013 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4586145710859647432, guid: 02d0cb5d80422d444b8ae01462a5bb37, type: 3}
   m_PrefabInstance: {fileID: 3442014503139539709}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1228628744834552832 stripped
