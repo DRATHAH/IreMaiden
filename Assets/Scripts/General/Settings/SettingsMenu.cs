@@ -44,9 +44,10 @@ public class SettingsMenu : MonoBehaviour
         //VolumeSliders[2] = GameObject.Find("SFXVolSlider").GetComponent<Slider>();
         //FullScreenToggle = GameObject.Find("FullScreenToggle").GetComponent<Toggle>();
 
-        SetValues();
+        if (GlobalVolume != null && GlobalVolume.profile != null)
+            GlobalVolume.profile.TryGet(out colorAdjustments);
 
-        GlobalVolume.profile.TryGet(out colorAdjustments);
+        SetValues();
     }
 
     public void MasterVolume(float masterVolume)
