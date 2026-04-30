@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2912610422944728436}
   - component: {fileID: 6546179612478873004}
   - component: {fileID: 5097225673093501852}
+  - component: {fileID: 7156915438794980925}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Untagged
@@ -34,6 +35,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3819545499674773412}
+  - {fileID: 7311066384989383474}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &2356316300789169223
@@ -195,6 +197,29 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!136 &7156915438794980925
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5883699683667901807}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.1
+  m_Height: 4
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6157054485720204799
 GameObject:
   m_ObjectHideFlags: 0
@@ -206,7 +231,6 @@ GameObject:
   - component: {fileID: 3819545499674773412}
   - component: {fileID: 6933504981728172046}
   - component: {fileID: 1690792743558111719}
-  - component: {fileID: 6985081922041828827}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Untagged
@@ -223,8 +247,8 @@ Transform:
   m_GameObject: {fileID: 6157054485720204799}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.40784344, z: -1.5753931}
-  m_LocalScale: {x: 0.1, y: 0.03, z: 0.1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 7, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 664485247491629118}
@@ -236,7 +260,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6157054485720204799}
-  m_Mesh: {fileID: -9133523847158606217, guid: 26c11388e93d2d748b81615938abd375, type: 3}
+  m_Mesh: {fileID: -21412527884294285, guid: ca7f2f5dacb24bf4da9a12a5c867a680, type: 3}
 --- !u!23 &1690792743558111719
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -262,7 +286,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b0c7b368d372b50499ec5b5e02643e98, type: 2}
+  - {fileID: 2100000, guid: b33aa82db9fd10d4ba50685b01da7650, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -285,13 +309,45 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &6985081922041828827
+--- !u!1 &7286283717629962528
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7311066384989383474}
+  - component: {fileID: 8782236292773006239}
+  m_Layer: 0
+  m_Name: Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7311066384989383474
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7286283717629962528}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 664485247491629118}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!136 &8782236292773006239
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6157054485720204799}
+  m_GameObject: {fileID: 7286283717629962528}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -304,7 +360,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.5
-  m_Height: 90
+  m_Radius: 0.1
+  m_Height: 2.9
   m_Direction: 1
-  m_Center: {x: 0, y: 45, z: 0}
+  m_Center: {x: 0, y: 0.5, z: 0}

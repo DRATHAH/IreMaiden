@@ -151,11 +151,8 @@ public class RangedTree : DamageableCharacter
                 {
                     anim.SetTrigger("Attack");
                     Debug.Log("attack");
-                    GameObject arrow = Instantiate(projectile, arrowSpawn.position + (transform.forward * 0.5f), Quaternion.identity);
-                    Vector3 direction = player.position - arrow.transform.position;
-                    Quaternion arrowdir = Quaternion.LookRotation(direction, Vector3.forward);
-                    arrowdir = Quaternion.Euler(arrowdir.x, arrowdir.y, arrowdir.z - 90);
-                    arrow.transform.rotation = arrowdir;
+                    Vector3 direction = player.position - transform.position;
+                    GameObject arrow = Instantiate(projectile, arrowSpawn.position + (transform.forward * 0.5f), Quaternion.LookRotation(direction, Vector3.up));
                     Projectile proj = arrow.GetComponent<Projectile>();
                     proj.Initialize(false, damage, arrowSpeed, (player.position - arrowSpawn.position).normalized, false, 0, "Enemy");
                     timeBetweenAttack = 0;

@@ -896,7 +896,7 @@ MonoBehaviour:
   attackRange: 40
   retreatRange: 10
   attackSpeed: 1.1
-  damage: 15
+  damage: 20
   arrowSpeed: 100
   projectile: {fileID: 5883699683667901807, guid: ee46d94bf18b88744bda7403b64dc281, type: 3}
   soundParticle: {fileID: 2389440222983486469, guid: d642615504fb8a646bde903246dc2550, type: 3}
