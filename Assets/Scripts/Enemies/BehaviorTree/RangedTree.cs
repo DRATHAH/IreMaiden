@@ -35,12 +35,14 @@ public class RangedTree : DamageableCharacter
     public AudioClip[] DeathSounds;
     private Vector3 spawnPoint;
 
+    public Animator anim;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         spawnPoint = this.transform.position;
-
+        anim = GetComponentInChildren<Animator>();
 
         tree = new BehaviorTree();
         Sequence idleLoop = new Sequence("Idle or Act");
@@ -80,6 +82,8 @@ public class RangedTree : DamageableCharacter
             treeStatus = Node.Status.RUNNING;
         }
 
+        anim.SetFloat("Movement", agent.velocity.magnitude);
+
         timeBetweenAttack += Time.deltaTime;
     }
 
@@ -104,6 +108,7 @@ public class RangedTree : DamageableCharacter
         {
             if ((transform.position - player.position).magnitude < retreatRange)
             {
+                anim.SetBool("Retreat", true);
                 agent.updateRotation = false;
                 return GoToLocation(hit.position);
             }
@@ -117,6 +122,7 @@ public class RangedTree : DamageableCharacter
         agent.updateRotation = true;
         if ((transform.position - player.position).magnitude > attackRange && agent.isOnNavMesh)
         {
+            anim.SetBool("Retreat", false);
             agent.SetDestination(player.position);
             return Node.Status.RUNNING;
         }
@@ -143,6 +149,7 @@ public class RangedTree : DamageableCharacter
             {
                 if (timeBetweenAttack >= attackSpeed)
                 {
+                    anim.SetTrigger("Attack");
                     Debug.Log("attack");
                     GameObject arrow = Instantiate(projectile, arrowSpawn.position + (transform.forward * 0.5f), Quaternion.identity);
                     Projectile proj = arrow.GetComponent<Projectile>();

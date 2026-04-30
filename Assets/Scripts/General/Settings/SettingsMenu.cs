@@ -10,6 +10,7 @@ public class SettingsMenu : MonoBehaviour
     [Header("Brightness")]
     public Slider BrightnessSlider;
     public FloatSO BrightnessSO;
+
     public Volume GlobalVolume;
 
     private ColorAdjustments colorAdjustments;
@@ -96,13 +97,21 @@ public class SettingsMenu : MonoBehaviour
         SensitivitySlider.value = SensitivitySO.Value;
         SensitivityValue = SensitivitySO.Value;
 
+        BrightnessSlider.value = BrightnessSO.Value;
+        SetBrightness(BrightnessSO.Value);
+
         if (player != null)
+        {
             player.sensitivity = SensitivitySO.Value;
+        }
 
         BrightnessSlider.value = BrightnessSO.Value;
 
+
         if (colorAdjustments != null)
+        {
             colorAdjustments.postExposure.value = BrightnessSO.Value;
+        }
     }
 
     public void SetSensitivity(float value)
