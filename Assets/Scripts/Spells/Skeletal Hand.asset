@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Skeletal Hand
   m_EditorClassIdentifier: Assembly-CSharp::SpellAbility
   name: Hand
-  icon: {fileID: 21300000, guid: 6585df77252c9cd479f4a4530342b0d9, type: 3}
+  icon: {fileID: -1784121261, guid: 68e0fe287d5e3964985d912e7bf1463e, type: 3}
   desc: Creates a skeletal hand that knocks back enemies and acts as cover.
   damage: 5
+  force: 0
   cooldown: 5
   spellPrefab: {fileID: 6533491581710592899, guid: 1684e897b10d54844bbd8c8dd3048d43, type: 3}
   spellId: 2
