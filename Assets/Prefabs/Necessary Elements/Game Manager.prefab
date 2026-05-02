@@ -5491,11 +5491,11 @@ MonoBehaviour:
   RankImage: {fileID: 3062370413709154113}
   Ranks:
   - {fileID: -795184485, guid: f97d317728621074caea1c51b3901c13, type: 3}
-  - {fileID: 1882920803, guid: f97d317728621074caea1c51b3901c13, type: 3}
-  - {fileID: 480389115, guid: f97d317728621074caea1c51b3901c13, type: 3}
-  - {fileID: -132644115, guid: f97d317728621074caea1c51b3901c13, type: 3}
-  - {fileID: -528664911, guid: f97d317728621074caea1c51b3901c13, type: 3}
-  - {fileID: 771916268, guid: f97d317728621074caea1c51b3901c13, type: 3}
+  - {fileID: 1707251871, guid: 21b2751b4b60fcf46b0790a2c9d1629f, type: 3}
+  - {fileID: 658856318, guid: 21b2751b4b60fcf46b0790a2c9d1629f, type: 3}
+  - {fileID: -1884915101, guid: 21b2751b4b60fcf46b0790a2c9d1629f, type: 3}
+  - {fileID: 1976816396, guid: 21b2751b4b60fcf46b0790a2c9d1629f, type: 3}
+  - {fileID: 1421259600, guid: 21b2751b4b60fcf46b0790a2c9d1629f, type: 3}
   TimerDisplay:
   - {fileID: 4777290744108282955}
   - {fileID: 3360522571602282731}
