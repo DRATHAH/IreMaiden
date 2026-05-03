@@ -16,13 +16,13 @@ public class GameManager : MonoBehaviour
     #endregion
 
     public bool TimerActive = false; //Is the time in level incrementing?
-     public float LevelMinutes = 0; //Time spent in the level
-     public float LevelSeconds = 0;
-    public float ParTime; //Time for player to beat (Minutes.Seconds)
+    public float LevelMinutes = 0; //Time spent in the level
+    public float LevelSeconds = 0;
+    public float[] RankTimeRequirements; //Time for player to beat (Minutes.Seconds) (0-2: 0 = S Rank, 1 = A Rank, 2 = B Rank, Anything higher is a C Rank)
 
     [HideInInspector] public int KillCount = 0; //Number of enemies player has killed
     public int SavedKillCount = 0; //Number of enemies player has killed after going through a checkpoint
-    public int RequiredEnemies; //Number of enemies player needs to kill for best rank
+    public int[] RankKillRequirements;
 
     [HideInInspector] public int PlayerDeaths = 0; //Number of times player has died
 
@@ -81,7 +81,6 @@ public class GameManager : MonoBehaviour
         if(TimerActive == true && LevelSeconds < 9999.99f)
         {
             LevelSeconds += Time.deltaTime;
-            LevelSeconds = Mathf.Clamp(LevelSeconds, 0, 60);
         }
 
         if(LevelSeconds > 60)

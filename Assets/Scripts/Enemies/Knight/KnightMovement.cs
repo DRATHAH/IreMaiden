@@ -57,7 +57,7 @@ public class KnightMovement : MonoBehaviour
 
         knightAttack = this.GetComponent<KnightAttack>();
 
-       // anim = this.GetComponent<Animator>();
+        anim = this.GetComponentInChildren<Animator>();
     }
 
     /*
@@ -141,7 +141,7 @@ public class KnightMovement : MonoBehaviour
             }
         }
 
-       // anim.SetFloat("Movement", enemyNav.speed);
+        anim.SetFloat("Movement", enemyNav.speed);
     }
 
     void SlowDown()

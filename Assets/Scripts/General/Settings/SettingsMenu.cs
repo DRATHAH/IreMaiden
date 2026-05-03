@@ -2,9 +2,25 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
 using TMPro;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class SettingsMenu : MonoBehaviour
 {
+    [Header("Brightness")]
+    public Slider BrightnessSlider;
+    public FloatSO BrightnessSO;
+
+    public Volume GlobalVolume;
+
+    private ColorAdjustments colorAdjustments;
+
+    [Header("Sensitivity")]
+    public Slider SensitivitySlider;
+    public FloatSO SensitivitySO;
+    public float SensitivityValue;
+    public PlayerLocomotionManager player;
+
     public AudioMixer AM;
 
     //Settings Menu Stuff
@@ -28,6 +44,9 @@ public class SettingsMenu : MonoBehaviour
         //VolumeSliders[1] = GameObject.Find("MusicVolSlider").GetComponent<Slider>();
         //VolumeSliders[2] = GameObject.Find("SFXVolSlider").GetComponent<Slider>();
         //FullScreenToggle = GameObject.Find("FullScreenToggle").GetComponent<Toggle>();
+
+        if (GlobalVolume != null && GlobalVolume.profile != null)
+            GlobalVolume.profile.TryGet(out colorAdjustments);
 
         SetValues();
     }
@@ -74,5 +93,41 @@ public class SettingsMenu : MonoBehaviour
         FullScreenToggle.isOn = FullScreen.Value;
         Screen.fullScreen = FullScreen.Value;
         fullscreen = FullScreen.Value;
+
+        SensitivitySlider.value = SensitivitySO.Value;
+        SensitivityValue = SensitivitySO.Value;
+
+        BrightnessSlider.value = BrightnessSO.Value;
+        SetBrightness(BrightnessSO.Value);
+
+        if (player != null)
+        {
+            player.sensitivity = SensitivitySO.Value;
+        }
+
+        BrightnessSlider.value = BrightnessSO.Value;
+
+
+        if (colorAdjustments != null)
+        {
+            colorAdjustments.postExposure.value = BrightnessSO.Value;
+        }
+    }
+
+    public void SetSensitivity(float value)
+    {
+        SensitivitySO.Value = value;
+        SensitivityValue = value;
+
+        if (player != null)
+            player.sensitivity = value;
+    }
+
+    public void SetBrightness(float value)
+    {
+        BrightnessSO.Value = value;
+
+        if (colorAdjustments != null)
+            colorAdjustments.postExposure.value = value;
     }
 }

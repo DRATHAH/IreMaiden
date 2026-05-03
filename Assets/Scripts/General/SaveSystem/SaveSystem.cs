@@ -79,10 +79,14 @@ public class SettingsData
 {
     [SerializeField] public float[] SoundSettings;
     [SerializeField] public bool FullScreen;
+    [SerializeField] public float Brightness;
+    [SerializeField] public float Sensitivity;
 
     public SettingsData(SettingsManager settingsmanager)
     {
         SoundSettings = settingsmanager.VolumeSettings;
         FullScreen = settingsmanager.fullscreen;
+        Brightness = settingsmanager.brightness;
+        Sensitivity = settingsmanager.sensitivity;
     }
 }

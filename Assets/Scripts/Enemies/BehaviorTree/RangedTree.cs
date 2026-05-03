@@ -27,18 +27,22 @@ public class RangedTree : DamageableCharacter
     public int damage = 5;
     public float arrowSpeed = 100f;
     public GameObject projectile;
+    public GameObject soundParticle;
+    public AudioSource fireSound;
     public Transform arrowSpawn;
 
     float timeBetweenAttack = 0;
     public AudioClip[] DeathSounds;
     private Vector3 spawnPoint;
 
+    public Animator anim;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         spawnPoint = this.transform.position;
-
+        anim = GetComponentInChildren<Animator>();
 
         tree = new BehaviorTree();
         Sequence idleLoop = new Sequence("Idle or Act");
@@ -78,6 +82,8 @@ public class RangedTree : DamageableCharacter
             treeStatus = Node.Status.RUNNING;
         }
 
+        anim.SetFloat("Movement", agent.velocity.magnitude);
+
         timeBetweenAttack += Time.deltaTime;
     }
 
@@ -102,6 +108,7 @@ public class RangedTree : DamageableCharacter
         {
             if ((transform.position - player.position).magnitude < retreatRange)
             {
+                anim.SetBool("Retreat", true);
                 agent.updateRotation = false;
                 return GoToLocation(hit.position);
             }
@@ -113,12 +120,13 @@ public class RangedTree : DamageableCharacter
     public Node.Status Approach()
     {
         agent.updateRotation = true;
-        if ((transform.position - player.position).magnitude > attackRange)
+        if ((transform.position - player.position).magnitude > attackRange && agent.isOnNavMesh)
         {
+            anim.SetBool("Retreat", false);
             agent.SetDestination(player.position);
             return Node.Status.RUNNING;
         }
-        else if ((transform.position - player.position).magnitude <= attackRange)
+        else if ((transform.position - player.position).magnitude <= attackRange && agent.isOnNavMesh)
         {
             GoToLocation(transform.position);
             return Node.Status.SUCCESS;
@@ -128,7 +136,10 @@ public class RangedTree : DamageableCharacter
 
     public Node.Status RangedAttack()
     {
-        agent.SetDestination(transform.position);
+        if (agent.isOnNavMesh)
+        {
+            agent.SetDestination(transform.position);
+        }
         transform.LookAt(new Vector3(player.position.x, transform.position.y, player.position.z));
         Ray ray = new Ray(transform.position, (player.position - transform.position).normalized);
         RaycastHit hit;
@@ -138,11 +149,15 @@ public class RangedTree : DamageableCharacter
             {
                 if (timeBetweenAttack >= attackSpeed)
                 {
+                    anim.SetTrigger("Attack");
                     Debug.Log("attack");
-                    GameObject arrow = Instantiate(projectile, arrowSpawn.position + (transform.forward * 0.5f), Quaternion.identity);
+                    Vector3 direction = player.position - transform.position;
+                    GameObject arrow = Instantiate(projectile, arrowSpawn.position + (transform.forward * 0.5f), Quaternion.LookRotation(direction, Vector3.up));
                     Projectile proj = arrow.GetComponent<Projectile>();
                     proj.Initialize(false, damage, arrowSpeed, (player.position - arrowSpawn.position).normalized, false, 0, "Enemy");
                     timeBetweenAttack = 0;
+                    GameObject sound = Instantiate(soundParticle, transform.position, Quaternion.identity);
+                    sound.GetComponent<SoundObject>().Initialize(fireSound);
                     return Node.Status.SUCCESS;
                 }
             }
@@ -159,13 +174,21 @@ public class RangedTree : DamageableCharacter
         }
         else
         {
-            agent.SetDestination(transform.position);
-            return Node.Status.SUCCESS;
+            if (agent.isOnNavMesh)
+            {
+                agent.SetDestination(transform.position);
+                return Node.Status.SUCCESS;
+            }
+            return Node.Status.FAILURE;
         }
     }
 
     Node.Status GoToLocation(Vector3 destination)
     {
+        if (!agent.isOnNavMesh)
+        {
+            return Node.Status.FAILURE;
+        }
         float distanceToTarget = Vector3.Distance(transform.position, destination);
         if (state == ActionState.IDLE)
         {

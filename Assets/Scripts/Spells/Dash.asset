@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dash
   m_EditorClassIdentifier: Assembly-CSharp::SpellAbility
   name: Dash
-  icon: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  icon: {fileID: 525439450, guid: 68e0fe287d5e3964985d912e7bf1463e, type: 3}
   desc: Dash forward and create an explosion where you land!
   damage: 10
   force: 50

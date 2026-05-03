@@ -34,6 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1506012384369658091}
+  - {fileID: 2977506782670011129}
   m_Father: {fileID: 1769919160023770974}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!33 &4660675550967101238
@@ -275,6 +276,7 @@ GameObject:
   - component: {fileID: 1769919160023770974}
   - component: {fileID: 4075189353060572865}
   - component: {fileID: 923161677567372634}
+  - component: {fileID: -625669811946034333}
   m_Layer: 0
   m_Name: SkeletonHand
   m_TagString: Untagged
@@ -333,10 +335,101 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc5eb5b9f4d48cd4d8f0da30675ebf82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Explosion
-  damage: 5
+  damage: 10
   knockback: 50
-  explosionRadius: 3.5
+  explosionRadius: 6
   delayLifetime: 6
+  stunDuration: 1
+--- !u!208 &-625669811946034333
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6533491581710592899}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
+--- !u!1001 &1104233500451554550
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1994713132423247780}
+    m_Modifications:
+    - target: {fileID: 2738536156938173967, guid: f75c87408fcde0442ae5782aba132c62, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.3520561
+      objectReference: {fileID: 0}
+    - target: {fileID: 2738536156938173967, guid: f75c87408fcde0442ae5782aba132c62, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.3402364
+      objectReference: {fileID: 0}
+    - target: {fileID: 2738536156938173967, guid: f75c87408fcde0442ae5782aba132c62, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.078
+      objectReference: {fileID: 0}
+    - target: {fileID: 2738536156938173967, guid: f75c87408fcde0442ae5782aba132c62, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.474
+      objectReference: {fileID: 0}
+    - target: {fileID: 2738536156938173967, guid: f75c87408fcde0442ae5782aba132c62, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.118
+      objectReference: {fileID: 0}
+    - target: {fileID: 2738536156938173967, guid: f75c87408fcde0442ae5782aba132c62, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.6881143
+      objectReference: {fileID: 0}
+    - target: {fileID: 2738536156938173967, guid: f75c87408fcde0442ae5782aba132c62, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7256024
+      objectReference: {fileID: 0}
+    - target: {fileID: 2738536156938173967, guid: f75c87408fcde0442ae5782aba132c62, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2738536156938173967, guid: f75c87408fcde0442ae5782aba132c62, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2738536156938173967, guid: f75c87408fcde0442ae5782aba132c62, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 93.037994
+      objectReference: {fileID: 0}
+    - target: {fileID: 2738536156938173967, guid: f75c87408fcde0442ae5782aba132c62, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2738536156938173967, guid: f75c87408fcde0442ae5782aba132c62, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4685467814884686606, guid: f75c87408fcde0442ae5782aba132c62, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8143846381525118559, guid: f75c87408fcde0442ae5782aba132c62, type: 3}
+      propertyPath: m_Name
+      value: DirtRumble
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f75c87408fcde0442ae5782aba132c62, type: 3}
+--- !u!4 &2977506782670011129 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2738536156938173967, guid: f75c87408fcde0442ae5782aba132c62, type: 3}
+  m_PrefabInstance: {fileID: 1104233500451554550}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1399730209842540288
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -397,6 +490,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 9452bf9013f592048a4f70d49d741ab6, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c3d5669818a76224485515d16f0248ba, type: 2}
     - target: {fileID: 919132149155446097, guid: 9452bf9013f592048a4f70d49d741ab6, type: 3}
       propertyPath: m_Name
       value: Handfist

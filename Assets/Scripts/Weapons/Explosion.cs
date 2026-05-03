@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.AI;
 
 public class Explosion : MonoBehaviour
 {
@@ -8,10 +9,12 @@ public class Explosion : MonoBehaviour
     public float knockback = 5f;
     public float explosionRadius = 5;
     public float delayLifetime = 5;
+    public float stunDuration = 1;
 
     string ownerTag = "";
 
     private List<Transform> HitObjects = new List<Transform>();
+    private List<Transform> KnockbackObjects = new List<Transform>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -24,18 +27,23 @@ public class Explosion : MonoBehaviour
         foreach (Collider col in Physics.OverlapSphere(transform.position, explosionRadius, Physics.AllLayers, QueryTriggerInteraction.Ignore))
         {
             // Debug.Log(col.name);
-            if (col.transform.root.TryGetComponent<Rigidbody>(out Rigidbody body))
+            if(col.transform.root.tag == "Player")
             {
-                body.AddExplosionForce(knockback, transform.position, explosionRadius, 2);
+                if (col.transform.root.GetComponentInChildren<Rigidbody>() && !KnockbackObjects.Contains(col.transform.root))
+                {
+                    Debug.Log(col.transform.root);
+                    KnockbackObjects.Add(col.transform.root);
+                }
             }
-            else if (col.transform.root.CompareTag("Player"))
+            else if (col.transform.root.TryGetComponent<Rigidbody>(out Rigidbody body))
             {
-                Rigidbody rb = col.transform.root.GetComponentInChildren<Rigidbody>();
-                rb.AddExplosionForce(knockback, transform.position, explosionRadius, 2);
-                Debug.Log(rb.name);
+                if (col.transform.root.GetComponentInChildren<Rigidbody>() && !KnockbackObjects.Contains(col.transform.root))
+                {
+                    KnockbackObjects.Add(col.transform.root);
+                }
             }
 
-            if (col.transform.root.GetComponentInChildren<DamageableCharacter>() && !col.transform.root.CompareTag(ownerTag) && HitObjects.Contains(col.transform.root) == false)
+            if (col.transform.root.GetComponentInChildren<DamageableCharacter>() && !col.transform.root.CompareTag(ownerTag) && !HitObjects.Contains(col.transform.root))
             {
                 HitObjects.Add(col.transform.root);
             }
@@ -46,6 +54,20 @@ public class Explosion : MonoBehaviour
             damageable.GetComponentInChildren<DamageableCharacter>().OnHit(damage, damageable.transform.root.gameObject, false);
             Debug.Log("Damaged " + damageable.transform.name);
         }
+        foreach(Transform obj in KnockbackObjects)
+        {
+            if (obj.TryGetComponent<DamageableCharacter>(out DamageableCharacter character))
+            {
+                character.Recoil(knockback, transform.position, explosionRadius, 2, stunDuration);
+            }
+            else
+            {
+                obj.GetComponentInChildren<Rigidbody>().AddExplosionForce(knockback, transform.position, 0, 2);
+            }
+        }
+
+        HitObjects.Clear();
+        KnockbackObjects.Clear();
         StartCoroutine(DelayDestroy());
     }
 
