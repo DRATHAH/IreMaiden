@@ -63,6 +63,8 @@ public class EnemyHealth : DamageableCharacter
         Health = maxHealth;
         targetable = true;
         transform.position = spawnPoint;
+        GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = true;
+        GetComponent<Rigidbody>().isKinematic = true;
         gameObject.SetActive(false);
     }
 

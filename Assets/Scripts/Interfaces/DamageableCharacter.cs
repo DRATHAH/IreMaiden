@@ -98,7 +98,7 @@ public class DamageableCharacter : MonoBehaviour, IDamageable
         Destroy(gameObject);
     }
 
-    IEnumerator EnableNavAgent(float stunTime)
+    public IEnumerator EnableNavAgent(float stunTime)
     {
         yield return new WaitForSeconds(stunTime);
         if (GetComponent<NavMeshAgent>())
