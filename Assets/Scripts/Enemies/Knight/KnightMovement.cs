@@ -141,7 +141,7 @@ public class KnightMovement : MonoBehaviour
             }
         }
 
-        anim.SetFloat("Movement", enemyNav.speed);
+        anim.SetFloat("Movement", enemyNav.velocity.magnitude);
     }
 
     void SlowDown()
